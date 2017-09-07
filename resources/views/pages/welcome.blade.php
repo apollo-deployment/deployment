@@ -27,12 +27,6 @@
             position: relative;
         }
 
-        .top-right {
-            position: absolute;
-            right: 10px;
-            top: 18px;
-        }
-
         .content {
             text-align: center;
         }
@@ -61,7 +55,7 @@
     <div class="flex-center position-ref full-height">
         <div class="content">
             <div class="title m-b-md">
-                Laravel Template
+                Laravel v5.5 Template
             </div>
         </div>
     </div>

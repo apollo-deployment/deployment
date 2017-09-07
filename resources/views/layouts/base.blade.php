@@ -8,7 +8,7 @@
         <title>Laravel Template</title>
 
         {{-- Styles --}}
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+        <link type="text/css" href="{{ asset('css/app.css') }}" rel="stylesheet">
 
         @yield('styles')
     </head>
