@@ -1,2 +1,4 @@
-## Laravel Template
-Fixes a lot of Laravel 5.4 new project issues
+## Laravel v5.5 Template
+
+- Fixes a lot of Laravel new project issues
+- Includes base controllers and assets
