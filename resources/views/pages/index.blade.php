@@ -46,13 +46,14 @@
         }
 
         .m-b-md {
+            margin-top: 150px;
             margin-bottom: 30px;
         }
     </style>
 @endsection
 
 @section('content')
-    <div class="flex-center position-ref full-height">
+    <div class="flex-center position-ref">
         <div class="content">
             <div class="title m-b-md">
                 Laravel v5.5 Template
