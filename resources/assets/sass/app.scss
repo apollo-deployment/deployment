@@ -8,3 +8,28 @@
 
 
 // ---------- Styles ----------
+.navbar {
+  background-color: $primary;
+
+  .logo {
+    line-height: 50px;
+
+    a {
+      color: white;
+    }
+  }
+
+  li {
+    a {
+      text-align: center;
+      color: white;
+      height: 48px;
+
+      &:hover {
+        height: 45px;
+        background: none;
+        border-bottom: 3px solid white;
+      }
+    }
+  }
+}

@@ -14,6 +14,25 @@
     </head>
 
     <body>
+        <div class="navbar navbar-fixed-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="logo">
+                            <a href="{{ route('index') }}">Laravel Template</a>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="#">Link</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         @yield('content')
 
         {{-- Scripts --}}

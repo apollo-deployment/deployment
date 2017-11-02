@@ -1,3 +1,3 @@
 <?php
 
-Route::get('/', 'PageController@home')->name('home');
+Route::get('/', 'PageController@index')->name('index');

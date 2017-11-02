@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 class PageController extends Controller
 {
-    public function home()
+    // Initial page
+    public function index()
     {
-        return view('pages.welcome');
+        return view('pages.index');
     }
 
 }
