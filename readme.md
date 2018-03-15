@@ -4,7 +4,6 @@
   - Webpack unable to compile due to missing directories and wrong commands running
   - Major cleanup in base files
 - Includes base controllers and assets:
-  - Font awesome
   - Bootstrap
   - JQuery
 
