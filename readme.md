@@ -9,7 +9,6 @@
   - JQuery
 
 ### Notes
-
 Run `npm run setup` to auto run all the commands usually ran on initial setup :
 - npm install --no-bin-links
 - composer install
