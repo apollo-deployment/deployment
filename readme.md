@@ -1,11 +1,12 @@
 ## Laravel v5.5 Template
 
 - Fixes a lot of Laravel new project issues:
-  - Webpack unable to compile due to missing directories and wrong commands running
+  - Webpack unable to compile due to wrong linked directories
   - Major cleanup in base files
 - Includes base controllers and assets:
   - Bootstrap
   - JQuery
+  - HTML & Form Laravel packages
 
 ### Installation
 1) Run `cp .env.example .env`
