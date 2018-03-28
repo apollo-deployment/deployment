@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "watch": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --watch-poll --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "setup" : "cp .env.example .env; sudo npm i --no-bin-links; composer install; php artisan key:generate; npm rebuild node-sass; npm run dev"
+    "setup" : "git remote remove origin; cp .env.example .env; sudo npm i --no-bin-links; composer install; php artisan key:generate; npm rebuild node-sass; npm run dev"
   },
   "devDependencies": {
     "webpack": "2.2.1",
