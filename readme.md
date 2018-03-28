@@ -11,9 +11,9 @@
 ### Installation
 1) Run `cp .env.example .env`
 2) Run `npm run setup` to auto run all the commands usually ran on initial setup :
-    * git remote remove origin &nbsp;&nbsp;&nbsp;: Removes this repo from the project
-    * cp .env.example .env &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Creates project environment file
-  	* npm install --no-bin-links &nbsp;&nbsp;&nbsp;: Installs all node dependencies
-  	* composer install &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Installs other project dependencies
-  	* php artisan key:generate&nbsp;&nbsp;&nbsp;: Creates project encryption key
-  	* npm run dev &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Compiles css & js
+    * git remote remove origin = Removes this repo from the project
+    * cp .env.example .env = Creates project environment file
+  	* npm install --no-bin-links = Installs all node dependencies
+  	* composer install = Installs other project dependencies
+  	* php artisan key:generate = Creates project encryption key
+  	* npm run dev = Compiles css & js
