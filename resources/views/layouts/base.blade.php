@@ -20,7 +20,9 @@
                 <div class="row">
                     <div class="col-md-2">
                         <div class="logo">
-                            <a href="{{ route('view.index') }}">Apollo</a>
+                            <a href="{{ route('view.index') }}">
+                                <img src="/images/apollo.png">
+                            </a>
                         </div>
                     </div>
                     <div class="col-md-8">
@@ -37,7 +39,7 @@
                         </ul>
                     </div>
                     <div class="col-md-2">
-
+                        {{-- user profile --}}
                     </div>
                 </div>
             </div>

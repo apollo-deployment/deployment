@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
                     <div class="login-logo">
-                        <img src="/images/apollo-logo.png" alt="">
+                        <img src="/images/apollo-logo.png">
                     </div>
                 </div>
             </div>
