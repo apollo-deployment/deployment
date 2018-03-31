@@ -21,9 +21,6 @@
                             {{ Form::text('password', null, ['class' => 'form-control', 'placeholder' => 'Password']) }}
                         </div>
                         <button class="btn" type="submit">Login</button>
-                        <a class="btn g-login" href="{{ route('login.google') }}">
-                            <i class="fa fa-google-plus"></i>
-                        </a>
                     </form>
                 </div>
             </div>

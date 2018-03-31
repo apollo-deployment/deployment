@@ -2,8 +2,6 @@
 
 Route::group(['middleware' => ['web']], function () {
     Route::get('/login', 'PageController@login')->name('view.login');
-    Route::get('/login/google', 'Auth\AuthController@redirectToGoogle')->name('login.google');
-    Route::get('/login/google/callback', 'Auth\AuthController@googleCallback');
 
     // Authenticated routes
     Route::group(['middleware' => ['auth']], function () {

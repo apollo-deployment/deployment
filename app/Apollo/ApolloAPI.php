@@ -15,12 +15,4 @@ class ApolloAPI
         ]);
     }
 
-    /**
-     * Gets APIs Google OAuth keys
-     */
-    public function getGoogleKeys()
-    {
-        return json_decode($this->api->get('google-keys')->getBody()->getContents());
-    }
-
 }
