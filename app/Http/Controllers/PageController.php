@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+
 class PageController extends Controller
 {
     /**
@@ -9,6 +11,9 @@ class PageController extends Controller
      */
     public function login()
     {
+        if (Auth::check()) {
+            return redirect()->route('view.index');
+        }
         return view('pages.login');
     }
 

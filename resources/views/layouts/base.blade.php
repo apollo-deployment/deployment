@@ -23,18 +23,23 @@
                             <a href="{{ route('view.index') }}">Apollo</a>
                         </div>
                     </div>
-                    <div class="col-md-10">
-                        <ul class="nav navbar-nav">
-                            <li>
-                                <a href="{{ route('view.deployment-plans') }}">Deployment</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('view.web-servers') }}">Web Servers</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('view.projects') }}">Projects</a>
-                            </li>
-                        </ul>
+                    <div class="col-md-8">
+                        @if (Auth::check())
+                            <ul class="nav navbar-nav">
+                                <li>
+                                    <a href="{{ route('view.deployment-plans') }}">Deployment</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('view.web-servers') }}">Web Servers</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('view.projects') }}">Projects</a>
+                                </li>
+                            </ul>
+                        @endif
+                    </div>
+                    <div class="col-md-2">
+
                     </div>
                 </div>
             </div>

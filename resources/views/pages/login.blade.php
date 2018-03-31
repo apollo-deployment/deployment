@@ -6,8 +6,7 @@
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
                     <div class="login-logo">
-                        <i class="fa fa-server"></i>
-                        <h4>Apollo</h4>
+                        <img src="/images/apollo-logo.png" alt="">
                     </div>
                 </div>
             </div>
@@ -21,7 +20,10 @@
                         <div class="form-group">
                             {{ Form::text('password', null, ['class' => 'form-control', 'placeholder' => 'Password']) }}
                         </div>
-                        <button class="btn">Login</button>
+                        <button class="btn" type="submit">Login</button>
+                        <a class="btn g-login" href="{{ route('login.google') }}">
+                            <i class="fa fa-google-plus"></i>
+                        </a>
                     </form>
                 </div>
             </div>

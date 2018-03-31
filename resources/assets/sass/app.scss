@@ -47,8 +47,8 @@ html, body {
       text-align: center;
       margin-bottom: 50px;
 
-      i {
-        font-size: 100px;
+      img {
+        height: 200px;
       }
     }
   }
@@ -61,14 +61,16 @@ form {
     border-bottom: 2px solid $accent !important;
     border-radius: 0;
     box-shadow: none !important;
+    color: white;
 
     &:focus {
       border: none;
     }
   }
   
-  button {
+  button, a {
     float: right;
+    margin-left: 10px;
   }
 }
 
@@ -76,8 +78,14 @@ form {
   background-color: $accent;
   color: white;
   outline: none !important;
+  width: 100px;
 
   &:hover {
     color: lightgrey;
+  }
+
+  &.g-login {
+    background-color: #df4933;
+    width: 40px;
   }
 }
