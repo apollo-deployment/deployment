@@ -3,13 +3,15 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 
 @import "variables";
-
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
-
 // ---------- Styles ----------
+html, body {
+  background-color: $medium-grey;
+}
+
 .navbar {
-  background-color: $primary;
+  background-color: $dark-grey;;
 
   .logo {
     line-height: 50px;
@@ -21,14 +23,14 @@
 
   li {
     a {
-      text-align: center;
       color: white;
       height: 48px;
+      text-align: center;
 
       &:hover {
-        height: 45px;
         background: none;
-        border-bottom: 3px solid white;
+        border-bottom: 3px solid $accent;
+        height: 45px;
       }
     }
   }
@@ -36,4 +38,46 @@
 
 .content {
   margin-top: 50px;
+
+  .login {
+    margin-top: 150px;
+
+    .login-logo {
+      color: white;
+      text-align: center;
+      margin-bottom: 50px;
+
+      i {
+        font-size: 100px;
+      }
+    }
+  }
+}
+
+form {
+  .form-control {
+    background: none;
+    border: none !important;
+    border-bottom: 2px solid $accent !important;
+    border-radius: 0;
+    box-shadow: none !important;
+
+    &:focus {
+      border: none;
+    }
+  }
+  
+  button {
+    float: right;
+  }
+}
+
+.btn {
+  background-color: $accent;
+  color: white;
+  outline: none !important;
+
+  &:hover {
+    color: lightgrey;
+  }
 }
