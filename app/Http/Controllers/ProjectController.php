@@ -14,7 +14,12 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        // get all the nerds
+        $projects = Project::all();
+
+        // load the view and pass the nerds
+        return View::make('pages.projects.index')
+            ->with('projects', $projects);
     }
 
     /**
@@ -24,7 +29,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        // load the create form (app/views/nerds/create.blade.php)
+        return View::make('pages.projects.create');
     }
 
     /**
