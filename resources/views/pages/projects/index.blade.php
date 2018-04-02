@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Look! I'm CRUDding</title>
+    <title>Index</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 </head>
 <body>
@@ -9,7 +9,7 @@
 
     <nav class="navbar navbar-inverse">
         <div class="navbar-header">
-            <a class="navbar-brand" href="{{ URL::to('projects') }}">Projects Alert</a>
+            <a class="navbar-brand" href="{{ URL::to('projects') }}">Projects</a>
         </div>
         <ul class="nav navbar-nav">
             <li><a href="{{ URL::to('projects') }}">View All Projects</a></li>
@@ -34,30 +34,36 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($projects as $project)
+
+        @forelse($projects as $project)
             <tr>
-                <td>id: {{ $project->id }}</td>
-                <td>name: {{ $project->name }}</td>
-                <td>repo url:{{ $project->repository_url }}</td>
-                <td>created at: {{ $project->created_at }}</td>
-                <td>updated at: {{ $project->updated_at }}</td>
-
+                <td>{{ $project->id }}</td>
+                <td>{{ $project->name }}</td>
+                <td>{{ $project->repository_url }}</td>
+                <td>{{ $project->created_at }}</td>
+                <td>{{ $project->updated_at }}</td>
                 <td>
-
                     <!-- delete the project (uses the destroy method DESTROY /projects/{id} -->
-                    <!-- we will add this later since its a little more complicated than the other two buttons -->
+                    {{ Form::open(array('url' => 'projects/' . $project->id, 'class' => 'pull-right')) }}
+                    {{ Form::hidden('_method', 'DELETE') }}
+                    {{ Form::submit('Delete this Project', array('class' => 'btn btn-warning')) }}
+                    {{ Form::close() }}
 
-                    <!-- show the nerd (uses the show method found at GET /nerds/{id} -->
+                    <!-- show the project (uses the show method found at GET /projects/{id} -->
                     <a class="btn btn-small btn-success" href="{{ URL::to('projects/' . $project->id) }}">Show this
-                        Project</a>
+                        project</a>
 
-                    <!-- edit this nerd (uses the edit method found at GET /projects/{id}/edit -->
-                    <a class="btn btn-small btn-info" href="{{ URL::to('projects/' . $project->id . '/edit') }}">Edit this
-                        Project</a>
-
+                    <!-- edit this project (uses the edit method found at GET /projects/{id}/edit -->
+                    <a class="btn btn-small btn-info" href="{{ URL::to('projects/' . $project->id . '/edit') }}">Edit
+                        this project</a>
                 </td>
             </tr>
-        @endforeach
+        @empty
+            <div class="alert alert-warning">
+                You have not created a project yet. <a href="{{ URL::to('projects/create') }}">Please Create a New Project.</a>
+            </div>
+        @endforelse
+
         </tbody>
     </table>
 

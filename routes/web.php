@@ -10,9 +10,10 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/web-servers', 'PageController@webServers')->name('view.web-servers');
         Route::get('/projects', 'PageController@projects')->name('view.projects');
 
-        Route::resources([
-        'projects' => 'ProjectController',
-        'web-servers' => 'WebServerController'
-    ]);
+        Route::resource('projects', 'ProjectController');
+//        Route::resources([
+//        'projects' => 'ProjectController',
+////        'web-servers' => 'WebServerController'
+//    ]);
 //    });
 });
