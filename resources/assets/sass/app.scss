@@ -1,11 +1,15 @@
 
-// ---------- Imports ----------
+// -------------------- Imports --------------------
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 
 @import "variables";
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
-// ---------- Styles ----------
+// -------------------- Global --------------------
+.accent {
+  color: $accent;
+}
+
 html, body {
   background-color: $dark-grey;
 }
@@ -36,6 +40,76 @@ html, body {
   }
 }
 
+form {
+  .form-control {
+    background: none;
+    border: none !important;
+    border-bottom: 2px solid $accent !important;
+    border-radius: 0;
+    box-shadow: none !important;
+    color: white;
+
+    &:focus {
+      border: none;
+    }
+  }
+
+  button, a {
+    float: right;
+    margin-left: 10px;
+  }
+}
+
+.btn {
+  background-color: $accent;
+  color: white;
+  outline: none !important;
+  width: 100px;
+
+  &:hover {
+    color: lightgrey;
+  }
+}
+
+.error {
+  color: #de4747;
+}
+
+.dropdown {
+  .user {
+    color: white;
+    float: right;
+    line-height: 50px;
+    margin: 0;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .dropdown-menu {
+    background-color: $medium-grey;
+    padding: 10px 10px 5px;
+    margin-top: 45px;
+
+    a {
+      color: white;
+      display: block;
+      text-decoration: none;
+      margin-bottom: 5px;
+
+      &:hover {
+        color: $accent;
+      }
+
+      i {
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+// -------------------- Content --------------------
 .content {
   margin-top: 70px;
 
@@ -86,33 +160,3 @@ html, body {
   }
 }
 
-form {
-  .form-control {
-    background: none;
-    border: none !important;
-    border-bottom: 2px solid $accent !important;
-    border-radius: 0;
-    box-shadow: none !important;
-    color: white;
-
-    &:focus {
-      border: none;
-    }
-  }
-  
-  button, a {
-    float: right;
-    margin-left: 10px;
-  }
-}
-
-.btn {
-  background-color: $accent;
-  color: white;
-  outline: none !important;
-  width: 100px;
-
-  &:hover {
-    color: lightgrey;
-  }
-}
