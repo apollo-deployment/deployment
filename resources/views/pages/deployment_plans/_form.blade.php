@@ -51,4 +51,4 @@
     </div>
 </div>
 
-{{ Form::submit('Update', ['class' => 'btn']) }}
+{{ Form::submit(isset($plan) ? 'Update' : 'Create', ['class' => 'btn']) }}
