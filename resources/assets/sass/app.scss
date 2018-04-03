@@ -82,6 +82,7 @@ button {
 .btn {
   background-color: $accent;
   color: white;
+  float: right;
   outline: none !important;
   width: 100px;
 
@@ -144,10 +145,6 @@ button {
     border-radius: 4px;
     color: white;
     padding: 25px;
-    
-    .btn {
-      float: right;
-    }
   }
 }
 

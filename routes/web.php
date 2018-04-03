@@ -11,6 +11,8 @@ Route::group(['middleware' => ['web']], function () {
 
         // Deployment plans
         Route::get('/deployment', 'DeploymentPlanController@view')->name('view.deployment-plans');
+        Route::get('/deployment/create', 'DeploymentPlanController@create')->name('create.deployment-plan');
+        Route::post('/deployment/create', 'DeploymentPlanController@store')->name('store.deployment-plan');
         Route::get('/deployment/edit/{plan}', 'DeploymentPlanController@edit')->name('edit.deployment-plan');
         Route::post('/deployment/edit/{plan}', 'DeploymentPlanController@update')->name('update.deployment-plan');
         Route::post('/deployment/delete/{plan}', 'DeploymentPlanController@delete')->name('delete.deployment-plan');

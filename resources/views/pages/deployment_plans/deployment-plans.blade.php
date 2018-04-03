@@ -4,6 +4,16 @@
     <div class="deployment-plans">
         <div class="container">
             <div class="row">
+                <div class="col-md-10">
+                    <div class="header">
+                        <p>Deployment Plans</p>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <a href="{{ route('create.deployment-plan') }}" class="btn">Create</a>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-12">
                     @include('partials.message')
 
