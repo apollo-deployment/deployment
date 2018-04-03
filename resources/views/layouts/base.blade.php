@@ -27,18 +27,17 @@
                     </div>
                     @if (\Session::get('user'))
                         <div class="col-md-8">
-
-                                <ul class="nav navbar-nav">
-                                    <li>
-                                        <a href="{{ route('view.deployment-plans') }}">Deployment</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('view.web-servers') }}">Web Servers</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('view.projects') }}">Projects</a>
-                                    </li>
-                                </ul>
+                            <ul class="nav navbar-nav">
+                                <li>
+                                    <a href="{{ route('view.deployment-plans') }}">Deployment</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('view.web-servers') }}">Web Servers</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('view.projects') }}">Projects</a>
+                                </li>
+                            </ul>
                         </div>
                         <div class="col-md-2">
                             <div class="dropdown">
