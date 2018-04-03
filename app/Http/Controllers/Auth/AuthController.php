@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Apollo\ApolloAPI;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -26,7 +25,19 @@ class AuthController extends Controller
             return redirect()->back()->withInput()->withErrors(['login' => 'Incorrect username or password']);
         }
 
-        Auth::attempt(['username' => $data->email]);
+        \Session::put('user', $data);
+
+        return redirect()->route('view.index');
+    }
+
+    /**
+     * Logout authenticated user
+     */
+    public function logout()
+    {
+        \Session::flush();
+
+        return redirect()->route('login');
     }
 
 }
