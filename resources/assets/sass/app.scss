@@ -41,11 +41,14 @@ html, body {
 }
 
 form {
+  label {
+    color: white;
+  }
+
   .form-control {
-    background: none;
+    background-color: $medium-grey;
     border: none !important;
-    border-bottom: 2px solid $accent !important;
-    border-radius: 0;
+    border-radius: 4px;
     box-shadow: none !important;
     color: white;
 
@@ -54,9 +57,25 @@ form {
     }
   }
 
-  button, a {
+  .btn, a {
     float: right;
     margin-left: 10px;
+  }
+}
+
+.message-success {
+  color: #1cbb1c;
+  margin-bottom: 20px;
+}
+
+.message-error {
+  color: #de4747;
+  margin-bottom: 20px;
+}
+
+button {
+  &:focus {
+    outline: none;
   }
 }
 
@@ -69,10 +88,6 @@ form {
   &:hover {
     color: lightgrey;
   }
-}
-
-.error {
-  color: #de4747;
 }
 
 .dropdown {
@@ -105,6 +120,33 @@ form {
       i {
         margin-right: 5px;
       }
+    }
+  }
+}
+
+.header {
+  color: white;
+  border-bottom: 2px solid $accent;
+  display: inline-block;
+  font-size: 16px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: 35px;
+
+  p {
+    margin: 5px;
+  }
+}
+
+.modal {
+  .modal-body {
+    background-color: $medium-grey;
+    border-radius: 4px;
+    color: white;
+    padding: 25px;
+    
+    .btn {
+      float: right;
     }
   }
 }
@@ -149,6 +191,16 @@ form {
         th, td {
           padding: 7px 10px;
           text-align: left;
+          
+          button, i {
+            color: $accent;
+            background: none;
+            border: none;
+            font-size: 17px;
+            float: right;
+            margin-left: 15px;
+            padding: 0;
+          }
         }
 
         .project-name {

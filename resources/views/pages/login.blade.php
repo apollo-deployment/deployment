@@ -21,9 +21,9 @@
                             {{ Form::password('password', ['class' => 'form-control', 'placeholder' => 'Password', 'required' => true]) }}
                         </div>
                         @if ($errors->first('login'))
-                            <p class="error">{{ $errors->first('login') }}</p>
+                            <p class="message-error">{{ $errors->first('login') }}</p>
                         @endif
-                        <button class="btn" type="submit">Login</button>
+                        {{ Form::submit('Login', ['class' => 'btn']) }}
                     </form>
                 </div>
             </div>

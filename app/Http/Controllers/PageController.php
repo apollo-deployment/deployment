@@ -18,14 +18,6 @@ class PageController extends Controller
     }
 
     /**
-     * View for displaying all deployment plans
-     */
-    public function deployment()
-    {
-        return view('pages.deployment-plans');
-    }
-
-    /**
      * View for displaying all web servers
      */
     public function webServers()
