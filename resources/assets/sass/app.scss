@@ -31,7 +31,7 @@ html, body {
       height: 48px;
       text-align: center;
 
-      &:hover {
+      &:hover, &:focus {
         background: none;
         border-bottom: 3px solid $accent;
         height: 45px;
@@ -83,6 +83,7 @@ button {
   background-color: $accent;
   color: white;
   float: right;
+  margin-left: 15px;
   outline: none !important;
   width: 100px;
 
@@ -145,6 +146,10 @@ button {
     border-radius: 4px;
     color: white;
     padding: 25px;
+
+    .cancel {
+      background: none;
+    }
   }
 }
 

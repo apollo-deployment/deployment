@@ -11,6 +11,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             {{ Form::submit('Delete', ['class' => 'btn']) }}
+                            {{ Form::button('Cancel', ['class' => 'btn cancel', 'data-dismiss' => 'modal']) }}
                         </div>
                     </div>
                 </form>

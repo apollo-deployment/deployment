@@ -6,7 +6,7 @@ Route::group(['middleware' => ['web']], function () {
 
     // Authenticated routes
     Route::group(['middleware' => ['auth']], function () {
-        Route::get('/', 'PageController@deployment')->name('view.index');
+        Route::get('/', 'DeploymentPlanController@view')->name('view.index');
         Route::get('/logout', 'Auth\AuthController@logout')->name('logout');
 
         // Deployment plans

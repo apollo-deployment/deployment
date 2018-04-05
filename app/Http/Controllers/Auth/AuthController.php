@@ -9,13 +9,16 @@ class AuthController extends Controller
 {
     private $apollo;
 
+    /**
+     * AuthController constructor, create ApolloApi instance
+     */
     public function __construct()
     {
         $this->apollo = new ApolloAPI;
     }
 
     /**
-     * Check API for existing user, if so log them in
+     * Check API for existing user, if so log them in if credentials are correct
      */
     public function login()
     {
