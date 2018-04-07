@@ -9,5 +9,5 @@ class DeploymentPlan extends Model
     public $timestamps = true;
 
     protected $table = 'deployment_plans';
-    protected $fillable = ['web_server_id', 'project_id', 'project_branch', 'update_seconds', 'storage_path'];
+    protected $fillable = ['name', 'web_server_id', 'project_id', 'project_branch', 'update_seconds', 'storage_path'];
 }

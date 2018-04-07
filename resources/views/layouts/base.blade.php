@@ -15,42 +15,32 @@
     </head>
 
     <body>
-
-
         <div class="navbar navbar-fixed-top">
             <div class="container">
                 <div class="row">
                     <div class="col-md-2">
                         <div class="logo">
-                            <a href="{{ route('view.index') }}">Apollo</a>
+                            <a href="{{ route('view.index') }}">
+                                <img src="/images/apollo.png">
+                            </a>
                         </div>
                     </div>
-                    @if (\Session::get('user'))
-                        <div class="col-md-8">
-                            <ul class="nav navbar-nav">
-                                <li>
-                                    <a href="{{ route('view.deployment-plans') }}">Deployment</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('view.web-servers') }}">Web Servers</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('view.projects') }}">Projects</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="dropdown">
-                                <p class="user" data-toggle="dropdown" >{{ \Session::get('user')->name }}</p>
-                                <div class="dropdown-menu pull-right">
-                                    <a class="dropdown-item" href="{{ route('logout') }}">
-                                        <i class="fa fa-sign-out accent" aria-hidden="true"></i>
-                                        Logout
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
+                    <div class="col-md-8">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="{{ route('view.deployment-plans') }}">Deployment</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('view.web-servers') }}">Web Servers</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('view.projects') }}">Projects</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-2">
+                        {{-- user profile --}}
+                    </div>
                 </div>
             </div>
         </div>

@@ -7,17 +7,17 @@
 
 // ---------- Styles ----------
 html, body {
-  background-color: $medium-grey;
+  background-color: $dark-grey;
 }
 
 .navbar {
-  background-color: $dark-grey;;
+  background-color: $medium-grey;;
 
   .logo {
     line-height: 50px;
 
-    a {
-      color: white;
+    img {
+      width: 90px;
     }
   }
 
@@ -37,7 +37,7 @@ html, body {
 }
 
 .content {
-  margin-top: 50px;
+  margin-top: 70px;
 
   .login {
     margin-top: 150px;
@@ -49,6 +49,38 @@ html, body {
 
       img {
         height: 200px;
+      }
+    }
+  }
+
+  .deployment-plans {
+    table {
+      color: #d0d0d0;
+      width: 100%;
+
+      thead {
+        border-bottom: 1px solid $light-grey;
+        color: white;
+      }
+
+      tbody {
+        border-top: 1px solid $light-grey;
+      }
+
+      tr {
+        &:nth-child(even) {
+          background-color: $medium-grey;
+        }
+
+        th, td {
+          padding: 7px 10px;
+          text-align: left;
+        }
+
+        .project-name {
+          border-bottom: none;
+          background-color: $dark-grey;
+        }
       }
     }
   }
