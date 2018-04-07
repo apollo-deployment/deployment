@@ -32,10 +32,10 @@
                                     <a href="{{ route('view.deployment-plans') }}">Deployment</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('view.web-servers') }}">Web Servers</a>
+                                    <a href="">Web Servers</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('view.projects') }}">Projects</a>
+                                    <a href="">Projects</a>
                                 </li>
                             </ul>
                         </div>
