@@ -17,15 +17,9 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('/deployment/edit/{plan}', 'DeploymentPlanController@update')->name('update.deployment-plan');
         Route::post('/deployment/delete/{plan}', 'DeploymentPlanController@delete')->name('delete.deployment-plan');
 
-
-        Route::get('/web-servers', 'PageController@webServers')->name('view.web-servers');
-        Route::get('/projects', 'PageController@projects')->name('view.projects');
+        // Projects
+        Route::resource('projects', 'ProjectController');
     });
-    Route::get('/', 'PageController@deployment')->name('view.index');
-    Route::get('/deployment', 'PageController@deployment')->name('view.deployment-plans');
-    Route::get('/web-servers', 'PageController@webServers')->name('view.web-servers');
-    Route::get('/projects', 'PageController@projects')->name('view.projects');
 
-    Route::resource('projects', 'ProjectController');
 });
 
