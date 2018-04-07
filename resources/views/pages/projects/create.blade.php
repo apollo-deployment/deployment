@@ -32,12 +32,12 @@
 
     <div class="form-group">
         {{ Form::label('name', 'Name') }}
-        {{ Form::text('name', Illuminate\Support\Facades\Input::old('name'), array('class' => 'form-control')) }}
+        {{ Form::text('name', old('name'), array('class' => 'form-control')) }}
     </div>
 
     <div class="form-group">
         {{ Form::label('repository_url', 'Repository URL') }}
-        {{ Form::text('repository_url', Illuminate\Support\Facades\Input::old('repository_url'), array('class' => 'form-control')) }}
+        {{ Form::text('repository_url', old('repository_url'), array('class' => 'form-control')) }}
     </div>
 
     {{ Form::submit('Create the Project!', array('class' => 'btn btn-primary')) }}

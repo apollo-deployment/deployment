@@ -17,7 +17,7 @@
         </ul>
     </nav>
 
-    <h1>All the Projects</h1>
+    <h1>All Projects</h1>
 
     @if (Session::has('message'))
         <div class="alert alert-info">{{ Session::get('message') }}</div>
@@ -35,7 +35,7 @@
         </thead>
         <tbody>
 
-        @forelse($projects as $project)
+        @forelse(\App\Models\Project::all() as $project)
             <tr>
                 <td>{{ $project->id }}</td>
                 <td>{{ $project->name }}</td>
