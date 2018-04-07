@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Apollo\ApolloAPI;
+use App\API\Apollo;
 use App\Http\Controllers\Controller;
 
 class AuthController extends Controller
@@ -14,7 +14,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->apollo = new ApolloAPI;
+        $this->apollo = new Apollo;
     }
 
     /**

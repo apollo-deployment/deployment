@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Apollo;
+namespace App\API;
 
 use GuzzleHttp\Client;
 
-class ApolloAPI
+class Apollo
 {
     private $api;
 
