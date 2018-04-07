@@ -12,7 +12,7 @@ class DeploymentPlanController extends Controller
      */
     public function view()
     {
-        return view('pages.deployment_plans.deployment-plans');
+        return view('pages.deployment_plans.view');
     }
 
     /**

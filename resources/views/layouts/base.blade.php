@@ -35,7 +35,7 @@
                                     <a href="">Web Servers</a>
                                 </li>
                                 <li>
-                                    <a href="">Projects</a>
+                                    <a href="{{ route('view.projects') }}">Projects</a>
                                 </li>
                             </ul>
                         </div>

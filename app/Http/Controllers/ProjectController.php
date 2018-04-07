@@ -4,20 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProjectRequest;
 use App\Models\Project;
-use Illuminate\Support\Facades\Redirect;
 
 class ProjectController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * View for displaying all projects
      */
-    public function index()
+    public function view()
     {
-        return view('pages.projects.index');
+        return view('pages.projects.view');
     }
 
     /**
-     * Show the form for creating a new project
+     * View for creating a project
      */
     public function create()
     {
@@ -25,59 +24,47 @@ class ProjectController extends Controller
     }
 
     /**
-     * Store a newly created project
+     * Store new project
      */
     public function store(ProjectRequest $request)
     {
-        Project::create([
-            'name' => $request->get('name'),
-            'repository_url' => $request->get('repository_url')
+        $project = Project::create([
+            'name' => $request->get('project_name'),
+            'repository_url' => $request->get('repository_url'),
         ]);
 
-        return Redirect::to('projects')->with(['message', 'Successfully created project ' . $request->get('name')]);
+        return redirect()->back()->withInput()->with(['message' => 'Successfully created project \'' . $project->name . '\'']);
     }
 
     /**
-     * Display the specified project
+     * View for updating existing project
      */
-    public function show($id)
+    public function edit(Project $project)
     {
-        $project = Project::find($id);
-
-        return view('pages.projects.show', compact('project'));
-    }
-
-    /**
-     * Finds project to edit & returns edit view
-     */
-    public function edit($id)
-    {
-        $project = Project::find($id);
-
         return view('pages.projects.edit', compact('project'));
     }
 
     /**
-     * Update existing project
+     * Update existing DeploymentPlan $plan
      */
-    public function update(ProjectRequest $request, $id)
+    public function update(ProjectRequest $request, Project $project)
     {
-        Project::find($id)->update([
-            'name' => $request->get('name'),
-            'repository_url' => $request->get('repository_url')
+        $project->update([
+            'name' => $request->get('project_name'),
+            'repository_url' => $request->get('repository_url'),
         ]);
 
-        return Redirect::to('projects')->with(['message', 'Successfully updated project ' . $request->get('name')]);
+        return redirect()->back()->withInput()->with(['message' => 'Successfully updated project \'' . $project->name . '\'']);
     }
 
     /**
-     * Removes project with $id
+     * Delete existing project
      */
-    public function destroy($id)
+    public function delete(Project $project)
     {
-        Project::find($id)->delete();
+        $project->delete();
 
-        return Redirect::to('projects')->with(['message', 'Successfully deleted project']);
+        return redirect()->back()->with(['message' => 'Successfully deleted project']);
     }
 
 }

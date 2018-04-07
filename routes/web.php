@@ -18,8 +18,12 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('/deployment/delete/{plan}', 'DeploymentPlanController@delete')->name('delete.deployment-plan');
 
         // Projects
-        Route::resource('projects', 'ProjectController');
+        Route::get('/projects', 'ProjectController@view')->name('view.projects');
+        Route::get('/project/create', 'ProjectController@create')->name('create.project');
+        Route::post('/project/create', 'ProjectController@store')->name('store.project');
+        Route::get('/project/edit/{project}', 'ProjectController@edit')->name('edit.project');
+        Route::post('/project/edit/{project}', 'ProjectController@update')->name('update.project');
+        Route::post('/project/delete/{project}', 'ProjectController@delete')->name('delete.project');
     });
-
 });
 

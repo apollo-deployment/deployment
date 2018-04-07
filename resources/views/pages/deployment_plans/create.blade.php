@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="header">
-                    <p>Update Deployment Plan</p>
+                    <p>Create Deployment Plan</p>
                 </div>
             </div>
         </div>
