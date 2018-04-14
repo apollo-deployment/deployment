@@ -19,7 +19,7 @@ class AuthController extends Controller
         try {
             $user = User::where('email', $request->get('username'))->firstOrFail();
 
-            if (Hash::check($request->get('password'), $user->password)) {
+            if (! Hash::check($request->get('password'), $user->password)) {
                 return redirect()->back()->withInput()->withErrors('Incorrect username or password');
             }
 
