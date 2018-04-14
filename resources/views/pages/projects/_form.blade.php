@@ -19,3 +19,4 @@
 </div>
 
 {{ Form::submit(isset($project) ? 'Update' : 'Create', ['class' => 'btn']) }}
+

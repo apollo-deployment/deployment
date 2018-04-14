@@ -20,8 +20,8 @@
                         <div class="form-group">
                             {{ Form::password('password', ['class' => 'form-control', 'placeholder' => 'Password', 'required' => true]) }}
                         </div>
-                        @if ($errors->first('login'))
-                            <p class="message-error">{{ $errors->first('login') }}</p>
+                        @if ($errors->any())
+                            <p class="message-error">{{ $errors->first() }}</p>
                         @endif
                         {{ Form::submit('Login', ['class' => 'btn']) }}
                     </form>
