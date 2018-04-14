@@ -25,7 +25,7 @@
                             </a>
                         </div>
                     </div>
-                    @if (\Session::get('user'))
+                    @if (Auth::user())
                         <div class="col-md-8">
                             <ul class="nav navbar-nav">
                                 <li>
@@ -41,7 +41,7 @@
                         </div>
                         <div class="col-md-2">
                             <div class="dropdown">
-                                <p class="user" data-toggle="dropdown" >{{ \Session::get('user')->name }}</p>
+                                <p class="user" data-toggle="dropdown" >{{ Auth::user()->name }}</p>
                                 <div class="dropdown-menu pull-right">
                                     <a class="dropdown-item" href="{{ route('logout') }}">
                                         <i class="fa fa-sign-out accent" aria-hidden="true"></i>

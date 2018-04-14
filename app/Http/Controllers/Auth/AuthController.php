@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
+use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -17,7 +20,7 @@ class AuthController extends Controller
             $user = User::where('email', $request->get('username'))->firstOrFail();
 
             if (Hash::check($request->get('password'), $user->password)) {
-                return redirect()->back()->withInput()->withErrors(['error' => 'Incorrect username or password']);
+                return redirect()->back()->withInput()->withErrors('Incorrect username or password');
             }
 
             Auth::login($user, true);
@@ -25,7 +28,7 @@ class AuthController extends Controller
             return redirect()->route('view.index');
 
         } catch (ModelNotFoundException $e) {
-            return redirect()->back()->withInput()->withErrors(['error' => 'Incorrect username or password']);
+            return redirect()->back()->withInput()->withErrors('Incorrect username or password');
         }
     }
 
