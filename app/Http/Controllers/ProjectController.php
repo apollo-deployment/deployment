@@ -29,11 +29,11 @@ class ProjectController extends Controller
     public function store(ProjectRequest $request)
     {
         $project = Project::create([
-            'name' => $request->get('project_name'),
+            'name' => $request->get('name'),
             'repository_url' => $request->get('repository_url'),
         ]);
 
-        return redirect()->back()->withInput()->with(['message' => 'Successfully created project \'' . $project->name . '\'']);
+        return redirect()->route('view.projects')->with(['message' => 'Successfully created project \'' . $project->name . '\'']);
     }
 
     /**
@@ -50,7 +50,7 @@ class ProjectController extends Controller
     public function update(ProjectRequest $request, Project $project)
     {
         $project->update([
-            'name' => $request->get('project_name'),
+            'name' => $request->get('name'),
             'repository_url' => $request->get('repository_url'),
         ]);
 

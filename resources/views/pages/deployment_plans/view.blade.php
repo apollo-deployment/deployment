@@ -42,16 +42,16 @@
                                     </tr>
                                     @include('partials.delete-deployment-plan-modal', compact('plan'))
                                 @empty
-                                    <tr class="empty">
+                                    <tr>
                                         <td class="project-name">{{ $project->name }}</td>
-                                        <td colspan="100">No plans found</td>
+                                        <td colspan="100">No deployment plans found</td>
                                     </tr>
                                 @endforelse
                             </tbody>
                         @empty
                             <tbody>
-                                <tr>
-                                    <td colspan="100">No projects found</td>
+                                <tr class="empty">
+                                    <td colspan="100">No deployment plans found</td>
                                 </tr>
                             </tbody>
                         @endforelse

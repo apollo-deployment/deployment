@@ -31,7 +31,7 @@ html, body {
       height: 48px;
       text-align: center;
 
-      &:hover, &:focus {
+      &:hover, &:focus, &.active  {
         background: none;
         border-bottom: 3px solid $accent;
         height: 45px;
@@ -190,10 +190,16 @@ button {
           background-color: $medium-grey;
         }
 
+        &.empty {
+          td {
+            text-align: center;
+          }
+        }
+
         th, td {
           padding: 7px 10px;
           text-align: left;
-          
+
           button, i {
             color: $accent;
             background: none;

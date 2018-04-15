@@ -29,13 +29,13 @@
                         <div class="col-md-8">
                             <ul class="nav navbar-nav">
                                 <li>
-                                    <a href="{{ route('view.deployment-plans') }}">Deployment</a>
+                                    <a href="{{ route('view.deployment-plans') }}" class="{{ Route::is('view.deployment-plans') ? 'active' : '' }}">Deployment</a>
                                 </li>
                                 <li>
                                     <a href="">Web Servers</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('view.projects') }}">Projects</a>
+                                    <a href="{{ route('view.projects') }}" class="{{ Route::is('view.projects') ? 'active' : '' }}">Projects</a>
                                 </li>
                             </ul>
                         </div>

@@ -46,7 +46,7 @@
                             @include('partials.delete-project-modal', compact('project'))
                         @empty
                             <tr class="empty">
-                                <td colspan="100">You have not created a project yet. <a href="{{ route('create.project') }}">Please create a new project.</a></td>
+                                <td colspan="100">No projects found</td>
                             </tr>
                         @endforelse
                         </tbody>
