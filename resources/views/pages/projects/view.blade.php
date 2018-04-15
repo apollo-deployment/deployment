@@ -21,9 +21,9 @@
                         <thead>
                             <tr>
                                 <td>Name</td>
+                                <td>Owner</td>
+                                <td>Repository Name</td>
                                 <td>Repository URL</td>
-                                <td>Created At</td>
-                                <td>Updated At</td>
                                 <td>&nbsp;</td>
                             </tr>
                         </thead>
@@ -31,9 +31,11 @@
                         @forelse (\App\Models\Project::all() as $project)
                             <tr>
                                 <td>{{ $project->name }}</td>
-                                <td>{{ $project->repository_url }}</td>
-                                <td>{{ $project->created_at }}</td>
-                                <td>{{ $project->updated_at }}</td>
+                                <td>{{ $project->repository_name }}</td>
+                                <td>{{ $project->repository_owner }}</td>
+                                <td>
+                                    <a href="{{ $project->repository_url }}" target="_blank">{{ $project->repository_url }}</a>
+                                </td>
                                 <td>
                                     <button data-toggle="modal" data-target="#delete-project-{{ $project->id }}">
                                         <i class="fa fa-trash"></i>

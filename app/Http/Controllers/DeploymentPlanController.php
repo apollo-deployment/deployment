@@ -24,6 +24,14 @@ class DeploymentPlanController extends Controller
     }
 
     /**
+     * View for updating existing DeploymentPlan $plan
+     */
+    public function edit(DeploymentPlan $plan)
+    {
+        return view('pages.deployment_plans.edit', compact('plan'));
+    }
+
+    /**
      * Store new deployment plan
      */
     public function store(DeploymentPlanRequest $request)
@@ -38,14 +46,6 @@ class DeploymentPlanController extends Controller
         ]);
 
         return redirect()->back()->withInput()->with(['message' => 'Successfully created deployment plan \'' . $plan->name . '\'']);
-    }
-
-    /**
-     * View for updating existing DeploymentPlan $plan
-     */
-    public function edit(DeploymentPlan $plan)
-    {
-        return view('pages.deployment_plans.edit', compact('plan'));
     }
 
     /**
