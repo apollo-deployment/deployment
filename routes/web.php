@@ -28,6 +28,16 @@ Route::group(['middleware' => ['web']], function () {
             Route::post('/edit/{project}', 'ProjectController@update')->name('update.project');
             Route::post('/delete/{project}', 'ProjectController@delete')->name('delete.project');
         });
+
+        // Web servers
+        Route::prefix('web_servers')->group(function () {
+            Route::get('/', 'WebServerController@view')->name('view.web_servers');
+            Route::get('/create', 'WebServerController@create')->name('create.web_server');
+            Route::post('/create', 'WebServerController@store')->name('store.web_server');
+            Route::get('/edit/{web_server}', 'WebServerController@edit')->name('edit.web_server');
+            Route::post('/edit/{web_server}', 'WebServerController@update')->name('update.web_server');
+            Route::post('/delete/{web_server}', 'WebServerController@delete')->name('delete.web_server');
+        });
     });
 
     // GitHub API Routes

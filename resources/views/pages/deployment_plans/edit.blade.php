@@ -9,7 +9,7 @@
                 </div>
             </div>
         </div>
-        <form action="{{ route('update.deployment-plan', compact('plan')) }}" method="POST">
+        <form action="{{ route('update.deployment-plan', compact('plan')) }}" method="POST" enctype="multipart/form-data">
             @include('pages.deployment_plans._form', compact('plan'))
         </form>
     </div>

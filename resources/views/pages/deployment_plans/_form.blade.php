@@ -7,7 +7,7 @@
     <div class="col-md-5">
         <div class="form-group">
             {{ Form::label('name', 'Name') }}
-            {{ Form::text('name', isset($plan) ? $plan->name : null, ['class' => 'form-control', 'required' => true]) }}
+            {{ Form::text('name', isset($plan) ? $plan->name : null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Production Deployment']) }}
         </div>
     </div>
     <div class="col-md-5">

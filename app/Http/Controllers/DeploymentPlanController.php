@@ -45,7 +45,7 @@ class DeploymentPlanController extends Controller
             'storage_path' => $request->get('storage_path'),
         ]);
 
-        return redirect()->back()->withInput()->with(['message' => 'Successfully created deployment plan \'' . $plan->name . '\'']);
+        return redirect()->route('view.deployment-plans')->with(['message' => 'Successfully created deployment plan \'' . $plan->name . '\'']);
     }
 
     /**
@@ -62,7 +62,7 @@ class DeploymentPlanController extends Controller
             'storage_path' => $request->get('storage_path'),
         ]);
 
-        return redirect()->back()->withInput()->with(['message' => 'Successfully updated deployment plan \'' . $plan->name . '\'']);
+        return redirect()->route('view.deployment-plans')->with(['message' => 'Successfully updated deployment plan \'' . $plan->name . '\'']);
     }
 
     /**
@@ -72,7 +72,7 @@ class DeploymentPlanController extends Controller
     {
         $plan->delete();
 
-        return redirect()->back()->with(['message' => 'Successfully deleted deployment plan']);
+        return redirect()->route('view.deployment-plans')->with(['message' => 'Successfully deleted deployment plan']);
     }
 
 }

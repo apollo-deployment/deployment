@@ -62,7 +62,7 @@ class ProjectController extends Controller
             'repository_name' => explode('.git', $repo_info[1])[0],
         ]);
 
-        return redirect()->back()->withInput()->with(['message' => 'Successfully updated project \'' . $project->name . '\'']);
+        return redirect()->route('view.projects')->with(['message' => 'Successfully updated project \'' . $project->name . '\'']);
     }
 
     /**
@@ -72,7 +72,7 @@ class ProjectController extends Controller
     {
         $project->delete();
 
-        return redirect()->back()->with(['message' => 'Successfully deleted project']);
+        return redirect()->route('view.projects')->with(['message' => 'Successfully deleted project']);
     }
 
 }

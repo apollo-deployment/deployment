@@ -5,12 +5,12 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="header">
-                    <p>Create Deployment Plan</p>
+                    <p>Create Web Server</p>
                 </div>
             </div>
         </div>
-        <form action="{{ route('store.deployment-plan') }}" method="POST" enctype="multipart/form-data">
-            @include('pages.deployment_plans._form')
+        <form action="{{ route('store.web_server') }}" method="POST">
+            @include('pages.web_servers._form')
         </form>
     </div>
 @endsection

@@ -10,7 +10,7 @@
             </div>
         </div>
         <form action="{{ route('update.project', compact('project')) }}" method="POST">
-            @include('pages.projects._form', compact('plan'))
+            @include('pages.projects._form', compact('project'))
         </form>
     </div>
 @endsection

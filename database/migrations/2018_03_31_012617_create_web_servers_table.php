@@ -16,8 +16,11 @@ class CreateWebServersTable extends Migration
         Schema::create('web_servers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 50);
-            $table->string('server_username', 50);
-            $table->string('server_password')->nullable();
+            $table->string('ip_address', 15);
+            $table->integer('ssh_port');
+            $table->string('authentication_type', 50);
+            $table->string('ssh_username');
+            $table->string('ssh_password')->nullable();
             $table->longText('private_key_path')->nullable();
             $table->timestamps();
         });

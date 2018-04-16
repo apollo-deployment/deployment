@@ -32,7 +32,7 @@
                                     <a href="{{ route('view.deployment-plans') }}" class="{{ Route::is('view.deployment-plans') ? 'active' : '' }}">Deployment</a>
                                 </li>
                                 <li>
-                                    <a href="">Web Servers</a>
+                                    <a href="{{ route('view.web_servers') }}" class="{{ Route::is('view.web_servers') ? 'active' : '' }}">Web Servers</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('view.projects') }}" class="{{ Route::is('view.projects') ? 'active' : '' }}">Projects</a>
