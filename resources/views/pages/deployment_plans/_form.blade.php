@@ -12,8 +12,8 @@
     </div>
     <div class="col-md-5">
         <div class="form-group">
-            {{ Form::label('project_id', 'Project') }}
-            {{ Form::select('project_id', ['' => ''] + \App\Models\Repository::pluck('name', 'id')->toArray(), isset($plan) ? $plan->project->id : null, ['class' => 'form-control', 'required' => true]) }}
+            {{ Form::label('repository_id', 'Repository') }}
+            {{ Form::select('repository_id', ['' => ''] + \App\Models\Repository::pluck('name', 'id')->toArray(), isset($plan) ? $plan->repository->id : null, ['class' => 'form-control', 'required' => true]) }}
         </div>
     </div>
     <div class="col-md-2">
@@ -25,14 +25,14 @@
     <div class="row">
         <div class="col-md-5">
             <div class="form-group">
-                {{ Form::label('project_branch', 'Project Branch') }}
-                {{ Form::select('project_branch', ['' => ''], isset($plan) ? $plan->project_branch : null, ['class' => 'form-control', 'required' => true]) }}
+                {{ Form::label('repository_branch', 'Repository Branch') }}
+                {{ Form::select('repository_branch', ['' => ''], isset($plan) ? $plan->repository_branch : null, ['class' => 'form-control', 'required' => true]) }}
             </div>
         </div>
         <div class="col-md-5">
             <div class="form-group">
-                {{ Form::label('web_server_id', 'Web Server') }}
-                {{ Form::select('web_server_id', \App\Models\Environment::pluck('name', 'id'), isset($plan) ? $plan->environment->id : null, ['class' => 'form-control', 'required' => true]) }}
+                {{ Form::label('environment_id', 'Environment') }}
+                {{ Form::select('environment_id', \App\Models\Environment::pluck('name', 'id'), isset($plan) ? $plan->environment->id : null, ['class' => 'form-control', 'required' => true]) }}
             </div>
         </div>
     </div>
@@ -40,8 +40,8 @@
     <div class="row">
         <div class="col-md-5">
             <div class="form-group">
-                {{ Form::label('storage_path', 'Remote Server Path') }}
-                {{ Form::text('storage_path', isset($plan) ? $plan->storage_path : null, ['class' => 'form-control', 'required' => true]) }}
+                {{ Form::label('remote_path', 'Remote Server Path') }}
+                {{ Form::text('remote_path', isset($plan) ? $plan->storage_path : null, ['class' => 'form-control', 'required' => true]) }}
             </div>
         </div>
     </div>
