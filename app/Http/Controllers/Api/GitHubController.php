@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Api\GitHub;
 use App\Http\Controllers\Controller;
-use App\Models\Project;
+use App\Models\Repository;
 
 class GitHubController extends Controller
 {
@@ -20,9 +20,9 @@ class GitHubController extends Controller
      */
     public function getBranches()
     {
-        $project = Project::find(request('project_id'));
+        $repository = Repository::find(request('project_id'));
 
-        return $this->github->getBranches($project->repository_owner, $project->repository_name);
+        // return $this->github->getBranches();
     }
 
 }

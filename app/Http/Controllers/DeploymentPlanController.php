@@ -38,11 +38,11 @@ class DeploymentPlanController extends Controller
     {
         $plan = DeploymentPlan::create([
             'name' => $request->get('name'),
-            'web_server_id' => $request->get('web_server_id'),
-            'project_id' => $request->get('project_id'),
-            'project_branch' => $request->get('project_branch'),
-            'update_seconds' => $request->get('update_seconds'),
-            'storage_path' => $request->get('storage_path'),
+            'environment_id' => $request->get('environment_id'),
+            'repository_id' => $request->get('repository_id'),
+            'repository_branch' => $request->get('repository_branch'),
+            'is_automatic' => $request->get('is_automatic'),
+            'remote_path' => $request->get('remote_path'),
         ]);
 
         return redirect()->route('view.deployment-plans')->with(['message' => 'Successfully created deployment plan \'' . $plan->name . '\'']);
@@ -55,11 +55,11 @@ class DeploymentPlanController extends Controller
     {
         $plan->update([
             'name' => $request->get('name'),
-            'web_server_id' => $request->get('web_server_id'),
-            'project_id' => $request->get('project_id'),
-            'project_branch' => $request->get('project_branch'),
-            'update_seconds' => $request->get('update_seconds'),
-            'storage_path' => $request->get('storage_path'),
+            'environment_id' => $request->get('environment_id'),
+            'repository_id' => $request->get('repository_id'),
+            'repository_branch' => $request->get('repository_branch'),
+            'is_automatic' => $request->get('is_automatic'),
+            'remote_path' => $request->get('remote_path'),
         ]);
 
         return redirect()->route('view.deployment-plans')->with(['message' => 'Successfully updated deployment plan \'' . $plan->name . '\'']);

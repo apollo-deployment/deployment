@@ -25,10 +25,11 @@ class DeploymentPlanRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'web_server_id' => 'required',
-            'project_id' => 'required',
-            'project_branch' => 'required',
-            'storage_path' => '',
+            'environment_id' => 'required',
+            'repository_id' => 'required',
+            'repository_branch' => 'required',
+            'is_automatic' => 'required',
+            'remote_path' => 'required',
         ];
     }
 }

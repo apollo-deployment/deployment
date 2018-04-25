@@ -18,8 +18,8 @@ class CreateDeploymentPlansTable extends Migration
             $table->string('name');
             $table->integer('environment_id')->unsigned();
             $table->integer('repository_id')->unsigned();
-            $table->string('branch');
-            $table->string('deployed_version');
+            $table->string('repository_branch');
+            $table->string('deployed_version')->nullable();
             $table->boolean('is_automatic');
             $table->longText('remote_path');
             $table->timestamps();

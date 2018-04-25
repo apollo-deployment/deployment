@@ -44,12 +44,6 @@
                 {{ Form::text('storage_path', isset($plan) ? $plan->storage_path : null, ['class' => 'form-control', 'required' => true]) }}
             </div>
         </div>
-        <div class="col-md-5">
-            <div class="form-group">
-                {{ Form::label('update_seconds', 'Update Refresh') }}
-                {{ Form::number('update_seconds', isset($plan) ? $plan->update_seconds : 15, ['class' => 'form-control', 'min' => 15]) }}
-            </div>
-        </div>
     </div>
 </div>
 
