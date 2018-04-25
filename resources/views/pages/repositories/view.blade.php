@@ -1,54 +1,50 @@
 @extends('layouts.base')
 
 @section('content')
-    <div class="projects">
+    <div class="repositories">
         <div class="container">
             <div class="row">
                 <div class="col-md-10">
                     <div class="header">
-                        <p>Projects</p>
+                        <p>Repositories</p>
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <a href="{{ route('create.project') }}" class="btn">Create</a>
+                    <a href="{{ route('create.repository') }}" class="btn">Create</a>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     @include('partials.message')
 
-                    <table>
+                    <table class="table">
                         <thead>
                             <tr>
                                 <td>Name</td>
-                                <td>Owner</td>
-                                <td>Repository Name</td>
                                 <td>Repository URL</td>
                                 <td>&nbsp;</td>
                             </tr>
                         </thead>
                         <tbody>
-                        @forelse (\App\Models\Project::all() as $project)
+                        @forelse (\App\Models\Repository::all() as $repository)
                             <tr>
-                                <td>{{ $project->name }}</td>
-                                <td>{{ $project->repository_name }}</td>
-                                <td>{{ $project->repository_owner }}</td>
+                                <td>{{ $repository->name }}</td>
                                 <td>
-                                    <a href="{{ $project->repository_url }}" target="_blank">{{ $project->repository_url }}</a>
+                                    <a href="{{ $repository->url }}" target="_blank">{{ $repository->url }}</a>
                                 </td>
                                 <td>
-                                    <button data-toggle="modal" data-target="#delete-project-{{ $project->id }}">
+                                    <button data-toggle="modal" data-target="#delete-repository-{{ $repository->id }}">
                                         <i class="fa fa-trash"></i>
                                     </button>
-                                    <a href="{{ route('edit.project', compact('project')) }}">
+                                    <a href="{{ route('edit.repository', compact('repository')) }}">
                                         <i class="fa fa-cog"></i>
                                     </a>
                                 </td>
                             </tr>
-                            @include('partials.delete-project-modal', compact('project'))
+                            @include('partials.delete-repository-modal', compact('repository'))
                         @empty
                             <tr class="empty">
-                                <td colspan="100">No projects found</td>
+                                <td colspan="100">No repositories found</td>
                             </tr>
                         @endforelse
                         </tbody>

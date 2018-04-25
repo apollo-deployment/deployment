@@ -13,6 +13,6 @@ class User extends Model implements Authenticatable
     public $timestamps = true;
 
     protected $table = 'users';
-    protected $fillable = ['name', 'email', 'password', 'organization', 'api_token'];
+    protected $fillable = ['name', 'email', 'password', 'organization'];
     protected $hidden = ['password'];
 }

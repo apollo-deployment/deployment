@@ -196,14 +196,15 @@ button {
     }
   }
 
-  .deployment-plans, .projects {
+  .deployment-plans, .environments, .repositories {
     table {
       color: #d0d0d0;
       width: 100%;
 
       thead {
-        border-bottom: 1px solid $light-grey;
-        color: white;
+        td {
+          border-bottom: 2px solid $light-grey !important;
+        }
       }
 
       tbody {
@@ -236,7 +237,7 @@ button {
           }
         }
 
-        .project-name {
+        .environment-name {
           border-bottom: none;
           background-color: $dark-grey;
         }

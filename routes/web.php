@@ -20,23 +20,23 @@ Route::group(['middleware' => ['web']], function () {
         });
 
         // Projects
-        Route::prefix('projects')->group(function () {
-            Route::get('/', 'ProjectController@view')->name('view.projects');
-            Route::get('/create', 'ProjectController@create')->name('create.project');
-            Route::post('/create', 'ProjectController@store')->name('store.project');
-            Route::get('/edit/{project}', 'ProjectController@edit')->name('edit.project');
-            Route::post('/edit/{project}', 'ProjectController@update')->name('update.project');
-            Route::post('/delete/{project}', 'ProjectController@delete')->name('delete.project');
+        Route::prefix('repositories')->group(function () {
+            Route::get('/', 'RepositoryController@view')->name('view.repositories');
+            Route::get('/create', 'RepositoryController@create')->name('create.repository');
+            Route::post('/create', 'RepositoryController@store')->name('store.repository');
+            Route::get('/edit/{repository}', 'RepositoryController@edit')->name('edit.repository');
+            Route::post('/edit/{repository}', 'RepositoryController@update')->name('update.repository');
+            Route::post('/delete/{repository}', 'RepositoryController@delete')->name('delete.repository');
         });
 
         // Web servers
-        Route::prefix('web_servers')->group(function () {
-            Route::get('/', 'WebServerController@view')->name('view.web_servers');
-            Route::get('/create', 'WebServerController@create')->name('create.web_server');
-            Route::post('/create', 'WebServerController@store')->name('store.web_server');
-            Route::get('/edit/{web_server}', 'WebServerController@edit')->name('edit.web_server');
-            Route::post('/edit/{web_server}', 'WebServerController@update')->name('update.web_server');
-            Route::post('/delete/{web_server}', 'WebServerController@delete')->name('delete.web_server');
+        Route::prefix('environments')->group(function () {
+            Route::get('/', 'EnvironmentController@view')->name('view.environments');
+            Route::get('/create', 'EnvironmentController@create')->name('create.environment');
+            Route::post('/create', 'EnvironmentController@store')->name('store.environment');
+            Route::get('/edit/{environment}', 'EnvironmentController@edit')->name('edit.environment');
+            Route::post('/edit/{environment}', 'EnvironmentController@update')->name('update.environment');
+            Route::post('/delete/{environment}', 'EnvironmentController@delete')->name('delete.environment');
         });
     });
 

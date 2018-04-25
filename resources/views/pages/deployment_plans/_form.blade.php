@@ -13,7 +13,7 @@
     <div class="col-md-5">
         <div class="form-group">
             {{ Form::label('project_id', 'Project') }}
-            {{ Form::select('project_id', ['' => ''] + \App\Models\Project::pluck('name', 'id')->toArray(), isset($plan) ? $plan->project->id : null, ['class' => 'form-control', 'required' => true]) }}
+            {{ Form::select('project_id', ['' => ''] + \App\Models\Repository::pluck('name', 'id')->toArray(), isset($plan) ? $plan->project->id : null, ['class' => 'form-control', 'required' => true]) }}
         </div>
     </div>
     <div class="col-md-2">
@@ -32,7 +32,7 @@
         <div class="col-md-5">
             <div class="form-group">
                 {{ Form::label('web_server_id', 'Web Server') }}
-                {{ Form::select('web_server_id', \App\Models\WebServer::pluck('name', 'id'), isset($plan) ? $plan->webServer->id : null, ['class' => 'form-control', 'required' => true]) }}
+                {{ Form::select('web_server_id', \App\Models\Environment::pluck('name', 'id'), isset($plan) ? $plan->environment->id : null, ['class' => 'form-control', 'required' => true]) }}
             </div>
         </div>
     </div>

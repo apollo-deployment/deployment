@@ -25,11 +25,11 @@
                                 <th>&nbsp;</th>
                             </tr>
                         </thead>
-                        @forelse (\App\Models\Project::all() as $project)
+                        @forelse (\App\Models\Environment::all() as $environment)
                             <tbody>
-                                @forelse ($project->deploymentPlans as $plan)
+                                @forelse ($environment->deploymentPlans as $plan)
                                     <tr>
-                                        <td class="project-name">{{ $loop->first ? $project->name : '&nbsp;' }}</td>
+                                        <td class="environment-name">{{ $loop->first ? $environment->name : '&nbsp;' }}</td>
                                         <td>{{ $plan->name }}</td>
                                         <td>
                                             <button data-toggle="modal" data-target="#delete-deployment-plan-{{ $plan->id }}">
@@ -43,7 +43,7 @@
                                     @include('partials.delete-deployment-plan-modal', compact('plan'))
                                 @empty
                                     <tr>
-                                        <td class="project-name">{{ $project->name }}</td>
+                                        <td class="project-name">{{ $environment->name }}</td>
                                         <td colspan="100">No deployment plans found</td>
                                     </tr>
                                 @endforelse
@@ -51,7 +51,7 @@
                         @empty
                             <tbody>
                                 <tr class="empty">
-                                    <td colspan="100">No deployment plans found</td>
+                                    <td colspan="100">No environments found</td>
                                 </tr>
                             </tbody>
                         @endforelse

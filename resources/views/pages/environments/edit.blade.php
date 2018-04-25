@@ -5,12 +5,12 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="header">
-                    <p>Create Web Server</p>
+                    <p>Update {{ $environment->name }}</p>
                 </div>
             </div>
         </div>
-        <form action="{{ route('store.web_server') }}" method="POST">
-            @include('pages.web_servers._form')
+        <form action="{{ route('update.environment', compact('environment')) }}" method="POST">
+            @include('pages.environments._form', compact('environmentr'))
         </form>
     </div>
 @endsection

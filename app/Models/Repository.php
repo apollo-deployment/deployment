@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model
+class Repository extends Model
 {
     public $timestamps = true;
 
-    protected $table = 'projects';
-    protected $fillable = ['name', 'repository_url', 'repository_owner', 'repository_name'];
+    protected $table = 'repositories';
+    protected $fillable = ['name', 'url'];
 
     /**
      * Gets all deployment plans attached to this project

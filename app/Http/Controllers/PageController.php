@@ -26,11 +26,11 @@ class PageController extends Controller
     }
 
     /**
-     * View for displaying all projects
+     * View for displaying all repositories
      */
     public function projects()
     {
-        return view('pages.projects');
+        return view('pages.repositories');
     }
 
 }
