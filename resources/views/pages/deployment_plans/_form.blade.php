@@ -7,7 +7,7 @@
     <div class="col-md-5">
         <div class="form-group">
             {{ Form::label('name', 'Name') }}
-            {{ Form::text('name', isset($plan) ? $plan->name : null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Production Deployment']) }}
+            {{ Form::text('name', isset($plan) ? $plan->name : null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'ACME Production']) }}
         </div>
     </div>
     <div class="col-md-5">
@@ -41,7 +41,7 @@
         <div class="col-md-5">
             <div class="form-group">
                 {{ Form::label('remote_path', 'Remote Server Path') }}
-                {{ Form::text('remote_path', isset($plan) ? $plan->storage_path : null, ['class' => 'form-control', 'required' => true]) }}
+                {{ Form::text('remote_path', isset($plan) ? $plan->remote_path : null, ['class' => 'form-control', 'required' => true]) }}
             </div>
         </div>
     </div>

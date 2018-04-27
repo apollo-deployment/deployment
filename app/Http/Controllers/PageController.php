@@ -18,19 +18,11 @@ class PageController extends Controller
     }
 
     /**
-     * View for displaying all web servers
+     * View for user profile
      */
-    public function webServers()
+    public function profile()
     {
-        return view('pages.web-servers');
-    }
-
-    /**
-     * View for displaying all repositories
-     */
-    public function projects()
-    {
-        return view('pages.repositories');
+        return view('pages.profile');
     }
 
 }

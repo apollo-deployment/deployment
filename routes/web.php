@@ -8,6 +8,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::group(['middleware' => ['auth']], function () {
         Route::get('/', 'DeploymentPlanController@view')->name('view.index');
         Route::get('/logout', 'Auth\AuthController@logout')->name('logout');
+        Route::get('/profile', 'PageController@profile')->name('view.profile');
 
         // Deployment plans
         Route::prefix('deployment')->group(function () {
@@ -19,7 +20,7 @@ Route::group(['middleware' => ['web']], function () {
             Route::post('/delete/{plan}', 'DeploymentPlanController@delete')->name('delete.deployment-plan');
         });
 
-        // Projects
+        // Repositories
         Route::prefix('repositories')->group(function () {
             Route::get('/', 'RepositoryController@view')->name('view.repositories');
             Route::get('/create', 'RepositoryController@create')->name('create.repository');
@@ -29,7 +30,7 @@ Route::group(['middleware' => ['web']], function () {
             Route::post('/delete/{repository}', 'RepositoryController@delete')->name('delete.repository');
         });
 
-        // Web servers
+        // Environments
         Route::prefix('environments')->group(function () {
             Route::get('/', 'EnvironmentController@view')->name('view.environments');
             Route::get('/create', 'EnvironmentController@create')->name('create.environment');
@@ -43,6 +44,8 @@ Route::group(['middleware' => ['web']], function () {
     // GitHub API Routes
     Route::prefix('github')->group(function () {
         Route::get('/branches', 'Api\GitHubController@getBranches');
+        Route::get('/access', 'Api\GitHubController@getAccess')->name('github.access');
+        Route::get('/access/callback', 'Api\GitHubController@getAccessCallback');
     });
 });
 

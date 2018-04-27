@@ -43,9 +43,11 @@
                             <div class="dropdown">
                                 <p class="user" data-toggle="dropdown" >{{ Auth::user()->name }}</p>
                                 <div class="dropdown-menu pull-right">
+                                    <a class="dropdown-item" href="{{ route('view.profile') }}">
+                                        <i class="fa fa-user accent"></i> Profile
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}">
-                                        <i class="fa fa-sign-out accent" aria-hidden="true"></i>
-                                        Logout
+                                        <i class="fa fa-sign-out accent"></i> Logout
                                     </a>
                                 </div>
                             </div>
