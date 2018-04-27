@@ -15,6 +15,7 @@ class CreateRepositoriesTable extends Migration
     {
         Schema::create('repositories', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('title');
             $table->string('name');
             $table->longText('url');
             $table->timestamps();

@@ -15,7 +15,7 @@ class CreateEnvironmentsTable extends Migration
     {
         Schema::create('environments', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('title');
             $table->string('ip_address', 15);
             $table->integer('ssh_port');
             $table->string('authentication_type');

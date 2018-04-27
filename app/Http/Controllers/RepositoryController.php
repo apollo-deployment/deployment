@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RepositoryRequest;
 use App\Models\Repository;
+use Illuminate\Support\Facades\Auth;
 
 class RepositoryController extends Controller
 {
@@ -36,12 +37,17 @@ class RepositoryController extends Controller
      */
     public function store(RepositoryRequest $request)
     {
+        $repo_info = explode('/', explode('github.com/', $request->get('repository_url'))[1]);
+
         $repository = Repository::create([
-            'name' => $request->get('name'),
-            'url' => $request->get('url'),
+            'title' => $request->get('title'),
+            'name' => explode('.git', $repo_info[1])[0],
+            'user_id' => Auth::id(),
+            'owner' => $repo_info[0],
+            'url' => $request->get('url')
         ]);
 
-        return redirect()->route('view.repositories')->with(['message' => 'Successfully created repository \'' . $repository->name . '\'']);
+        return redirect()->route('view.repositories')->with(['message' => 'Successfully created repository \'' . $repository->title . '\'']);
     }
 
     /**
@@ -50,11 +56,11 @@ class RepositoryController extends Controller
     public function update(RepositoryRequest $request, Repository $repository)
     {
         $repository->update([
-            'name' => $request->get('name'),
+            'title' => $request->get('title'),
             'url' => $request->get('url'),
         ]);
 
-        return redirect()->route('view.repositories')->with(['message' => 'Successfully updated repository \'' . $repository->name . '\'']);
+        return redirect()->route('view.repositories')->with(['message' => 'Successfully updated repository \'' . $repository->title . '\'']);
     }
 
     /**

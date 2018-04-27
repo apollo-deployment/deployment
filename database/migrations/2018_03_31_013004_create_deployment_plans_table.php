@@ -15,7 +15,7 @@ class CreateDeploymentPlansTable extends Migration
     {
         Schema::create('deployment_plans', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('title');
             $table->integer('environment_id')->unsigned();
             $table->integer('repository_id')->unsigned();
             $table->string('repository_branch');

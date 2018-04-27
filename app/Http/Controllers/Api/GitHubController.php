@@ -23,13 +23,16 @@ class GitHubController extends Controller
      */
     public function getBranches()
     {
-        // $repository = Repository::find(request('project_id'));
+        $repository = Repository::find(request('project_id'));
 
         // return $this->github->getBranches();
     }
 
     /**
      * Redirects to GitHub to get user access to web-hooks & public/private repos
+     *
+     * Scope admin:repo_hook = Grants read/write access to hooks in public/private repositories
+     * Scope repo = Grants read/write access to public/private repositories
      */
     public function getAccess()
     {
@@ -47,7 +50,7 @@ class GitHubController extends Controller
         $token = $this->github->getAccessToken(request('code'));
 
         Auth::user()->update([
-           'access_token' => Crypt::encryptString($token)
+           'github_access_token' => Crypt::encryptString($token)
         ]);
 
         return redirect()->route('view.profile')->with(['message' => 'Successfully linked up GitHub account']);

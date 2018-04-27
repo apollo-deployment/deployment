@@ -14,7 +14,7 @@ class AddAccessTokenUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('access_token')->after('password')->nullable();
+            $table->string('github_access_token')->after('password')->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ class AddAccessTokenUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('access_token');
+            $table->dropColumn('github_access_token');
         });
     }
 }

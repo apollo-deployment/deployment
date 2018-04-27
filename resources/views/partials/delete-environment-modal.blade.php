@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                <h4>Delete '{{ $environment->name }}'?</h4>
+                <h4>Delete '{{ $environment->title }}'?</h4>
 
                 <form action="{{ route('delete.environment', compact('environment')) }}" method="POST">
                     {{ csrf_field() }}

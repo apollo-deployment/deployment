@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="header">
-                    <p>Update {{ $environment->name }}</p>
+                    <p>Update {{ $environment->title }}</p>
                 </div>
             </div>
         </div>

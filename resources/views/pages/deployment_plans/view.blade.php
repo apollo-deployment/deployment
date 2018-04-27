@@ -30,7 +30,7 @@
                                 @forelse ($environment->deploymentPlans as $plan)
                                     <tr>
                                         <td class="environment-name">{{ $loop->first ? $environment->name : '&nbsp;' }}</td>
-                                        <td>{{ $plan->name }}</td>
+                                        <td>{{ $plan->title }}</td>
                                         <td>
                                             <button data-toggle="modal" data-target="#delete-deployment-plan-{{ $plan->id }}">
                                                 <i class="fa fa-trash"></i>

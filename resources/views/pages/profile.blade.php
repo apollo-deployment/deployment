@@ -10,7 +10,7 @@
                     </div>
                 </div>
                 <div class="col-md-2">
-                    @if (Auth::user()->access_token)
+                    @if (Auth::user()->github_access_token)
                         <p class="accent text-right">Github Linked</p>
                     @else
                         <a href="{{ route('github.access') }}" class="btn">Link GitHub</a>

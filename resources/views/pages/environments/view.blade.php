@@ -29,7 +29,7 @@
                         <tbody>
                         @forelse (\App\Models\Environment::all() as $environment)
                             <tr>
-                                <td>{{ $environment->name }}</td>
+                                <td>{{ $environment->title }}</td>
                                 <td>{{ $environment->ip_address }}</td>
                                 <td>{{ ucfirst($environment->authentication_type) }}</td>
                                 <td>

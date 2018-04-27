@@ -6,8 +6,8 @@
 <div class="row">
     <div class="col-md-4">
         <div class="form-group">
-            {{ Form::label('name', 'Name') }}
-            {{ Form::text('name', isset($environment) ? $environment->name : '', ['class' => 'form-control', 'required' => true, 'placeholder' => 'Production Server']) }}
+            {{ Form::label('title', 'Title') }}
+            {{ Form::text('title', isset($environment) ? $environment->title : '', ['class' => 'form-control', 'required' => true, 'placeholder' => 'Production Server']) }}
         </div>
     </div>
     <div class="col-md-4">

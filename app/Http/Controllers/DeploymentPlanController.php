@@ -37,7 +37,7 @@ class DeploymentPlanController extends Controller
     public function store(DeploymentPlanRequest $request)
     {
         $plan = DeploymentPlan::create([
-            'name' => $request->get('name'),
+            'title' => $request->get('title'),
             'environment_id' => $request->get('environment_id'),
             'repository_id' => $request->get('repository_id'),
             'repository_branch' => $request->get('repository_branch'),
@@ -45,7 +45,7 @@ class DeploymentPlanController extends Controller
             'remote_path' => $request->get('remote_path'),
         ]);
 
-        return redirect()->route('view.deployment-plans')->with(['message' => 'Successfully created deployment plan \'' . $plan->name . '\'']);
+        return redirect()->route('view.deployment-plans')->with(['message' => 'Successfully created deployment plan \'' . $plan->title . '\'']);
     }
 
     /**
@@ -54,7 +54,7 @@ class DeploymentPlanController extends Controller
     public function update(DeploymentPlanRequest $request, DeploymentPlan $plan)
     {
         $plan->update([
-            'name' => $request->get('name'),
+            'title' => $request->get('name'),
             'environment_id' => $request->get('environment_id'),
             'repository_id' => $request->get('repository_id'),
             'repository_branch' => $request->get('repository_branch'),
@@ -62,7 +62,7 @@ class DeploymentPlanController extends Controller
             'remote_path' => $request->get('remote_path'),
         ]);
 
-        return redirect()->route('view.deployment-plans')->with(['message' => 'Successfully updated deployment plan \'' . $plan->name . '\'']);
+        return redirect()->route('view.deployment-plans')->with(['message' => 'Successfully updated deployment plan \'' . $plan->title . '\'']);
     }
 
     /**

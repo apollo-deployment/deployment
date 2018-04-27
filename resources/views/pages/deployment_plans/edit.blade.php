@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="header">
-                    <p>Update {{ $plan->name }} - {{ $plan->project_branch }}</p>
+                    <p>Update {{ $plan->title }} - {{ $plan->project_branch }}</p>
                 </div>
             </div>
         </div>

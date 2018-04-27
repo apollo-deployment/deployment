@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                <h4>Delete '{{ $repository->name }}'?</h4>
+                <h4>Delete '{{ $repository->title }}'?</h4>
 
                 <form action="{{ route('delete.repository', compact('repository')) }}" method="POST">
                     {{ csrf_field() }}

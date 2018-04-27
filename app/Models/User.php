@@ -13,6 +13,12 @@ class User extends Model implements Authenticatable
     public $timestamps = true;
 
     protected $table = 'users';
-    protected $fillable = ['name', 'email', 'password', 'access_token', 'organization'];
     protected $hidden = ['password'];
+    protected $fillable = [
+        'name',
+        'email',
+        'password',             // Nullable with OAuth
+        'github_access_token',  // Password like token to get access on GitHub
+        'organization'          // A way to separate users
+    ];
 }
