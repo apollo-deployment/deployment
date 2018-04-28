@@ -25,12 +25,12 @@
                                 <th>&nbsp;</th>
                             </tr>
                         </thead>
-                        @forelse (\App\Models\Project::all() as $project)
+                        @forelse (\App\Models\Environment::all() as $environment)
                             <tbody>
-                                @forelse ($project->deploymentPlans as $plan)
+                                @forelse ($environment->deploymentPlans as $plan)
                                     <tr>
-                                        <td class="project-name">{{ $loop->first ? $project->name : '&nbsp;' }}</td>
-                                        <td>{{ $plan->name }}</td>
+                                        <td class="environment-name">{{ $loop->first ? $environment->title : '&nbsp;' }}</td>
+                                        <td>{{ $plan->title }}</td>
                                         <td>
                                             <button data-toggle="modal" data-target="#delete-deployment-plan-{{ $plan->id }}">
                                                 <i class="fa fa-trash"></i>
@@ -42,16 +42,16 @@
                                     </tr>
                                     @include('partials.delete-deployment-plan-modal', compact('plan'))
                                 @empty
-                                    <tr class="empty">
-                                        <td class="project-name">{{ $project->name }}</td>
-                                        <td colspan="100">No plans found</td>
+                                    <tr>
+                                        <td class="environment-name">{{ $environment->title }}</td>
+                                        <td colspan="100">No deployment plans found</td>
                                     </tr>
                                 @endforelse
                             </tbody>
                         @empty
                             <tbody>
-                                <tr>
-                                    <td colspan="100">No projects found</td>
+                                <tr class="empty">
+                                    <td colspan="100">No environments found</td>
                                 </tr>
                             </tbody>
                         @endforelse

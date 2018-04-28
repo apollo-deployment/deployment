@@ -24,23 +24,6 @@ class DeploymentPlanController extends Controller
     }
 
     /**
-     * Store new deployment plan
-     */
-    public function store(DeploymentPlanRequest $request)
-    {
-        $plan = DeploymentPlan::create([
-            'name' => $request->get('name'),
-            'web_server_id' => $request->get('web_server_id'),
-            'project_id' => $request->get('project_id'),
-            'project_branch' => $request->get('project_branch'),
-            'update_seconds' => $request->get('update_seconds'),
-            'storage_path' => $request->get('storage_path'),
-        ]);
-
-        return redirect()->back()->withInput()->with(['message' => 'Successfully created deployment plan \'' . $plan->name . '\'']);
-    }
-
-    /**
      * View for updating existing DeploymentPlan $plan
      */
     public function edit(DeploymentPlan $plan)
@@ -49,20 +32,37 @@ class DeploymentPlanController extends Controller
     }
 
     /**
+     * Store new deployment plan
+     */
+    public function store(DeploymentPlanRequest $request)
+    {
+        $plan = DeploymentPlan::create([
+            'title' => $request->get('title'),
+            'environment_id' => $request->get('environment_id'),
+            'repository_id' => $request->get('repository_id'),
+            'repository_branch' => $request->get('repository_branch'),
+            'is_automatic' => true, // CHANGE
+            'remote_path' => $request->get('remote_path'),
+        ]);
+
+        return redirect()->route('view.deployment-plans')->with(['message' => 'Successfully created deployment plan \'' . $plan->title . '\'']);
+    }
+
+    /**
      * Update existing DeploymentPlan $plan
      */
     public function update(DeploymentPlanRequest $request, DeploymentPlan $plan)
     {
         $plan->update([
-            'name' => $request->get('name'),
-            'web_server_id' => $request->get('web_server_id'),
-            'project_id' => $request->get('project_id'),
-            'project_branch' => $request->get('project_branch'),
-            'update_seconds' => $request->get('update_seconds'),
-            'storage_path' => $request->get('storage_path'),
+            'title' => $request->get('name'),
+            'environment_id' => $request->get('environment_id'),
+            'repository_id' => $request->get('repository_id'),
+            'repository_branch' => $request->get('repository_branch'),
+            'is_automatic' => true, // CHANGE
+            'remote_path' => $request->get('remote_path'),
         ]);
 
-        return redirect()->back()->withInput()->with(['message' => 'Successfully updated deployment plan \'' . $plan->name . '\'']);
+        return redirect()->route('view.deployment-plans')->with(['message' => 'Successfully updated deployment plan \'' . $plan->title . '\'']);
     }
 
     /**
@@ -72,7 +72,7 @@ class DeploymentPlanController extends Controller
     {
         $plan->delete();
 
-        return redirect()->back()->with(['message' => 'Successfully deleted deployment plan']);
+        return redirect()->route('view.deployment-plans')->with(['message' => 'Successfully deleted deployment plan']);
     }
 
 }

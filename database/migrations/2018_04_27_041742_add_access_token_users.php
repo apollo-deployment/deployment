@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProjectsTable extends Migration
+class AddAccessTokenUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateProjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('projects', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name', 50);
-            $table->longText('repository_url');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('github_access_token')->after('password')->nullable();
         });
     }
 
@@ -28,6 +25,8 @@ class CreateProjectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('projects');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('github_access_token');
+        });
     }
 }

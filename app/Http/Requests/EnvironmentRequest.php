@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProjectRequest extends FormRequest
+class EnvironmentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,12 @@ class ProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            'project_name' => 'required',
-            'repository_url' => 'required'
+            'title' => 'required',
+            'ip_address' => 'required|ip',
+            'ssh_port' => 'required|numeric',
+            'authentication_type' => 'required',
+            'ssh_password' => 'required_if:authentication_type,password',
+            'public_key' => 'required_if:authentication_type,public_key',
         ];
     }
 }

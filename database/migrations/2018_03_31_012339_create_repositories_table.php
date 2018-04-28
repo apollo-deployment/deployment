@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWebServersTable extends Migration
+class CreateRepositoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateWebServersTable extends Migration
      */
     public function up()
     {
-        Schema::create('web_servers', function (Blueprint $table) {
+        Schema::create('repositories', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 50);
-            $table->string('server_username', 50);
-            $table->string('server_password')->nullable();
-            $table->longText('private_key_path')->nullable();
+            $table->string('title');
+            $table->string('name');
+            $table->longText('url');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateWebServersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('web_servers');
+        Schema::dropIfExists('repositories');
     }
 }

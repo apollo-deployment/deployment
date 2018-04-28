@@ -15,12 +15,17 @@ class CreateDeploymentPlansTable extends Migration
     {
         Schema::create('deployment_plans', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('web_server_id')->unsigned();
-            $table->integer('project_id')->unsigned();
-            $table->string('project_branch', 30);
-            $table->integer('update_seconds')->default(0);
-            $table->longText('storage_path');
+            $table->string('title');
+            $table->integer('environment_id')->unsigned();
+            $table->integer('repository_id')->unsigned();
+            $table->string('repository_branch');
+            $table->string('deployed_version')->nullable();
+            $table->boolean('is_automatic');
+            $table->longText('remote_path');
             $table->timestamps();
+
+            $table->foreign('environment_id')->references('id')->on('environments');
+            $table->foreign('repository_id')->references('id')->on('repositories');
         });
     }
 

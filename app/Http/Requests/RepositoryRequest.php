@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DeploymentPlanRequest extends FormRequest
+class RepositoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,10 +25,7 @@ class DeploymentPlanRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'environment_id' => 'required|numeric',
-            'repository_id' => 'required|numeric',
-            'repository_branch' => 'required',
-            'remote_path' => 'required',
+            'url' => 'required|url'
         ];
     }
 }

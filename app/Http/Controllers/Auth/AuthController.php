@@ -2,35 +2,28 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\API\Apollo;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    private $apollo;
-
     /**
-     * AuthController constructor, create ApolloApi instance
+     * Attempt login with user credentials
      */
-    public function __construct()
+    public function login(LoginRequest $request)
     {
-        $this->apollo = new Apollo;
-    }
+        $user = User::where('email', $request->get('username'))->first();
 
-    /**
-     * Check API for existing user, if so log them in if credentials are correct
-     */
-    public function login()
-    {
-        $data = $this->apollo->login(request());
+        if ($user && Hash::check($request->get('password'), $user->password)) {
+            Auth::login($user, true);
 
-        if (isset($data->error)) {
-            return redirect()->back()->withInput()->withErrors(['login' => 'Incorrect username or password']);
+            return redirect()->route('view.index');
         }
 
-        \Session::put('user', $data);
-
-        return redirect()->route('view.index');
+        return redirect()->back()->withInput()->withErrors('Incorrect username or password');
     }
 
     /**
@@ -38,7 +31,7 @@ class AuthController extends Controller
      */
     public function logout()
     {
-        \Session::flush();
+        Auth::logout();
 
         return redirect()->route('login');
     }

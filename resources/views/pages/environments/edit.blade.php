@@ -5,12 +5,12 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="header">
-                    <p>Create Deployment Plan</p>
+                    <p>Update {{ $environment->title }}</p>
                 </div>
             </div>
         </div>
-        <form action="{{ route('store.deployment-plan') }}" method="POST" enctype="multipart/form-data">
-            @include('pages.deployment_plans._form')
+        <form action="{{ route('update.environment', compact('environment')) }}" method="POST">
+            @include('pages.environments._form', compact('environmentr'))
         </form>
     </div>
 @endsection

@@ -1,11 +1,11 @@
 
-<div class="modal fade" id="delete-project-{{ $project->id }}" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="delete-environment-{{ $environment->id }}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                <h4>Delete '{{ $project->name }}'?</h4>
+                <h4>Delete '{{ $environment->title }}'?</h4>
 
-                <form action="{{ route('delete.project', compact('project')) }}" method="POST">
+                <form action="{{ route('delete.environment', compact('environment')) }}" method="POST">
                     {{ csrf_field() }}
 
                     <div class="row">

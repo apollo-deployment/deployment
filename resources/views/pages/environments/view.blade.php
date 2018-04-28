@@ -1,16 +1,16 @@
 @extends('layouts.base')
 
 @section('content')
-    <div class="projects">
+    <div class="environments">
         <div class="container">
             <div class="row">
                 <div class="col-md-10">
                     <div class="header">
-                        <p>Projects</p>
+                        <p>Environments</p>
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <a href="{{ route('create.project') }}" class="btn">Create</a>
+                    <a href="{{ route('create.environment') }}" class="btn">Create</a>
                 </div>
             </div>
             <div class="row">
@@ -21,32 +21,30 @@
                         <thead>
                             <tr>
                                 <td>Name</td>
-                                <td>Repository URL</td>
-                                <td>Created At</td>
-                                <td>Updated At</td>
+                                <td>IP Address</td>
+                                <td>Authentication Type</td>
                                 <td>&nbsp;</td>
                             </tr>
                         </thead>
                         <tbody>
-                        @forelse (\App\Models\Project::all() as $project)
+                        @forelse (\App\Models\Environment::all() as $environment)
                             <tr>
-                                <td>{{ $project->name }}</td>
-                                <td>{{ $project->repository_url }}</td>
-                                <td>{{ $project->created_at }}</td>
-                                <td>{{ $project->updated_at }}</td>
+                                <td>{{ $environment->title }}</td>
+                                <td>{{ $environment->ip_address }}</td>
+                                <td>{{ ucfirst($environment->authentication_type) }}</td>
                                 <td>
-                                    <button data-toggle="modal" data-target="#delete-project-{{ $project->id }}">
+                                    <button data-toggle="modal" data-target="#delete-environment-{{ $environment->id }}">
                                         <i class="fa fa-trash"></i>
                                     </button>
-                                    <a href="{{ route('edit.project', compact('project')) }}">
+                                    <a href="{{ route('edit.environment', compact('environment')) }}">
                                         <i class="fa fa-cog"></i>
                                     </a>
                                 </td>
                             </tr>
-                            @include('partials.delete-project-modal', compact('project'))
+                            @include('partials.delete-environment-modal', compact('environment'))
                         @empty
                             <tr class="empty">
-                                <td colspan="100">You have not created a project yet. <a href="{{ route('create.project') }}">Please create a new project.</a></td>
+                                <td colspan="100">No environments found</td>
                             </tr>
                         @endforelse
                         </tbody>
