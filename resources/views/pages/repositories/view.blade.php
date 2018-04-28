@@ -20,7 +20,8 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <td>Name</td>
+                                <td>Title</td>
+                                <td>Repository Name</td>
                                 <td>Repository URL</td>
                                 <td>&nbsp;</td>
                             </tr>
@@ -29,6 +30,7 @@
                         @forelse (\App\Models\Repository::all() as $repository)
                             <tr>
                                 <td>{{ $repository->title }}</td>
+                                <td>{{ $repository->name }}</td>
                                 <td>
                                     <a href="{{ $repository->url }}" target="_blank">{{ $repository->url }}</a>
                                 </td>

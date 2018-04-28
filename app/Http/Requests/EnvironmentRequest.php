@@ -29,7 +29,7 @@ class EnvironmentRequest extends FormRequest
             'ssh_port' => 'required|numeric',
             'authentication_type' => 'required',
             'ssh_password' => 'required_if:authentication_type,password',
-            'public_key' => 'required_if:authentication_type,public_key|file',
+            'public_key' => 'required_if:authentication_type,public_key',
         ];
     }
 }
