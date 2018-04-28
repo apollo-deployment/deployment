@@ -35,7 +35,8 @@ class GitHubController extends Controller
     {
         return Redirect::away('https://github.com/login/oauth/authorize' .
             '?client_id=' . env('GITHUB_ID') .
-            '&scope=admin:repo_hook repo'
+            '&scope=admin:repo_hook repo' .
+            '&redirect_uri=' . env('APP_URL') . '/github/access/callback'
         );
     }
 
