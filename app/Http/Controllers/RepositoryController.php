@@ -37,7 +37,7 @@ class RepositoryController extends Controller
      */
     public function store(RepositoryRequest $request)
     {
-        $repo_info = explode('/', explode('github.com/', $request->get('repository_url'))[1]);
+        $repo_info = explode('/', explode('github.com/', $request->get('url'))[1]);
 
         $repository = Repository::create([
             'title' => $request->get('title'),

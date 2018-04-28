@@ -43,6 +43,11 @@ html, body {
 form {
   label {
     color: white;
+
+    &.required:after {
+      content:" *";
+      color: #de4747;
+    }
   }
 
   .form-control {

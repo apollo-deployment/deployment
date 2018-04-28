@@ -19,20 +19,17 @@ class GitHubController extends Controller
     }
 
     /**
-     * Gets all branches for a repo. Splits repo URL to get repo owner & name
+     * AJAX : Gets all branches for a repository
      */
     public function getBranches()
     {
-        $repository = Repository::find(request('project_id'));
+        $repository = Repository::find(request('repository_id'));
 
-        // return $this->github->getBranches();
+        return $this->github->getBranches($repository->owner, $repository->name);
     }
 
     /**
-     * Redirects to GitHub to get user access to web-hooks & public/private repos
-     *
-     * Scope admin:repo_hook = Grants read/write access to hooks in public/private repositories
-     * Scope repo = Grants read/write access to public/private repositories
+     * Redirects to GitHub to get user access to web-hooks & public/private repositories
      */
     public function getAccess()
     {

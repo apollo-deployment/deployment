@@ -18,11 +18,18 @@ class Repository extends Model
     ];
 
     /**
-     * Gets all deployment plans attached to this project
+     * Gets all deployment plans attached to this repository
      */
     public function deploymentPlans()
     {
         return $this->hasMany('App\Models\DeploymentPlan');
     }
 
+    /**
+     * Gets the user who created this repository
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }

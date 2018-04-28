@@ -41,7 +41,7 @@ class DeploymentPlanController extends Controller
             'environment_id' => $request->get('environment_id'),
             'repository_id' => $request->get('repository_id'),
             'repository_branch' => $request->get('repository_branch'),
-            'is_automatic' => $request->get('is_automatic'),
+            'is_automatic' => true, // CHANGE
             'remote_path' => $request->get('remote_path'),
         ]);
 
@@ -58,7 +58,7 @@ class DeploymentPlanController extends Controller
             'environment_id' => $request->get('environment_id'),
             'repository_id' => $request->get('repository_id'),
             'repository_branch' => $request->get('repository_branch'),
-            'is_automatic' => $request->get('is_automatic'),
+            'is_automatic' => true, // CHANGE
             'remote_path' => $request->get('remote_path'),
         ]);
 

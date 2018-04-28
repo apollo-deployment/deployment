@@ -24,11 +24,10 @@ class DeploymentPlanRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'environment_id' => 'required',
-            'repository_id' => 'required',
+            'title' => 'required',
+            'environment_id' => 'required|numeric',
+            'repository_id' => 'required|numeric',
             'repository_branch' => 'required',
-            'is_automatic' => 'required',
             'remote_path' => 'required',
         ];
     }

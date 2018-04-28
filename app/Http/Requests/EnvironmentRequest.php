@@ -24,10 +24,12 @@ class EnvironmentRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'ip_address' => 'required',
-            'ssh_port' => 'required',
+            'title' => 'required',
+            'ip_address' => 'required|ip',
+            'ssh_port' => 'required|numeric',
             'authentication_type' => 'required',
+            'ssh_password' => 'required_if:authentication_type,password',
+            'public_key' => 'required_if:authentication_type,public_key|file',
         ];
     }
 }

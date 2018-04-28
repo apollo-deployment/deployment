@@ -32,7 +32,7 @@
         <div class="col-md-5">
             <div class="form-group">
                 {{ Form::label('environment_id', 'Environment') }}
-                {{ Form::select('environment_id', \App\Models\Environment::pluck('name', 'id'), isset($plan) ? $plan->environment->id : null, ['class' => 'form-control', 'required' => true]) }}
+                {{ Form::select('environment_id', \App\Models\Environment::pluck('title', 'id'), isset($plan) ? $plan->environment->id : null, ['class' => 'form-control', 'required' => true]) }}
             </div>
         </div>
     </div>
@@ -52,20 +52,20 @@
 @section('scripts')
     <script type="text/javascript">
         // Hide/show section on project selection
-        $('[name="project_id"]').on('change', function() {
+        $('[name="repository_id"]').on('change', function() {
             if (this.value) {
                 $('#hide').show();
-                $('[name="project_branch"]').empty();
+                $('[name="repository_branch"]').empty();
 
                 // Gets all branches for the selected project
                 $.ajax({
                     method: 'GET',
                     url: '/github/branches',
-                    data: {'project_id' : this.value},
+                    data: {'repository_id' : this.value},
                     success: function(branches) {
                         // Add new option for every branch
                         $.each(branches, function(key, branch) {
-                            $('[name="project_branch"]').append($('<option>', {
+                            $('[name="repository_branch"]').append($('<option>', {
                                 value: branch.name,
                                 text: branch.name
                             }));

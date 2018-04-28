@@ -17,7 +17,7 @@ class GitHub
     private $oauth;
 
     /**
-     * Docs : https://developer.github.com/v3/
+     * https://developer.github.com/v3/
      */
     public function __construct()
     {
@@ -35,6 +35,8 @@ class GitHub
 
     /**
      * Returns array with all repo's branches
+     *
+     * https://developer.github.com/v3/repos/branches/#list-branches
      */
     public function getBranches($username, $repo_name)
     {
@@ -45,6 +47,8 @@ class GitHub
 
     /**
      * Creates a user access token
+     *
+     * https://developer.github.com/apps/building-oauth-apps/authorization-options-for-oauth-apps/
      */
     public function getAccessToken($code)
     {
