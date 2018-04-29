@@ -9,6 +9,8 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/', 'DeploymentPlanController@view')->name('view.index');
         Route::get('/logout', 'Auth\AuthController@logout')->name('logout');
         Route::get('/profile', 'PageController@profile')->name('view.profile');
+        Route::post('/profile/update', 'Auth\AuthController@updateProfile')->name('update.profile');
+        Route::post('/profile/update-password', 'Auth\AuthController@updatePassword')->name('update.password');
 
         // Deployment plans
         Route::prefix('deployment')->group(function () {

@@ -20,10 +20,10 @@
                     <table>
                         <thead>
                             <tr>
-                                <td>Name</td>
-                                <td>IP Address</td>
-                                <td>Authentication Type</td>
-                                <td>&nbsp;</td>
+                                <th>Name</th>
+                                <th>IP Address</th>
+                                <th>Authentication Type</th>
+                                <th>&nbsp;</th>
                             </tr>
                         </thead>
                         <tbody>

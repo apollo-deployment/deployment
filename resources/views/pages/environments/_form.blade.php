@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-md-4">
         <div class="form-group">
-            {{ Form::label('title', 'Title') }}
+            {{ Form::label('title', 'Title', ['class' => 'required']) }}
             {{ Form::text('title', isset($environment) ? $environment->title : '', ['class' => 'form-control', 'required' => true, 'placeholder' => 'Production Server']) }}
         </div>
         @if ($errors->first('title'))
@@ -15,7 +15,7 @@
     </div>
     <div class="col-md-4">
         <div class="form-group">
-            {{ Form::label('ip_address', 'Host Address') }}
+            {{ Form::label('ip_address', 'Host Address', ['class' => 'required']) }}
             {{ Form::text('ip_address', isset($environment) ? $environment->ip_address : '', ['class' => 'form-control', 'required' => true, 'placeholder' => '255.255.255.254']) }}
         </div>
         @if ($errors->first('ip_address'))
@@ -24,7 +24,7 @@
     </div>
     <div class="col-md-4">
         <div class="form-group">
-            {{ Form::label('ssh_port', 'SSH Port') }}
+            {{ Form::label('ssh_port', 'SSH Port', ['class' => 'required']) }}
             {{ Form::number('ssh_port', isset($environment) ? $environment->ssh_port : 22, ['class' => 'form-control', 'required' => true, 'min' => 1, 'max' => 65535]) }}
         </div>
         @if ($errors->first('ssh_port'))
@@ -36,7 +36,7 @@
 <div class="row">
     <div class="col-md-4">
         <div class="form-group">
-            {{ Form::label('authentication_type', 'Authentication Type') }}
+            {{ Form::label('authentication_type', 'Authentication Type', ['class' => 'required']) }}
             {{ Form::select('authentication_type', ['password' => 'Password', 'public_key' => 'Public Key'], isset($environment) ? $environment->authenication_type : 'password', ['class' => 'form-control', 'required' => true]) }}
         </div>
         @if ($errors->first('authentication_type'))
@@ -45,7 +45,7 @@
     </div>
     <div class="col-md-4" id="ssh_password">
         <div class="form-group">
-            {{ Form::label('ssh_password', isset($environment) ? 'Update SSH Password' : 'SSH Password') }}
+            {{ Form::label('ssh_password', isset($environment) ? 'Update SSH Password' : 'SSH Password', ['class' => 'required']) }}
             {{ Form::password('ssh_password', ['class' => 'form-control', 'required' => true]) }}
         </div>
         @if ($errors->first('ssh_password'))
@@ -59,14 +59,18 @@
                 {{ Form::file('public_key', null, ['class' => 'form-control']) }}
             </label>
         </div>
-        <p class="file-uploaded"></p>
+        <p class="file-uploaded secondary-text"></p>
         @if ($errors->first('public_key'))
             <p class="message-error">{{ $errors->first('public_key') }}</p>
         @endif
     </div>
 </div>
 
-{{ Form::submit(isset($project) ? 'Update' : 'Create', ['class' => 'btn']) }}
+<div class="row">
+    <div class="col-md-12">
+        {{ Form::submit(isset($project) ? 'Update' : 'Create', ['class' => 'btn']) }}
+    </div>
+</div>
 
 @section('scripts')
     <script type="text/javascript">

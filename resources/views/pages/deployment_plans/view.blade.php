@@ -17,11 +17,12 @@
                 <div class="col-md-12">
                     @include('partials.message')
 
-                    <table>
+                    <table cellspacing="500">
                         <thead>
                             <tr>
                                 <th>Project</th>
                                 <th>Plan</th>
+                                <th>Deployed Version</th>
                                 <th>&nbsp;</th>
                             </tr>
                         </thead>
@@ -29,8 +30,12 @@
                             <tbody>
                                 @forelse ($environment->deploymentPlans as $plan)
                                     <tr>
-                                        <td class="environment-name">{{ $loop->first ? $environment->title : '&nbsp;' }}</td>
+                                        <td class="environment-name">
+                                            {{ $loop->first ? $environment->title : '&nbsp;' }}
+                                            <code class="float-right">{{ $plan->repository_branch }}</code>
+                                        </td>
                                         <td>{{ $plan->title }}</td>
+                                        <td>{{ $plan->deployed_version }}</td>
                                         <td>
                                             <button data-toggle="modal" data-target="#delete-deployment-plan-{{ $plan->id }}">
                                                 <i class="fa fa-trash"></i>

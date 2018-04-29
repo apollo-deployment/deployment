@@ -61,6 +61,16 @@
             @yield('content')
         </div>
 
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="text-center secondary-text">&copy; Copyright {{ date('Y') }} Apollo Deployment</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         {{-- Scripts --}}
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 

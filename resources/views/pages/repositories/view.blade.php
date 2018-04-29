@@ -20,10 +20,10 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <td>Title</td>
-                                <td>Repository Name</td>
-                                <td>Repository URL</td>
-                                <td>&nbsp;</td>
+                                <th>Title</th>
+                                <th>Repository Name</th>
+                                <th>Repository URL</th>
+                                <th>&nbsp;</th>
                             </tr>
                         </thead>
                         <tbody>
