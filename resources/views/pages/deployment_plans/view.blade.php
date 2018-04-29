@@ -17,24 +17,26 @@
                 <div class="col-md-12">
                     @include('partials.message')
 
-                    <table cellspacing="500">
+                    <table>
                         <thead>
                             <tr>
                                 <th>Project</th>
                                 <th>Plan</th>
+                                <th>Environment</th>
                                 <th>Deployed Version</th>
                                 <th>&nbsp;</th>
                             </tr>
                         </thead>
-                        @forelse (\App\Models\Environment::all() as $environment)
+                        @forelse (\App\Models\Repository::all() as $repository)
                             <tbody>
-                                @forelse ($environment->deploymentPlans as $plan)
+                                @forelse ($repository->deploymentPlans as $plan)
                                     <tr>
-                                        <td class="environment-name">
-                                            {{ $loop->first ? $environment->title : '&nbsp;' }}
+                                        <td class="repository-name">
+                                            {{ $loop->first ? $repository->title : '&nbsp;' }}
                                             <code class="float-right">{{ $plan->repository_branch }}</code>
                                         </td>
                                         <td>{{ $plan->title }}</td>
+                                        <td>{{ $plan->environment->title }}</td>
                                         <td>{{ $plan->deployed_version }}</td>
                                         <td>
                                             <button data-toggle="modal" data-target="#delete-deployment-plan-{{ $plan->id }}">
@@ -48,7 +50,7 @@
                                     @include('partials.delete-deployment-plan-modal', compact('plan'))
                                 @empty
                                     <tr>
-                                        <td class="environment-name">{{ $environment->title }}</td>
+                                        <td class="environment-name">{{ $repository->title }}</td>
                                         <td colspan="100">No deployment plans found</td>
                                     </tr>
                                 @endforelse
@@ -56,7 +58,7 @@
                         @empty
                             <tbody>
                                 <tr class="empty">
-                                    <td colspan="100">No environments found</td>
+                                    <td colspan="100">No repositories found</td>
                                 </tr>
                             </tbody>
                         @endforelse

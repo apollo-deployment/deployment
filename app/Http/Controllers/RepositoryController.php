@@ -68,8 +68,8 @@ class RepositoryController extends Controller
      */
     public function delete(Repository $repository)
     {
+        $repository->deploymentPlans()->delete();
         $repository->delete();
-        $repository->deploymentPlans->delete();
 
         return redirect()->route('view.repositories')->with(['message' => 'Successfully deleted repository']);
     }
