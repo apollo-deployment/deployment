@@ -12,11 +12,17 @@
 }
 
 .message-success {
-  color: #1aa51a;
+  color: #00be8c;
+  background-color: #1e4a3d;
+  border-radius: 4px;
   margin-bottom: 20px;
+  padding: 15px;
 }
 
 .message-error {
-  color: #de4747;
+  color: #dc3c5a;
+  background-color: #522830;
+  border-radius: 4px;
   margin-bottom: 20px;
+  padding: 15px;
 }

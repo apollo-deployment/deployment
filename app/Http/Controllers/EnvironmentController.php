@@ -53,7 +53,7 @@ class EnvironmentController extends Controller
     /**
      * Update existing web server
      */
-    public function update(WebServerRequest $request, Environment $environment)
+    public function update(EnvironmentRequest $request, Environment $environment)
     {
         $environment->update([
             'title' => $request->get('title'),
@@ -72,6 +72,9 @@ class EnvironmentController extends Controller
      */
     public function delete(Environment $environment)
     {
+        if ($environment->deploymentPlans()) {
+            return redirect()->route('view.environments')->withErrors('Unable to delete. There are active deployment plans running on this environment');
+        }
         $environment->delete();
 
         return redirect()->route('view.environments')->with(['message' => 'Successfully deleted environment']);

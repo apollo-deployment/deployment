@@ -54,7 +54,7 @@ class DeploymentPlanController extends Controller
     public function update(DeploymentPlanRequest $request, DeploymentPlan $plan)
     {
         $plan->update([
-            'title' => $request->get('name'),
+            'title' => $request->get('title'),
             'environment_id' => $request->get('environment_id'),
             'repository_id' => $request->get('repository_id'),
             'repository_branch' => $request->get('repository_branch'),

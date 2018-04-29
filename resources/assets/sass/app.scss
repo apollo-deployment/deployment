@@ -159,7 +159,7 @@ form {
 }
 
 .secondary-text {
-  color: #d0d0d0;
+  color: #d0d0d0 !important;
 }
 
 .btn {
@@ -264,6 +264,10 @@ form {
             float: right;
             margin-left: 15px;
             padding: 0;
+          }
+
+          .fa-trash {
+            color: #de4747;
           }
 
           code {

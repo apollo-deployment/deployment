@@ -4,7 +4,7 @@
 {{ csrf_field() }}
 
 <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-4">
         <div class="form-group">
             {{ Form::label('title', 'Title', ['class' => 'required']) }}
             {{ Form::text('title', isset($plan) ? $plan->title : null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'ACME Production']) }}
@@ -13,10 +13,18 @@
             <p class="message-error">{{ $errors->first('title') }}</p>
         @endif
     </div>
-    <div class="col-md-4">
+    <div class="col-md-5">
         <div class="form-group">
             {{ Form::label('environment_id', 'Environment', ['class' => 'required']) }}
-            {{ Form::select('environment_id', \App\Models\Environment::pluck('title', 'id'), isset($plan) ? $plan->environment->id : null, ['class' => 'form-control', 'required' => true]) }}
+            <select name="environment_id" class="form-control" required>
+                @forelse (\App\Models\Environment::all() as $environment)
+                    <option value="{{ $environment->id }}" {{ isset($plan) && $environment->id === $plan->environment->id ? 'selected' : '' }}>
+                        {{ $environment->title }} - {{ $environment->ip_address }}
+                    </option>
+                @empty
+                    <option value="">No environments</option>
+                @endforelse
+            </select>
         </div>
         @if ($errors->first('environment_id'))
             <p class="message-error">{{ $errors->first('environment_id') }}</p>
@@ -38,7 +46,7 @@
         <div class="col-md-4">
             <div class="form-group">
                 {{ Form::label('repository_branch', 'Repository Branch', ['class' => 'required']) }}
-                {{ Form::select('repository_branch', ['' => ''], isset($plan) ? $plan->repository_branch : null, ['class' => 'form-control', 'required' => true]) }}
+                {{ Form::select('repository_branch', ['' => ''], null, ['class' => 'form-control', 'required' => true]) }}
             </div>
             @if ($errors->first('repository_branch'))
                 <p class="message-error">{{ $errors->first('repository_branch') }}</p>
@@ -46,7 +54,7 @@
         </div>
         <div class="col-md-8">
             <div class="form-group">
-                {{ Form::label('remote_path', 'Remote Server Path', ['class' => 'required']) }}
+                {{ Form::label('remote_path', 'Remote Project Path', ['class' => 'required']) }}
                 {{ Form::text('remote_path', isset($plan) ? $plan->remote_path : null, ['class' => 'form-control', 'required' => true]) }}
             </div>
             @if ($errors->first('remote_path'))
@@ -64,30 +72,49 @@
 
 @section('scripts')
     <script type="text/javascript">
-        // Hide/show section on project selection
+        $(document).ready(function() {
+            // Check for new branches on load
+            if ({{ json_encode(isset($plan)) }}) {
+                getBranches({{ json_encode($plan->repository_id) }});
+            }
+        });
+
         $('[name="repository_id"]').on('change', function() {
-            if (this.value) {
+           getBranches(this.value);
+        });
+
+        /**
+         * Gets all branches for selected repository
+         */
+        function getBranches(value) {
+            if (value) {
                 $('#hide').show();
                 $('[name="repository_branch"]').empty();
 
-                // Gets all branches for the selected project
                 $.ajax({
                     method: 'GET',
                     url: '/github/branches',
-                    data: {'repository_id' : this.value},
+                    data: {'repository_id' : value},
                     success: function(branches) {
                         // Add new option for every branch
                         $.each(branches, function(key, branch) {
-                            $('[name="repository_branch"]').append($('<option>', {
-                                value: branch.name,
-                                text: branch.name
-                            }));
+                            if (branch.name === {!! json_encode($plan->repository_branch) !!}) {
+                                $('[name="repository_branch"]').append($('<option>', {
+                                    value: branch.name,
+                                    text: branch.name
+                                }).attr('selected', true));
+                            } else {
+                                $('[name="repository_branch"]').append($('<option>', {
+                                    value: branch.name,
+                                    text: branch.name
+                                }));
+                            }
                         });
                     }
                 });
             } else {
                 $('#hide').hide();
             }
-        })
+        }
     </script>
 @endsection

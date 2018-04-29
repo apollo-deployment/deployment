@@ -43,7 +43,7 @@
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                             <a href="{{ route('edit.deployment-plan', compact('plan')) }}">
-                                                <i class="fa fa-cog"></i>
+                                                <i class="fa fa-cog secondary-text"></i>
                                             </a>
                                         </td>
                                     </tr>

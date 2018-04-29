@@ -13,7 +13,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('/profile/update-password', 'Auth\AuthController@updatePassword')->name('update.password');
 
         // Deployment plans
-        Route::prefix('deployment')->group(function () {
+        Route::prefix('deployments')->group(function () {
             Route::get('/', 'DeploymentPlanController@view')->name('view.deployment-plans');
             Route::get('/create', 'DeploymentPlanController@create')->name('create.deployment-plan');
             Route::post('/create', 'DeploymentPlanController@store')->name('store.deployment-plan');
