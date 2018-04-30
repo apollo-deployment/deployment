@@ -74,5 +74,4 @@ class DeploymentPlanController extends Controller
 
         return redirect()->route('view.deployment-plans')->with(['message' => 'Successfully deleted deployment plan']);
     }
-
 }

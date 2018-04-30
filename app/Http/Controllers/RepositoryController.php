@@ -55,8 +55,12 @@ class RepositoryController extends Controller
      */
     public function update(RepositoryRequest $request, Repository $repository)
     {
+        $repo_info = explode('/', explode('github.com/', $request->get('url'))[1]);
+
         $repository->update([
             'title' => $request->get('title'),
+            'name' => explode('.git', $repo_info[1])[0],
+            'owner' => $repo_info[0],
             'url' => $request->get('url'),
         ]);
 
@@ -73,5 +77,4 @@ class RepositoryController extends Controller
 
         return redirect()->route('view.repositories')->with(['message' => 'Successfully deleted repository']);
     }
-
 }

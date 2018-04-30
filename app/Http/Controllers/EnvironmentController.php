@@ -79,5 +79,4 @@ class EnvironmentController extends Controller
 
         return redirect()->route('view.environments')->with(['message' => 'Successfully deleted environment']);
     }
-
 }

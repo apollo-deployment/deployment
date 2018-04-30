@@ -209,6 +209,7 @@ form {
 // -------------------- Content --------------------
 .content {
   margin-top: 70px;
+  margin-bottom: 90px;
 
   .login {
     margin-top: 150px;
@@ -220,6 +221,11 @@ form {
       img {
         height: 200px;
       }
+    }
+
+    .g-btn {
+      background-color: #e0482f;
+      width: 40px;
     }
   }
 

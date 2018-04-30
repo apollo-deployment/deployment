@@ -23,10 +23,29 @@
                             {{ Form::password('password', ['class' => 'form-control', 'required' => true]) }}
                         </div>
                         @if ($errors->any())
-                            <p class="message-error">{{ $errors->first() }}</p>
+                            <p class="red">{{ $errors->first() }}</p>
                         @endif
-                        {{ Form::submit('Login', ['class' => 'btn']) }}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group checkbox">
+                                    <label for="remember_me">
+                                        {{ Form::checkbox('remember_me', true, null, ['class' => '']) }} Remember Me
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                {{ Form::submit('Login', ['class' => 'btn']) }}
+                                <a href="{{ route('login.google') }}" class="btn g-btn">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>
+                            </div>
+                        </div>
                     </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4 text-center">
+                    <a href="" class="secondary-text">Register new organization</a>
                 </div>
             </div>
         </div>

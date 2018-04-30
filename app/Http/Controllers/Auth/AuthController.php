@@ -7,6 +7,7 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\PasswordRequest;
 use App\Http\Requests\ProfileRequest;
 use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -20,7 +21,7 @@ class AuthController extends Controller
         $user = User::where('email', $request->get('email'))->first();
 
         if ($user && Hash::check($request->get('password'), $user->password)) {
-            Auth::login($user, true);
+            Auth::login($user, (boolean) $request->get('remember_me'));
 
             return redirect()->route('view.index');
         }
@@ -58,6 +59,41 @@ class AuthController extends Controller
     }
 
     /**
+     * Google OAuth callback. Creates new user if they don't exist
+     */
+    public function googleCallback()
+    {
+        $google_user = $this->socialite()->user();
+
+        try {
+            $user = User::where('email', $google_user->email)->firstOrFail();
+
+            Auth::login($user, true);
+
+        } catch (ModelNotFoundException $e) {
+            return redirect()->route('login')->withErrors('Account doesn\'t exist');
+        }
+
+        return redirect()->route('view.index');
+    }
+
+    /**
+     * Redirect to Google OAuth login
+     */
+    public function redirectToGoogle()
+    {
+        return $this->socialite()->redirect();
+    }
+
+    /**
+     * Load 3rd party authentication package
+     */
+    private function socialite()
+    {
+        return \Socialite::driver('google');
+    }
+
+    /**
      * Logout authenticated user
      */
     public function logout()
@@ -66,5 +102,4 @@ class AuthController extends Controller
 
         return redirect()->route('login');
     }
-
 }

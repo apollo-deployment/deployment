@@ -7,10 +7,10 @@
     <div class="col-md-4">
         <div class="form-group">
             {{ Form::label('title', 'Title', ['class' => 'required']) }}
-            {{ Form::text('title', isset($environment) ? $environment->title : '', ['class' => 'form-control', 'required' => true, 'placeholder' => 'Production Server']) }}
+            {{ Form::text('title', isset($environment) ? $environment->title : '', ['class' => 'form-control', 'required' => true, 'autofocus', 'placeholder' => 'Production Server']) }}
         </div>
         @if ($errors->first('title'))
-            <p class="message-error">{{ $errors->first('title') }}</p>
+            <p class="red">{{ $errors->first('title') }}</p>
         @endif
     </div>
     <div class="col-md-4">
@@ -19,7 +19,7 @@
             {{ Form::text('ip_address', isset($environment) ? $environment->ip_address : '', ['class' => 'form-control', 'required' => true, 'placeholder' => '255.255.255.254']) }}
         </div>
         @if ($errors->first('ip_address'))
-            <p class="message-error">{{ $errors->first('ip_address') }}</p>
+            <p class="red">{{ $errors->first('ip_address') }}</p>
         @endif
     </div>
     <div class="col-md-4">
@@ -28,7 +28,7 @@
             {{ Form::number('ssh_port', isset($environment) ? $environment->ssh_port : 22, ['class' => 'form-control', 'required' => true, 'min' => 1, 'max' => 65535]) }}
         </div>
         @if ($errors->first('ssh_port'))
-            <p class="message-error">{{ $errors->first('ssh_port') }}</p>
+            <p class="red">{{ $errors->first('ssh_port') }}</p>
         @endif
     </div>
 </div>
@@ -40,7 +40,7 @@
             {{ Form::select('authentication_type', ['password' => 'Password', 'public_key' => 'Public Key'], isset($environment) ? $environment->authenication_type : 'password', ['class' => 'form-control', 'required' => true]) }}
         </div>
         @if ($errors->first('authentication_type'))
-            <p class="message-error">{{ $errors->first('authentication_type') }}</p>
+            <p class="red">{{ $errors->first('authentication_type') }}</p>
         @endif
     </div>
     <div class="col-md-4" id="ssh_password">
@@ -49,7 +49,7 @@
             {{ Form::password('ssh_password', ['class' => 'form-control', 'required' => true]) }}
         </div>
         @if ($errors->first('ssh_password'))
-            <p class="message-error">{{ $errors->first('ssh_password') }}</p>
+            <p class="red">{{ $errors->first('ssh_password') }}</p>
         @endif
     </div>
     <div class="col-md-8" id="public_key" style="display: {{ $errors->first('public_key') ? 'inline-block' : 'none' }}">
@@ -61,7 +61,7 @@
         </div>
         <p class="file-uploaded secondary-text"></p>
         @if ($errors->first('public_key'))
-            <p class="message-error">{{ $errors->first('public_key') }}</p>
+            <p class="red">{{ $errors->first('public_key') }}</p>
         @endif
     </div>
 </div>

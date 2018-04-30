@@ -8,7 +8,6 @@
 
                 <form action="{{ route('delete.repository', compact('repository')) }}" method="POST">
                     {{ csrf_field() }}
-
                     <div class="row">
                         <div class="col-md-12">
                             {{ Form::submit('Delete', ['class' => 'btn']) }}
