@@ -32,7 +32,7 @@
                                 <td>{{ $repository->title }}</td>
                                 <td>{{ $repository->name }}</td>
                                 <td>
-                                    <a href="{{ $repository->url }}" target="_blank">{{ $repository->url }}</a>
+                                    <a href="{{ $repository->url }}" target="_blank" class="secondary-text">{{ $repository->url }}</a>
                                 </td>
                                 <td>
                                     <button data-toggle="modal" data-target="#delete-repository-{{ $repository->id }}">

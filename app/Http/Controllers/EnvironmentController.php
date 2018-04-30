@@ -72,7 +72,7 @@ class EnvironmentController extends Controller
      */
     public function delete(Environment $environment)
     {
-        if ($environment->deploymentPlans()) {
+        if ($environment->deploymentPlans()->get()->count() > 0) {
             return redirect()->route('view.environments')->withErrors('Unable to delete. There are active deployment plans running on this environment');
         }
         $environment->delete();

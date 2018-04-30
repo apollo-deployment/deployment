@@ -46,7 +46,7 @@
         <div class="col-md-4">
             <div class="form-group">
                 {{ Form::label('repository_branch', 'Repository Branch', ['class' => 'required']) }}
-                {{ Form::select('repository_branch', ['' => ''], null, ['class' => 'form-control', 'required' => true]) }}
+                {{ Form::select('repository_branch', ['' => ''], null, ['class' => 'form-control', 'required' => true, 'data-id' => isset($plan) ? $plan->repository_id : null]) }}
             </div>
             @if ($errors->first('repository_branch'))
                 <p class="message-error">{{ $errors->first('repository_branch') }}</p>
@@ -72,33 +72,35 @@
 
 @section('scripts')
     <script type="text/javascript">
+        var plan_exists = {!! json_encode(!empty($plan)) !!};
+
         $(document).ready(function() {
             // Check for new branches on load
-            if ({{ json_encode(isset($plan)) }}) {
-                getBranches({{ json_encode($plan->repository_id) }});
+            if (plan_exists) {
+                getBranches($('[name="repository_branch"]').getAttribute('data-id'));
             }
         });
 
         $('[name="repository_id"]').on('change', function() {
-           getBranches(this.value);
+            getBranches(this.value);
         });
 
         /**
          * Gets all branches for selected repository
          */
-        function getBranches(value) {
-            if (value) {
+        function getBranches(repository_id) {
+            if (repository_id) {
                 $('#hide').show();
                 $('[name="repository_branch"]').empty();
 
                 $.ajax({
                     method: 'GET',
                     url: '/github/branches',
-                    data: {'repository_id' : value},
+                    data: {'repository_id' : repository_id},
                     success: function(branches) {
                         // Add new option for every branch
                         $.each(branches, function(key, branch) {
-                            if (branch.name === {!! json_encode($plan->repository_branch) !!}) {
+                            if (plan_exists && branch.name === repository_id) {
                                 $('[name="repository_branch"]').append($('<option>', {
                                     value: branch.name,
                                     text: branch.name

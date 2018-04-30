@@ -7,22 +7,27 @@
   color: #1aa51a;
 }
 
+.red {
+  color: $red;
+}
+
 .float-right {
   float: right;
+}
+
+.alert {
+  a {
+    font-weight: normal;
+    text-shadow: none;
+  }
 }
 
 .message-success {
   color: #00be8c;
   background-color: #1e4a3d;
-  border-radius: 4px;
-  margin-bottom: 20px;
-  padding: 15px;
 }
 
 .message-error {
   color: #dc3c5a;
   background-color: #522830;
-  border-radius: 4px;
-  margin-bottom: 20px;
-  padding: 15px;
 }

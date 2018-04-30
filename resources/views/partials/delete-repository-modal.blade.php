@@ -4,7 +4,7 @@
         <div class="modal-content">
             <div class="modal-body">
                 <h4>Delete '{{ $repository->title }}'?</h4>
-                <p class="secondary-text">This will remove all attached deployment plans</p>
+                <p class="secondary-text"><span class="red">Warning: </span> This will delete all running deployment plans</p>
 
                 <form action="{{ route('delete.repository', compact('repository')) }}" method="POST">
                     {{ csrf_field() }}

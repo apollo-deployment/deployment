@@ -61,7 +61,7 @@
             @yield('content')
         </div>
 
-        <div class="footer">
+        <footer>
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -69,7 +69,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </footer>
 
         {{-- Scripts --}}
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
