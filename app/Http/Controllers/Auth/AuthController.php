@@ -20,6 +20,10 @@ class AuthController extends Controller
     {
         $user = User::where('email', $request->get('email'))->first();
 
+        if (! $user->verified) {
+            return redirect()->back()->withInput()->withErrors('Please verify your email');
+        }
+
         if ($user && Hash::check($request->get('password'), $user->password)) {
             Auth::login($user, (boolean) $request->get('remember_me'));
 
@@ -68,10 +72,14 @@ class AuthController extends Controller
         try {
             $user = User::where('email', $google_user->email)->firstOrFail();
 
+            if (! $user->verified) {
+                return redirect()->route('view.login')->withErrors('Please verify your email');
+            }
+
             Auth::login($user, true);
 
         } catch (ModelNotFoundException $e) {
-            return redirect()->route('login')->withErrors('Account doesn\'t exist');
+            return redirect()->route('view.login')->withErrors("Account doesn't exist");
         }
 
         return redirect()->route('view.index');
@@ -82,15 +90,7 @@ class AuthController extends Controller
      */
     public function redirectToGoogle()
     {
-        return $this->socialite()->redirect();
-    }
-
-    /**
-     * Load 3rd party authentication package
-     */
-    private function socialite()
-    {
-        return \Socialite::driver('google');
+        return \Socialite::driver('google')->redirect();
     }
 
     /**

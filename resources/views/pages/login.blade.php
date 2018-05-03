@@ -12,6 +12,8 @@
             </div>
             <div class="row">
                 <div class="col-md-4 col-md-offset-4 panel">
+                    @include('partials.message')
+
                     <form action="{{ route('login') }}" method="POST">
                         {{ csrf_field() }}
                         <div class="form-group">
@@ -27,11 +29,10 @@
                         @endif
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group checkbox">
-                                    <label for="remember_me">
-                                        {{ Form::checkbox('remember_me', true, null, ['class' => '']) }} Remember Me
-                                    </label>
-                                </div>
+                                <label class="checkbox-container">Remember Me
+                                    <input type="checkbox" name="remember_me">
+                                    <span class="checkmark"></span>
+                                </label>
                             </div>
                             <div class="col-md-6">
                                 {{ Form::submit('Login', ['class' => 'btn']) }}
@@ -45,7 +46,7 @@
             </div>
             <div class="row">
                 <div class="col-md-4 col-md-offset-4 text-center">
-                    <a href="" class="secondary-text">Register new organization</a>
+                    <a href="{{ route('create.org') }}" class="secondary-text">Register new organization</a>
                 </div>
             </div>
         </div>

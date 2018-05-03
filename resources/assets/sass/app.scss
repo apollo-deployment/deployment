@@ -1,6 +1,7 @@
 
 // -------------------- Imports --------------------
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
 
 @import "variables";
 @import "helpers";
@@ -158,10 +159,6 @@ form {
   }
 }
 
-.secondary-text {
-  color: #d0d0d0 !important;
-}
-
 .btn {
   background-color: $accent;
   border-radius: 4px;
@@ -211,7 +208,7 @@ form {
   margin-top: 70px;
   margin-bottom: 90px;
 
-  .login {
+  .login, .register {
     margin-top: 150px;
 
     .login-logo {
@@ -221,6 +218,11 @@ form {
       img {
         height: 200px;
       }
+    }
+    
+    h3 {
+      color: white;
+      margin-top: 0;
     }
 
     .g-btn {

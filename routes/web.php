@@ -6,6 +6,15 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/login/google', 'Auth\AuthController@redirectToGoogle')->name('login.google');
     Route::get('/login/google/callback', 'Auth\AuthController@googleCallback');
 
+    Route::get('/register', 'OrganizationController@create')->name('create.org');
+    Route::post('/register', 'OrganizationController@store')->name('register.org');
+    Route::get('/verify/{token}', 'OrganizationController@verify')->name('verify.org');
+
+
+    Route::get('/mail', function () {
+        \Mail::to(\Auth::user()->email)->send(new \App\Mail\EmailVerification(\Auth::user()));
+    });
+
     // Authenticated routes
     Route::group(['middleware' => ['auth']], function () {
         Route::get('/', 'DeploymentPlanController@view')->name('view.index');
@@ -13,6 +22,11 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/profile', 'PageController@profile')->name('view.profile');
         Route::post('/profile/update', 'Auth\AuthController@updateProfile')->name('update.profile');
         Route::post('/profile/update-password', 'Auth\AuthController@updatePassword')->name('update.password');
+
+        // Organizations
+        Route::prefix('organization')->group(function () {
+
+        });
 
         // Deployment plans
         Route::prefix('deployments')->group(function () {

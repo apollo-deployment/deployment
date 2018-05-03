@@ -17,7 +17,7 @@ class RepositoryController extends Controller
     }
 
     /**
-     * View for creating a Repository
+     * View for creating a repository
      */
     public function create()
     {
@@ -25,7 +25,7 @@ class RepositoryController extends Controller
     }
 
     /**
-     * View for updating existing Repository
+     * View for updating existing repository
      */
     public function edit(Repository $repository)
     {
@@ -68,7 +68,7 @@ class RepositoryController extends Controller
     }
 
     /**
-     * Delete existing Repository
+     * Delete existing repository
      */
     public function delete(Repository $repository)
     {
