@@ -45,7 +45,7 @@ class DeploymentPlanController extends Controller
             'remote_path' => $request->get('remote_path'),
         ]);
 
-        return redirect()->route('view.deployment-plans')->with(['message' => 'Successfully created deployment plan \'' . $plan->title . '\'']);
+        return redirect()->route('view.deployment-plans')->with(['message' => "Successfully created deployment plan '{$plan->title}'"]);
     }
 
     /**
@@ -62,7 +62,7 @@ class DeploymentPlanController extends Controller
             'remote_path' => $request->get('remote_path'),
         ]);
 
-        return redirect()->route('view.deployment-plans')->with(['message' => 'Successfully updated deployment plan \'' . $plan->title . '\'']);
+        return redirect()->route('view.deployment-plans')->with(['message' => "Successfully updated deployment plan \'{$plan->title}\'"]);
     }
 
     /**

@@ -12,7 +12,12 @@
             </div>
             <div class="row">
                 <div class="col-md-4 col-md-offset-4 panel">
-                    @include('partials.message')
+                    @if (session()->has('message'))
+                        <div class="alert message-success">
+                            {{ session()->get('message') }}
+                            <a class="close secondary-text" data-dismiss="alert" aria-label="close" title="close">×</a>
+                        </div>
+                    @endif
 
                     <form action="{{ route('login') }}" method="POST">
                         {{ csrf_field() }}

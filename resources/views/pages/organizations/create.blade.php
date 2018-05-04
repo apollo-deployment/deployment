@@ -13,15 +13,22 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3 panel">
                     <h3 class="text-center">Create an Organization</h3>
-                    <p class="secondary-text text-center">Create a new admin account for your new organization</p>
+                    <p class="secondary-text text-center">Create an admin account for your new organization</p>
 
                     @include('partials.message')
 
                     <form action="{{ route('register.org') }}" method="POST">
                         {{ csrf_field() }}
-                        <div class="form-group">
-                            {{ Form::label('title', 'Title') }}
-                            {{ Form::text('title', null, ['class' => 'form-control', 'required' => true]) }}
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    {{ Form::label('title', 'Organization Name') }}
+                                    {{ Form::text('title', null, ['class' => 'form-control', 'required' => true]) }}
+                                </div>
+                                @if ($errors->first('title'))
+                                    <p class="red">{{ $errors->first('title') }}</p>
+                                @endif
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -29,12 +36,18 @@
                                     {{ Form::label('name', 'Full Name') }}
                                     {{ Form::text('name', null, ['class' => 'form-control', 'required' => true]) }}
                                 </div>
+                                @if ($errors->first('name'))
+                                    <p class="red">{{ $errors->first('name') }}</p>
+                                @endif
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     {{ Form::label('email', 'Email') }}
                                     {{ Form::text('email', null, ['class' => 'form-control', 'required' => true]) }}
                                 </div>
+                                @if ($errors->first('email'))
+                                    <p class="red">{{ $errors->first('email') }}</p>
+                                @endif
                             </div>
                         </div>
                         <div class="row">
@@ -43,6 +56,9 @@
                                     {{ Form::label('password', 'Admin Password') }}
                                     {{ Form::password('password', ['class' => 'form-control', 'required' => true]) }}
                                 </div>
+                                @if ($errors->first('password'))
+                                    <p class="red">{{ $errors->first('password') }}</p>
+                                @endif
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">

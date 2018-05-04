@@ -24,7 +24,7 @@
                             </a>
                         </div>
                     </div>
-                    @if (Auth::user())
+                    @auth
                         <div class="col-md-8">
                             <ul class="nav navbar-nav">
                                 <li>
@@ -51,7 +51,7 @@
                                 </div>
                             </div>
                         </div>
-                    @endif
+                    @endauth
                 </div>
             </div>
         </div>

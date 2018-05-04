@@ -24,6 +24,10 @@ class OrganizationController extends Controller
      */
     public function store()
     {
+        if (Organization::where('title', request('title'))->first()) {
+            return redirect()->route('register.org')->withErrors("Organization with that name already exists");
+        }
+
         $organization = Organization::create([
             'title' => request('title')
         ]);
@@ -43,7 +47,7 @@ class OrganizationController extends Controller
 
         Mail::to($user->email)->send(new EmailVerification($user));
 
-        return redirect()->route('register.org')->with(['message' => 'Please check your email to verify your account']);
+        return redirect()->route('register.org')->with(['message' => "Please check your email to verify your new account"]);
     }
 
     /**
@@ -56,14 +60,15 @@ class OrganizationController extends Controller
         if (isset($verify_user)) {
             $user = $verify_user->user;
 
+            // Set user to verified
             if (! $user->verified) {
                 $user->update([
                     'verified' => true
                 ]);
 
-                return redirect()->route('view.login')->with(['message' => 'Your e-mail was successfully verified']);
+                return redirect()->route('view.login')->with(['message' => "Your e-mail was successfully verified"]);
             } else {
-                return redirect()->route('view.login')->with(['message' => 'Your e-mail was already verified']);
+                return redirect()->route('view.login')->with(['message' => "Your e-mail was already verified"]);
             }
         } else {
             return redirect()->route('view.login')->withErrors("Sorry, your email cannot be identified");

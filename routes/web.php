@@ -10,11 +10,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/register', 'OrganizationController@store')->name('register.org');
     Route::get('/verify/{token}', 'OrganizationController@verify')->name('verify.org');
 
-
-    Route::get('/mail', function () {
-        \Mail::to(\Auth::user()->email)->send(new \App\Mail\EmailVerification(\Auth::user()));
-    });
-
     // Authenticated routes
     Route::group(['middleware' => ['auth']], function () {
         Route::get('/', 'DeploymentPlanController@view')->name('view.index');

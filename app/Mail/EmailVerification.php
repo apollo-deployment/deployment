@@ -32,6 +32,6 @@ class EmailVerification extends Mailable
     {
         return $this->from(env('MAIL_FROM'), 'Apollo')
                     ->subject("Apollo Verification")
-                    ->view('email.verification');
+                    ->markdown('email.verification');
     }
 }

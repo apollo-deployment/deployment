@@ -18,19 +18,26 @@ class AuthController extends Controller
      */
     public function login(LoginRequest $request)
     {
-        $user = User::where('email', $request->get('email'))->first();
+        try {
+            $user = User::where('email', $request->get('email'))->firstOrFail();
 
-        if (! $user->verified) {
-            return redirect()->back()->withInput()->withErrors('Please verify your email');
+            // Check if account is verified
+            if (! $user->verified) {
+                return redirect()->route('view.login')->withErrors('Please verify your email before logging in');
+            }
+
+            // Check users password
+            if ($user && Hash::check($request->get('password'), $user->password)) {
+                Auth::login($user, (boolean) $request->get('remember_me'));
+
+                return redirect()->route('view.index');
+            }
+
+            return redirect()->back()->withInput()->withErrors('Incorrect username or password');
+
+        } catch (ModelNotFoundException $e) {
+            return redirect()->route('view.login')->withErrors("An account with that email doesn't exist");
         }
-
-        if ($user && Hash::check($request->get('password'), $user->password)) {
-            Auth::login($user, (boolean) $request->get('remember_me'));
-
-            return redirect()->route('view.index');
-        }
-
-        return redirect()->back()->withInput()->withErrors('Incorrect username or password');
     }
 
     /**
@@ -72,14 +79,15 @@ class AuthController extends Controller
         try {
             $user = User::where('email', $google_user->email)->firstOrFail();
 
+            // Check if account is verified
             if (! $user->verified) {
-                return redirect()->route('view.login')->withErrors('Please verify your email');
+                return redirect()->route('view.login')->withErrors('Please verify your email before logging in');
             }
 
             Auth::login($user, true);
 
         } catch (ModelNotFoundException $e) {
-            return redirect()->route('view.login')->withErrors("Account doesn't exist");
+            return redirect()->route('view.login')->withErrors("This account doesn't exist");
         }
 
         return redirect()->route('view.index');
@@ -99,6 +107,7 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
+        session()->flush();
 
         return redirect()->route('login');
     }

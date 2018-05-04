@@ -47,7 +47,7 @@ class EnvironmentController extends Controller
             'ssh_password' =>  Crypt::encryptString($request->get('ssh_password')),
         ]);
 
-        return redirect()->route('view.environments')->with(['message' => 'Successfully created environment \'' . $environment->title . '\'']);
+        return redirect()->route('view.environments')->with(['message' =>"Successfully created environment '{$environment->title}'"]);
     }
 
     /**
@@ -64,7 +64,7 @@ class EnvironmentController extends Controller
             'ssh_password' =>  Crypt::encryptString($request->get('ssh_password')),
         ]);
 
-        return redirect()->route('view.environments')->with(['message' => 'Successfully updated web environment \'' . $environment->title . '\'']);
+        return redirect()->route('view.environments')->with(['message' => "Successfully updated web environment  '{$environment->title}'"]);
     }
 
     /**
