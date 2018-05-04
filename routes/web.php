@@ -20,7 +20,8 @@ Route::group(['middleware' => ['web']], function () {
 
         // Organizations
         Route::prefix('organization')->group(function () {
-
+            Route::get('/edit/{organization}', 'OrganizationController@edit')->name('edit.org');
+            Route::post('/edit/{organization}', 'OrganizationController@update')->name('update.org');
         });
 
         // Deployment plans

@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrganizationRequest;
+use App\Http\Requests\RegisterOrganizationRequest;
 use App\Mail\EmailVerification;
 use App\Models\Organization;
 use App\Models\User;
 use App\Models\VerifyUser;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
@@ -20,22 +23,30 @@ class OrganizationController extends Controller
     }
 
     /**
+     * View for editing an organization (Admin only)
+     */
+    public function edit()
+    {
+        return view('pages.organizations.edit');
+    }
+
+    /**
      * Store new organization
      */
-    public function store()
+    public function store(RegisterOrganizationRequest $request)
     {
-        if (Organization::where('title', request('title'))->first()) {
+        if (Organization::where('title', $request->get('title'))->first()) {
             return redirect()->route('register.org')->withErrors("Organization with that name already exists");
         }
 
         $organization = Organization::create([
-            'title' => request('title')
+            'title' => $request->get('title')
         ]);
 
         $user = User::create([
-            'name' => request('name'),
-            'email' => request('email'),
-            'password' => Hash::make(request('password')),
+            'name' => $request->get('name'),
+            'email' => $request->get('email'),
+            'password' => Hash::make($request->get('password')),
             'organization_id' => $organization->id,
             'is_admin' => true,
         ]);
@@ -48,6 +59,13 @@ class OrganizationController extends Controller
         Mail::to($user->email)->send(new EmailVerification($user));
 
         return redirect()->route('register.org')->with(['message' => "Please check your email to verify your new account"]);
+    }
+
+    public function update(Organization $organization, OrganizationRequest $request)
+    {
+        $organization->update([
+            // Nothing to update yet
+        ]);
     }
 
     /**

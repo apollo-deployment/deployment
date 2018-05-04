@@ -36,7 +36,7 @@ class AuthController extends Controller
             return redirect()->back()->withInput()->withErrors('Incorrect username or password');
 
         } catch (ModelNotFoundException $e) {
-            return redirect()->route('view.login')->withErrors("An account with that email doesn't exist");
+            return redirect()->back()->withInput()->withErrors('Incorrect username or password');
         }
     }
 

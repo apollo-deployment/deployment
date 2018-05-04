@@ -37,7 +37,7 @@
                                         </td>
                                         <td>{{ $plan->title }}</td>
                                         <td>{{ $plan->environment->title }}</td>
-                                        <td>{{ $plan->deployed_version }}</td>
+                                        <td>{{ isset($plan->deployed_version) ? $plan->deployed_version : "Not Deployed" }}</td>
                                         <td>
                                             <button data-toggle="modal" data-target="#delete-deployment-plan-{{ $plan->id }}">
                                                 <i class="fa fa-trash"></i>

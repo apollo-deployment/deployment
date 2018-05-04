@@ -219,7 +219,7 @@ form {
         height: 200px;
       }
     }
-    
+
     h3 {
       color: white;
       margin-top: 0;
@@ -297,6 +297,65 @@ form {
         }
       }
     }
+  }
+}
+
+.profile {
+  .nav-tabs {
+    border-bottom: 2px solid #DDD;
+    li.active {
+      a {
+        border: none;
+        color: white !important;
+        background: transparent;
+        &:focus {
+          border-width: 0;
+        }
+        &:hover {
+          border-width: 0;
+        }
+        &::after {
+          transform: scale(1);
+        }
+      }
+    }
+    a {
+      border: none;
+      color: white;
+
+      &:hover {
+        border: none;
+        color: white !important;
+        background: transparent;
+      }
+
+      &::after {
+        content: "";
+        background: $accent;
+        height: 2px;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        bottom: -1px;
+        transition: all 250ms ease 0s;
+        transform: scale(0);
+      }
+      &:hover {
+        a {
+          &::after {
+            transform: scale(1);
+          }
+        }
+      }
+    }
+  }
+
+  .tab-pane {
+    padding: 15px 0;
+  }
+
+  .tab-content {
+    padding: 20px;
   }
 }
 
