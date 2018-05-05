@@ -1,0 +1,100 @@
+
+// -------------------- Helpers
+.accent {
+  color: $accent;
+}
+
+.green {
+  color: #1aa51a;
+}
+
+.red {
+  color: $red;
+}
+
+.float-right {
+  float: right;
+}
+
+.alert {
+  a {
+    font-weight: normal;
+    text-shadow: none;
+  }
+}
+
+.message-success {
+  color: #00be8c;
+  background-color: #1e4a3d;
+}
+
+.message-error {
+  color: #dc3c5a;
+  background-color: #522830;
+}
+
+.secondary-text {
+  color: #d0d0d0 !important;
+}
+
+// -------------------- Custom checkbox
+.checkbox-container {
+  cursor: pointer;
+  display: block;
+  font-size: 12px;
+  position: relative;
+  padding-left: 30px;
+  padding-top: 2px;
+  margin-top: 10px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  input {
+    cursor: pointer;
+    position: absolute;
+    opacity: 0;
+  }
+
+  .checkmark {
+    background-color: $medium-grey;
+    border-radius: 3px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 17px;
+    width: 17px;
+
+    &:after {
+      content: "";
+      display: none;
+      position: absolute;
+    }
+  }
+}
+
+.checkbox-container:hover input ~ .checkmark {
+  background-color: $medium-grey;
+}
+
+.checkbox-container input:checked ~ .checkmark {
+  background-color: $accent;
+  border-color: $accent;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.checkbox-container .checkmark:after {
+  top: 2px;
+  left: 6px;
+  width: 5px;
+  height: 11px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}

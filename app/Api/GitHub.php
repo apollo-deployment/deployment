@@ -41,7 +41,7 @@ class GitHub
     public function getBranches($username, $repo_name)
     {
         return json_decode(
-            $this->api->get('repos/' . $username . '/' . $repo_name . '/branches')->getBody()->getContents()
+            $this->api->get("repos/{$username}/{$repo_name}/branches")->getBody()->getContents()
         );
     }
 

@@ -20,10 +20,10 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <td>Title</td>
-                                <td>Repository Name</td>
-                                <td>Repository URL</td>
-                                <td>&nbsp;</td>
+                                <th>Title</th>
+                                <th>Repository Name</th>
+                                <th>Repository URL</th>
+                                <th>&nbsp;</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -32,7 +32,7 @@
                                 <td>{{ $repository->title }}</td>
                                 <td>{{ $repository->name }}</td>
                                 <td>
-                                    <a href="{{ $repository->url }}" target="_blank">{{ $repository->url }}</a>
+                                    <a href="{{ $repository->url }}" target="_blank" class="secondary-text">{{ $repository->url }}</a>
                                 </td>
                                 <td>
                                     <button data-toggle="modal" data-target="#delete-repository-{{ $repository->id }}">

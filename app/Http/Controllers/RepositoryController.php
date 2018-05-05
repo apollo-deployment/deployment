@@ -17,7 +17,7 @@ class RepositoryController extends Controller
     }
 
     /**
-     * View for creating a Repository
+     * View for creating a repository
      */
     public function create()
     {
@@ -25,7 +25,7 @@ class RepositoryController extends Controller
     }
 
     /**
-     * View for updating existing Repository
+     * View for updating existing repository
      */
     public function edit(Repository $repository)
     {
@@ -55,8 +55,12 @@ class RepositoryController extends Controller
      */
     public function update(RepositoryRequest $request, Repository $repository)
     {
+        $repo_info = explode('/', explode('github.com/', $request->get('url'))[1]);
+
         $repository->update([
             'title' => $request->get('title'),
+            'name' => explode('.git', $repo_info[1])[0],
+            'owner' => $repo_info[0],
             'url' => $request->get('url'),
         ]);
 
@@ -64,14 +68,13 @@ class RepositoryController extends Controller
     }
 
     /**
-     * Delete existing Repository
+     * Delete existing repository
      */
     public function delete(Repository $repository)
     {
+        $repository->deploymentPlans()->delete();
         $repository->delete();
-        $repository->deploymentPlans->delete();
 
         return redirect()->route('view.repositories')->with(['message' => 'Successfully deleted repository']);
     }
-
 }
