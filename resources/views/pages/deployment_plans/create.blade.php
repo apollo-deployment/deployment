@@ -9,8 +9,10 @@
                 </div>
             </div>
         </div>
-        <form action="{{ route('store.deployment-plan') }}" method="POST" enctype="multipart/form-data">
-            @include('pages.deployment_plans._form')
-        </form>
+        <div class="panel">
+            <form action="{{ route('store.deployment-plan') }}" method="POST" enctype="multipart/form-data">
+                @include('pages.deployment_plans._form')
+            </form>
+        </div>
     </div>
 @endsection

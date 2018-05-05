@@ -7,7 +7,6 @@
 
                 <form action="{{ route('delete.environment', compact('environment')) }}" method="POST">
                     {{ csrf_field() }}
-
                     <div class="row">
                         <div class="col-md-12">
                             {{ Form::submit('Delete', ['class' => 'btn']) }}

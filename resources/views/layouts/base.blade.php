@@ -9,7 +9,6 @@
 
         {{-- Styles --}}
         <link type="text/css" href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <link type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
         @yield('styles')
     </head>
@@ -25,7 +24,7 @@
                             </a>
                         </div>
                     </div>
-                    @if (Auth::user())
+                    @auth
                         <div class="col-md-8">
                             <ul class="nav navbar-nav">
                                 <li>
@@ -52,7 +51,7 @@
                                 </div>
                             </div>
                         </div>
-                    @endif
+                    @endauth
                 </div>
             </div>
         </div>
@@ -60,6 +59,16 @@
         <div class="content">
             @yield('content')
         </div>
+
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="text-center secondary-text">&copy; Copyright {{ date('Y') }} Apollo Deployment</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
         {{-- Scripts --}}
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>

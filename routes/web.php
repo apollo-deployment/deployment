@@ -3,15 +3,29 @@
 Route::group(['middleware' => ['web']], function () {
     Route::get('/login', 'PageController@login')->name('view.login');
     Route::post('/login', 'Auth\AuthController@login')->name('login');
+    Route::get('/login/google', 'Auth\AuthController@redirectToGoogle')->name('login.google');
+    Route::get('/login/google/callback', 'Auth\AuthController@googleCallback');
+
+    Route::get('/register', 'OrganizationController@create')->name('create.org');
+    Route::post('/register', 'OrganizationController@store')->name('register.org');
+    Route::get('/verify/{token}', 'OrganizationController@verify')->name('verify.org');
 
     // Authenticated routes
     Route::group(['middleware' => ['auth']], function () {
         Route::get('/', 'DeploymentPlanController@view')->name('view.index');
         Route::get('/logout', 'Auth\AuthController@logout')->name('logout');
         Route::get('/profile', 'PageController@profile')->name('view.profile');
+        Route::post('/profile/update', 'Auth\AuthController@updateProfile')->name('update.profile');
+        Route::post('/profile/update-password', 'Auth\AuthController@updatePassword')->name('update.password');
+
+        // Organizations
+        Route::prefix('organization')->group(function () {
+            Route::get('/edit/{organization}', 'OrganizationController@edit')->name('edit.org');
+            Route::post('/edit/{organization}', 'OrganizationController@update')->name('update.org');
+        });
 
         // Deployment plans
-        Route::prefix('deployment')->group(function () {
+        Route::prefix('deployments')->group(function () {
             Route::get('/', 'DeploymentPlanController@view')->name('view.deployment-plans');
             Route::get('/create', 'DeploymentPlanController@create')->name('create.deployment-plan');
             Route::post('/create', 'DeploymentPlanController@store')->name('store.deployment-plan');

@@ -11,20 +11,47 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4 col-md-offset-4">
+                <div class="col-md-4 col-md-offset-4 panel">
+                    @if (session()->has('message'))
+                        <div class="alert message-success">
+                            {{ session()->get('message') }}
+                            <a class="close secondary-text" data-dismiss="alert" aria-label="close" title="close">×</a>
+                        </div>
+                    @endif
+
                     <form action="{{ route('login') }}" method="POST">
                         {{ csrf_field() }}
                         <div class="form-group">
-                            {{ Form::text('username', null, ['class' => 'form-control', 'placeholder' => 'Username', 'required' => true]) }}
+                            {{ Form::label('email', 'Email') }}
+                            {{ Form::text('email', null, ['class' => 'form-control', 'required' => true]) }}
                         </div>
                         <div class="form-group">
-                            {{ Form::password('password', ['class' => 'form-control', 'placeholder' => 'Password', 'required' => true]) }}
+                            {{ Form::label('password', 'Password') }}
+                            {{ Form::password('password', ['class' => 'form-control', 'required' => true]) }}
                         </div>
                         @if ($errors->any())
-                            <p class="message-error">{{ $errors->first() }}</p>
+                            <p class="red">{{ $errors->first() }}</p>
                         @endif
-                        {{ Form::submit('Login', ['class' => 'btn']) }}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="checkbox-container">Remember Me
+                                    <input type="checkbox" name="remember_me">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="col-md-6">
+                                {{ Form::submit('Login', ['class' => 'btn']) }}
+                                <a href="{{ route('login.google') }}" class="btn g-btn">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>
+                            </div>
+                        </div>
                     </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4 text-center">
+                    <a href="{{ route('create.org') }}" class="secondary-text">Register new organization</a>
                 </div>
             </div>
         </div>

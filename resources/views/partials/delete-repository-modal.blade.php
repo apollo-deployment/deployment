@@ -4,10 +4,10 @@
         <div class="modal-content">
             <div class="modal-body">
                 <h4>Delete '{{ $repository->title }}'?</h4>
+                <p class="secondary-text"><span class="red">Warning: </span> This will delete all running deployment plans</p>
 
                 <form action="{{ route('delete.repository', compact('repository')) }}" method="POST">
                     {{ csrf_field() }}
-
                     <div class="row">
                         <div class="col-md-12">
                             {{ Form::submit('Delete', ['class' => 'btn']) }}

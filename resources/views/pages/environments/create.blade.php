@@ -9,8 +9,10 @@
                 </div>
             </div>
         </div>
-        <form action="{{ route('store.environment') }}" method="POST">
-            @include('pages.environments._form')
-        </form>
+        <div class="panel">
+            <form action="{{ route('store.environment') }}" method="POST">
+                @include('pages.environments._form')
+            </form>
+        </div>
     </div>
 @endsection

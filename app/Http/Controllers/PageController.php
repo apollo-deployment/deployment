@@ -18,11 +18,21 @@ class PageController extends Controller
     }
 
     /**
+     * View for registering a new organization
+     */
+    public function register()
+    {
+        if (Auth::check()) {
+            return redirect()->route('view.index');
+        }
+        return view('pages.register-organization');
+    }
+
+    /**
      * View for user profile
      */
     public function profile()
     {
         return view('pages.profile');
     }
-
 }

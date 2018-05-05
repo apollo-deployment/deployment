@@ -1,21 +1,36 @@
 
 // -------------------- Imports --------------------
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
 
 @import "variables";
+@import "helpers";
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 // -------------------- Global --------------------
-.accent {
-  color: $accent;
+html {
+  position: relative;
+  min-height: 100%;
 }
 
 html, body {
+  background-color: $medium-grey;
+}
+
+footer {
   background-color: $dark-grey;
+  bottom: 0;
+  position: absolute;
+  height: 50px;
+  width: 100%;
+
+  p {
+    margin-top: 15px;
+  }
 }
 
 .navbar {
-  background-color: $medium-grey;;
+  background-color: $dark-grey;
 
   .logo {
     line-height: 50px;
@@ -38,6 +53,58 @@ html, body {
       }
     }
   }
+
+  .dropdown {
+    .user {
+      color: white;
+      float: right;
+      line-height: 50px;
+      margin: 0;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .dropdown-menu {
+      background-color: $light-grey;
+      padding: 10px 10px 5px;
+      margin-top: 45px;
+
+      a {
+        color: white;
+        display: block;
+        text-decoration: none;
+        margin-bottom: 5px;
+
+        &:hover {
+          opacity: 0.7;
+        }
+
+        i {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}
+
+code {
+  background-color: $light-grey;
+  color: $red;
+  padding: 5px 8px;
+}
+
+.panel {
+  background-color: $light-grey;
+  border-radius: 4px;
+  padding: 15px;
+
+  .header {
+    p {
+      margin-bottom: 10px !important;
+    }
+  }
 }
 
 form {
@@ -46,7 +113,7 @@ form {
 
     &.required:after {
       content:" *";
-      color: #de4747;
+      color: $red;
     }
   }
 
@@ -88,29 +155,13 @@ form {
   }
 
   .file-uploaded {
-    color: white;
     line-height: 55px;
-  }
-}
-
-.message-success {
-  color: #1aa51a;
-  margin-bottom: 20px;
-}
-
-.message-error {
-  color: #de4747;
-  margin-bottom: 20px;
-}
-
-button {
-  &:focus {
-    outline: none;
   }
 }
 
 .btn {
   background-color: $accent;
+  border-radius: 4px;
   color: white;
   float: right;
   margin-left: 15px;
@@ -120,53 +171,22 @@ button {
   &:hover {
     color: lightgrey;
   }
-}
 
-.dropdown {
-  .user {
-    color: white;
-    float: right;
-    line-height: 50px;
-    margin: 0;
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
-  .dropdown-menu {
-    background-color: $medium-grey;
-    padding: 10px 10px 5px;
-    margin-top: 45px;
-
-    a {
-      color: white;
-      display: block;
-      text-decoration: none;
-      margin-bottom: 5px;
-
-      &:hover {
-        color: $accent;
-      }
-
-      i {
-        margin-right: 5px;
-      }
-    }
+  &:focus {
+    outline: none;
   }
 }
 
 .header {
   color: white;
-  border-bottom: 2px solid $accent;
-  display: inline-block;
-  font-size: 16px;
-  padding-left: 15px;
-  padding-right: 15px;
-  margin-bottom: 35px;
 
   p {
-    margin: 5px;
+    border-bottom: 2px solid $accent;
+    display: inline-block;
+    font-size: 16px;
+    padding: 0 15px 5px;
+    margin-bottom: 15px;
+    margin-right: 10px;
   }
 }
 
@@ -186,12 +206,12 @@ button {
 // -------------------- Content --------------------
 .content {
   margin-top: 70px;
+  margin-bottom: 90px;
 
-  .login {
+  .login, .register {
     margin-top: 150px;
 
     .login-logo {
-      color: white;
       text-align: center;
       margin-bottom: 50px;
 
@@ -199,16 +219,27 @@ button {
         height: 200px;
       }
     }
+
+    h3 {
+      color: white;
+      margin-top: 0;
+    }
+
+    .g-btn {
+      background-color: #e0482f;
+      width: 40px;
+    }
   }
 
   .deployment-plans, .environments, .repositories {
     table {
-      color: #d0d0d0;
+      color: white;
       width: 100%;
 
       thead {
-        td {
+        th {
           border-bottom: 2px solid $light-grey !important;
+          color: white !important;
         }
       }
 
@@ -218,7 +249,7 @@ button {
 
       tr {
         &:nth-child(even) {
-          background-color: $medium-grey;
+          background-color: $light-grey;
         }
 
         &.empty {
@@ -228,26 +259,103 @@ button {
         }
 
         th, td {
+          color: #d0d0d0;
+          border-top: none;
           padding: 7px 10px;
           text-align: left;
 
           button, i {
-            color: $accent;
+            color: white;
             background: none;
             border: none;
             font-size: 17px;
             float: right;
             margin-left: 15px;
             padding: 0;
+
+            &:focus {
+              outline: none;
+            }
+
+            &:hover {
+              opacity: 0.7;
+            }
+          }
+
+          .fa-trash {
+            color: $red;
+          }
+
+          code {
+            padding: 1px 5px !important;
           }
         }
 
-        .environment-name {
+        .repository-name {
           border-bottom: none;
-          background-color: $dark-grey;
+          background-color: $medium-grey;
         }
       }
     }
+  }
+}
+
+.profile {
+  .nav-tabs {
+    border-bottom: 2px solid #DDD;
+    li.active {
+      a {
+        border: none;
+        color: white !important;
+        background: transparent;
+        &:focus {
+          border-width: 0;
+        }
+        &:hover {
+          border-width: 0;
+        }
+        &::after {
+          transform: scale(1);
+        }
+      }
+    }
+    a {
+      border: none;
+      color: white;
+
+      &:hover {
+        border: none;
+        color: white !important;
+        background: transparent;
+      }
+
+      &::after {
+        content: "";
+        background: $accent;
+        height: 2px;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        bottom: -1px;
+        transition: all 250ms ease 0s;
+        transform: scale(0);
+      }
+      &:hover {
+        a {
+          &::after {
+            transform: scale(1);
+          }
+        }
+      }
+    }
+  }
+
+  .tab-pane {
+    padding: 15px 0;
+  }
+
+  .tab-content {
+    padding: 20px;
   }
 }
 
