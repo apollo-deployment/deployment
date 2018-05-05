@@ -2,12 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Api\GitHub;
 use App\Http\Requests\RepositoryRequest;
 use App\Models\Repository;
 use Illuminate\Support\Facades\Auth;
 
 class RepositoryController extends Controller
 {
+
+    private $github;
+
+    public function __construct()
+    {
+        $this->github = new GitHub;
+    }
+
     /**
      * View for displaying all repositories
      */
@@ -46,6 +55,10 @@ class RepositoryController extends Controller
             'owner' => $repo_info[0],
             'url' => $request->get('url')
         ]);
+
+        //this->api-post(repos/owner/reponame/hooks)
+        //on the repository controller on store and update you can create one after
+
 
         return redirect()->route('view.repositories')->with(['message' => 'Successfully created repository \'' . $repository->title . '\'']);
     }
