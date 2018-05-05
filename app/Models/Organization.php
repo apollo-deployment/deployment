@@ -12,4 +12,12 @@ class Organization extends Model
     protected $fillable = [
         'title'
     ];
+
+    /**
+     * Gets all users in this organization
+     */
+    public function users()
+    {
+        return $this->hasMany('App\Models\User')->orderBy('is_admin', 'desc')->get();
+    }
 }

@@ -3,13 +3,13 @@
 @section('content')
     <div class="deployment-plans">
         <div class="container">
-            <div class="row">
-                <div class="col-md-10">
+            <div class="row header-wrapper">
+                <div class="col-md-11">
                     <div class="header">
                         <p>Deployment Plans</p>
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-1">
                     <a href="{{ route('create.deployment-plan') }}" class="btn">Create</a>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                         @empty
                             <tbody>
                                 <tr class="empty">
-                                    <td colspan="100">No repositories found</td>
+                                    <td colspan="100">No deployment plans found</td>
                                 </tr>
                             </tbody>
                         @endforelse

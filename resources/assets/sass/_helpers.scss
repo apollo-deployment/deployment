@@ -1,5 +1,9 @@
 
 // -------------------- Helpers
+.m-b-10 {
+  margin-bottom: 30px;
+}
+
 .accent {
   color: $accent;
 }
@@ -34,7 +38,7 @@
 }
 
 .secondary-text {
-  color: #d0d0d0 !important;
+  color: $secondary !important;
 }
 
 // -------------------- Custom checkbox
@@ -51,6 +55,12 @@
   -ms-user-select: none;
   user-select: none;
 
+  &:hover {
+    .checkmark {
+      background-color: $light-grey !important;
+    }
+  }
+
   input {
     cursor: pointer;
     position: absolute;
@@ -58,7 +68,7 @@
   }
 
   .checkmark {
-    background-color: $medium-grey;
+    background-color: $light-grey;
     border-radius: 3px;
     position: absolute;
     top: 0;
@@ -74,6 +84,7 @@
   }
 }
 
+// -------------------- Overwrites
 .checkbox-container:hover input ~ .checkmark {
   background-color: $medium-grey;
 }
@@ -88,13 +99,14 @@
 }
 
 .checkbox-container .checkmark:after {
-  top: 2px;
-  left: 6px;
-  width: 5px;
-  height: 11px;
   border: solid white;
   border-width: 0 3px 3px 0;
+  top: 2px;
+  left: 6px;
+  height: 11px;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+  width: 5px;
 }
+

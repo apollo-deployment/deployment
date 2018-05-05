@@ -71,6 +71,10 @@ footer {
       padding: 10px 10px 5px;
       margin-top: 45px;
 
+      .fa-user {
+        margin-right: 8px;
+      }
+
       a {
         color: white;
         display: block;
@@ -95,18 +99,6 @@ code {
   padding: 5px 8px;
 }
 
-.panel {
-  background-color: $light-grey;
-  border-radius: 4px;
-  padding: 15px;
-
-  .header {
-    p {
-      margin-bottom: 10px !important;
-    }
-  }
-}
-
 form {
   label {
     color: white;
@@ -118,14 +110,20 @@ form {
   }
 
   .form-control {
-    background-color: $medium-grey;
-    border: none !important;
-    border-radius: 4px;
+    background: none;
+    border: none;
+    border-radius: 0;
+    border-bottom: 2px solid $light-grey;
     box-shadow: none !important;
     color: white;
 
     &:focus {
       border: none;
+      border-bottom: 2px solid $accent;
+    }
+
+    &:focus {
+
     }
   }
 
@@ -181,12 +179,21 @@ form {
   color: white;
 
   p {
-    border-bottom: 2px solid $accent;
-    display: inline-block;
+    background-color: $light-grey;
+    border-radius: 4px;
     font-size: 16px;
-    padding: 0 15px 5px;
-    margin-bottom: 15px;
-    margin-right: 10px;
+    padding: 10px 10px 10px 20px;
+    margin-bottom: 20px;
+  }
+}
+
+.header-wrapper {
+  .header {
+    margin-right: 15px;
+  }
+
+  a {
+    margin-top: 3px;
   }
 }
 
@@ -219,6 +226,12 @@ form {
         height: 200px;
       }
     }
+    
+    .resend {
+      color: $secondary;
+      float: none;
+      margin-left: 0;
+    }
 
     h3 {
       color: white;
@@ -229,9 +242,13 @@ form {
       background-color: #e0482f;
       width: 40px;
     }
+
+    form {
+      margin-bottom: 25px;
+    }
   }
 
-  .deployment-plans, .environments, .repositories {
+  .deployment-plans, .environments, .repositories, .profile {
     table {
       color: white;
       width: 100%;
@@ -259,7 +276,7 @@ form {
         }
 
         th, td {
-          color: #d0d0d0;
+          color: $secondary;
           border-top: none;
           padding: 7px 10px;
           text-align: left;
@@ -301,61 +318,83 @@ form {
 }
 
 .profile {
-  .nav-tabs {
-    border-bottom: 2px solid #DDD;
-    li.active {
-      a {
-        border: none;
-        color: white !important;
-        background: transparent;
-        &:focus {
-          border-width: 0;
-        }
-        &:hover {
-          border-width: 0;
-        }
-        &::after {
-          transform: scale(1);
-        }
-      }
-    }
-    a {
-      border: none;
+  .change-password {
+    background: none;
+    width: 140px;
+
+    &:focus {
       color: white;
+    }
+  }
 
-      &:hover {
-        border: none;
-        color: white !important;
-        background: transparent;
-      }
+  .nav-tabs {
+    border-bottom: 2px solid $light-grey;
 
-      &::after {
-        content: "";
-        background: $accent;
-        height: 2px;
-        position: absolute;
-        width: 100%;
-        left: 0;
-        bottom: -1px;
-        transition: all 250ms ease 0s;
-        transform: scale(0);
-      }
-      &:hover {
+    li {
+      &.active {
         a {
+          border: none;
+          color: white !important;
+          background: transparent;
+          border-bottom-color: transparent;
+
+          &:focus {
+            border-width: 0;
+          }
+
+          &:hover {
+            border-width: 0;
+          }
+
           &::after {
             transform: scale(1);
           }
         }
       }
+
+      &:focus {
+        outline: none;
+      }
+
+      a {
+        border: none;
+        color: $secondary;
+        text-align: center;
+        width: 80px;
+
+        &:hover {
+          border: none;
+          background: transparent;
+          color: white !important;
+        }
+
+        &::after {
+          background: $accent;
+          bottom: -1px;
+          content: "";
+          height: 2px;
+          position: absolute;
+          left: 0;
+          transition: all 250ms ease 0s;
+          transform: scale(0);
+          width: 100%;
+        }
+
+        &:focus {
+          outline: none;
+        }
+      }
     }
   }
 
-  .tab-pane {
-    padding: 15px 0;
+  .tab-content {
+    padding: 5px;
   }
 
-  .tab-content {
-    padding: 20px;
+  .table {
+    tbody {
+      border-top: none !important;
+    }
   }
 }
 

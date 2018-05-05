@@ -7,6 +7,14 @@ use Illuminate\Support\Facades\Auth;
 class PageController extends Controller
 {
     /**
+     * Main view
+     */
+    public function index()
+    {
+        return redirect()->route('view.deployment-plans');
+    }
+
+    /**
      * View for user login
      */
     public function login()

@@ -47,7 +47,7 @@ class RepositoryController extends Controller
             'url' => $request->get('url')
         ]);
 
-        return redirect()->route('view.repositories')->with(['message' => 'Successfully created repository \'' . $repository->title . '\'']);
+        return redirect()->route('view.repositories')->with(['message' => "Successfully created repository {$repository->title}"]);
     }
 
     /**
@@ -64,7 +64,7 @@ class RepositoryController extends Controller
             'url' => $request->get('url'),
         ]);
 
-        return redirect()->route('view.repositories')->with(['message' => 'Successfully updated repository \'' . $repository->title . '\'']);
+        return redirect()->route('view.repositories')->with(['message' => "Successfully updated repository {$repository->title}"]);
     }
 
     /**

@@ -3,13 +3,13 @@
 @section('content')
     <div class="environments">
         <div class="container">
-            <div class="row">
-                <div class="col-md-10">
+            <div class="row header-wrapper">
+                <div class="col-md-11">
                     <div class="header">
                         <p>Environments</p>
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-1">
                     <a href="{{ route('create.environment') }}" class="btn">Create</a>
                 </div>
             </div>

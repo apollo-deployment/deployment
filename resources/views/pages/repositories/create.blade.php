@@ -9,10 +9,8 @@
                 </div>
             </div>
         </div>
-        <div class="panel">
-            <form action="{{ route('store.repository') }}" method="POST">
-                @include('pages.repositories._form')
-            </form>
-        </div>
+        <form action="{{ route('store.repository') }}" method="POST">
+            @include('pages.repositories._form')
+        </form>
     </div>
 @endsection

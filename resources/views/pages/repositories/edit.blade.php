@@ -9,10 +9,8 @@
                 </div>
             </div>
         </div>
-        <div class="panel">
-            <form action="{{ route('update.repository', compact('repository')) }}" method="POST">
-                @include('pages.repositories._form', compact('repository'))
-            </form>
-        </div>
+        <form action="{{ route('update.repository', compact('repository')) }}" method="POST">
+            @include('pages.repositories._form', compact('repository'))
+        </form>
     </div>
 @endsection

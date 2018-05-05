@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6 col-md-offset-3 panel">
+                <div class="col-md-6 col-md-offset-3">
                     <h3 class="text-center">Create an Organization</h3>
                     <p class="secondary-text text-center">Create an admin account for your new organization</p>
 
