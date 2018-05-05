@@ -59,3 +59,15 @@ class GitHub
         )->getBody()->getContents())->access_token;
     }
 }
+
+
+//this->api-post(repos/owner/reponame/hooks)
+//on the repository controller on store and update you can create one after
+
+// put this in the repository controller
+//private $github;
+//
+//public function __construct()
+//{
+//    $this->github = new GitHub;
+//}

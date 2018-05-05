@@ -13,6 +13,8 @@ Route::group(['middleware' => ['web']], function () {
         // Deployment plans
         Route::prefix('deployment')->group(function () {
             Route::get('/', 'DeploymentPlanController@view')->name('view.deployment-plans');
+
+
             Route::get('/create', 'DeploymentPlanController@create')->name('create.deployment-plan');
             Route::post('/create', 'DeploymentPlanController@store')->name('store.deployment-plan');
             Route::get('/edit/{plan}', 'DeploymentPlanController@edit')->name('edit.deployment-plan');
@@ -46,6 +48,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/branches', 'Api\GitHubController@getBranches');
         Route::get('/access', 'Api\GitHubController@getAccess')->name('github.access');
         Route::get('/access/callback', 'Api\GitHubController@getAccessCallback');
+        Route::post('/test', 'DeploymentPlanController@logstore');
     });
 });
 
