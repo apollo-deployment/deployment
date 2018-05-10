@@ -62,7 +62,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/branches', 'Api\GitHubController@getBranches');
         Route::get('/access', 'Api\GitHubController@getAccess')->name('github.access');
         Route::get('/access/callback', 'Api\GitHubController@getAccessCallback');
-        Route::post('/test', 'DeploymentPlanController@logstore');
+        Route::post('/getPayload', 'Api\GitHubController@getPayload');
     });
 });
 

@@ -50,24 +50,6 @@ class DeploymentPlanController extends Controller
     }
 
     /**
-     * Store new deployment plan
-     */
-    public function logstore(Request $request)
-    {
-        \Log::info($request->all());
-//        $plan = DeploymentPlan::create([
-//            'title' => $request->get('title'),
-//            'environment_id' => $request->get('environment_id'),
-//            'repository_id' => $request->get('repository_id'),
-//            'repository_branch' => $request->get('repository_branch'),
-//            'is_automatic' => true, // CHANGE
-//            'remote_path' => $request->get('remote_path'),
-//        ]);
-
-        return json_encode('something in it');
-    }
-
-    /**
      * Update existing DeploymentPlan $plan
      */
     public function update(DeploymentPlanRequest $request, DeploymentPlan $plan)
