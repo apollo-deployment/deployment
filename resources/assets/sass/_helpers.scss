@@ -1,5 +1,4 @@
 
-// -------------------- Helpers
 .m-b-10 {
   margin-bottom: 30px;
 }
@@ -41,7 +40,6 @@
   color: $secondary !important;
 }
 
-// -------------------- Custom checkbox
 .checkbox-container {
   cursor: pointer;
   display: block;
@@ -57,7 +55,7 @@
 
   &:hover {
     .checkmark {
-      background-color: $light-grey !important;
+      background-color: $light !important;
     }
   }
 
@@ -68,7 +66,7 @@
   }
 
   .checkmark {
-    background-color: $light-grey;
+    background-color: $light;
     border-radius: 3px;
     position: absolute;
     top: 0;
@@ -84,14 +82,11 @@
   }
 }
 
-// -------------------- Overwrites
 .checkbox-container:hover input ~ .checkmark {
-  background-color: $medium-grey;
+  background-color: $medium;
 }
 
 .checkbox-container input:checked ~ .checkmark {
-  background-color: $accent;
-  border-color: $accent;
 }
 
 .checkbox-container input:checked ~ .checkmark:after {

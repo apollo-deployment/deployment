@@ -10,22 +10,22 @@
                             <div class="header">
                                 <p>Update Profile</p>
                             </div>
-                            <p class="secondary-text">Basic profile information</p>
                         </div>
                     </div>
-                    @if (\Auth::user()->github_access_token)
-                        <p class="secondary-text text-right"><i class="fa fa-check green"></i> Github Linked</p>
-                    @else
-                        <a href="{{ route('github.access') }}" class="btn">Link GitHub</a>
-                    @endif
-
                     @include('partials.message')
 
                     <form action="{{ route('update.profile') }}" method="POST">
                         {{ csrf_field() }}
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 {{-- avatar --}}
+                            </div>
+                            <div class="col-md-2">
+                                @if (\Auth::user()->github_access_token)
+                                    <p class="secondary-text text-right"><i class="fa fa-check green"></i> Github Linked</p>
+                                @else
+                                    <a href="{{ route('github.access') }}" class="btn">Link GitHub</a>
+                                @endif
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -59,7 +59,6 @@
                         <div class="header">
                             <p>Change Password</p>
                         </div>
-                        <p class="secondary-text">Must be at least 8 characters in length</p>
 
                         @if (session()->has('message-password'))
                             <div class="message-success">{{ session()->get('message-password') }}</div>
@@ -73,6 +72,8 @@
                                         {{ Form::label('current_password', 'Current Password') }}
                                         {{ Form::password('current_password', ['class' => 'form-control', 'required' => true]) }}
                                     </div>
+                                    <p class="secondary-text">Must be at least 8 characters in length</p>
+
                                     @if ($errors->first('current_password'))
                                         <p class="message-error">{{ $errors->first('current_password') }}</p>
                                     @endif
@@ -105,7 +106,6 @@
                         <div class="header">
                             <p>{{ \Auth::user()->organization->title }}</p>
                         </div>
-                        <p class="secondary-text">This section is admin view only</p>
 
                         {{-- Content tabs --}}
                         <ul class="nav nav-tabs">
@@ -126,13 +126,20 @@
                                     <tbody>
                                     @forelse (\Auth::user()->organization->users() as $user)
                                         <tr>
-                                            <td>{{ $user->name }}</td>
+                                            <td>
+                                                {{ $user->name }}
+                                                @if (! $user->is_verified)
+                                                    <code>Not Verified</code>
+                                                @endif
+                                            </td>
+                                            <td>{{ $user->email }}</td>
+                                            <td>{{ $user->is_admin ? 'Admin' : 'Developer' }}</td>
                                             <td>
                                                 <button data-toggle="modal" data-target="#{{ $user->id }}">
                                                     <i class="fa fa-trash"></i>
                                                 </button>
                                                 <a href="">
-                                                    <i class="fa fa-cog secondary-text"></i>
+                                                    <i class="fa fa-cog"></i>
                                                 </a>
                                             </td>
                                         </tr>

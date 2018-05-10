@@ -15,30 +15,10 @@
 
     <body>
         <div class="navbar navbar-fixed-top">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-2">
-                        <div class="logo">
-                            <a href="{{ route('view.index') }}">
-                                <img src="/images/apollo.png">
-                            </a>
-                        </div>
-                    </div>
                     @auth
-                        <div class="col-md-8">
-                            <ul class="nav navbar-nav">
-                                <li>
-                                    <a href="{{ route('view.deployment-plans') }}" class="{{ Route::is('view.deployment-plans') ? 'active' : '' }}">Deployment</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('view.environments') }}" class="{{ Route::is('view.environments') ? 'active' : '' }}">Environments</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('view.repositories') }}" class="{{ Route::is('view.repositories') ? 'active' : '' }}">Repositories</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2 col-md-offset-10">
                             <div class="dropdown">
                                 <p class="user" data-toggle="dropdown" >{{ Auth::user()->name }}</p>
                                 <div class="dropdown-menu pull-right">
@@ -56,19 +36,42 @@
             </div>
         </div>
 
-        <div class="content">
-            @yield('content')
-        </div>
-
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <p class="text-center secondary-text">&copy; Copyright {{ date('Y') }} Apollo Deployment</p>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="sidebar">
+                        <div class="logo">
+                            <a href="{{ route('view.index') }}">
+                                <img src="{{ url('images/apollo.png') }}" alt="Apollo Deployment">
+                            </a>
+                        </div>
+                        <p class="sidebar-header">Deployment</p>
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="{{ route('view.deployment-plans') }}" class="{{ Route::is('view.deployment-plans') ? 'active' : '' }}">
+                                    <i class="fa fa-wrench"></i> Build Plans
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('view.environments') }}" class="{{ Route::is('view.environments') ? 'active' : '' }}">
+                                    <i class="fa fa-server"></i> Environments
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('view.repositories') }}" class="{{ Route::is('view.repositories') ? 'active' : '' }}">
+                                    <i class="fa fa-code"></i> Repositories
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-10">
+                    <div class="content">
+                        @yield('content')
                     </div>
                 </div>
             </div>
-        </footer>
+        </div>
 
         {{-- Scripts --}}
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>

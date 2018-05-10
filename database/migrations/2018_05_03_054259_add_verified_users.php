@@ -14,8 +14,8 @@ class AddVerifiedUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('verified')->default(false)->after('remember_token');
-            $table->boolean('is_admin')->default(false)->after('verified');
+            $table->boolean('is_verified')->default(false)->after('remember_token');
+            $table->boolean('is_admin')->default(false)->after('is_verified');
         });
     }
 
@@ -28,6 +28,7 @@ class AddVerifiedUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('verified');
+            $table->dropColumn('is_admin');
         });
     }
 }

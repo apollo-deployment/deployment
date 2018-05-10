@@ -15,7 +15,12 @@
                     <h3 class="text-center">Create an Organization</h3>
                     <p class="secondary-text text-center">Create an admin account for your new organization</p>
 
-                    @include('partials.message')
+                    @if (session()->has('message'))
+                        <div class="alert message-success">
+                            {{ session()->get('message') }}
+                            <a class="close secondary-text" data-dismiss="alert" aria-label="close" title="close">×</a>
+                        </div>
+                    @endif
 
                     <form action="{{ route('register.org') }}" method="POST">
                         {{ csrf_field() }}
@@ -56,9 +61,6 @@
                                     {{ Form::label('password', 'Admin Password') }}
                                     {{ Form::password('password', ['class' => 'form-control', 'required' => true]) }}
                                 </div>
-                                @if ($errors->first('password'))
-                                    <p class="red">{{ $errors->first('password') }}</p>
-                                @endif
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -66,6 +68,11 @@
                                     {{ Form::password('password_confirmation', ['class' => 'form-control', 'required' => true]) }}
                                 </div>
                             </div>
+                            @if ($errors->first('password'))
+                                <div class="col-md-12">
+                                    <p class="red">{{ $errors->first('password') }}</p>
+                                </div>
+                            @endif
                         </div>
                         {{ Form::submit('Create', ['class' => 'btn']) }}
                     </form>

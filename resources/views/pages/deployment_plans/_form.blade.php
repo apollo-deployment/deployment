@@ -33,7 +33,7 @@
     <div class="col-md-3">
         <div class="form-group">
             {{ Form::label('repository_id', 'Repository', ['class' => 'required']) }}
-            {{ Form::select('repository_id', ['' => ''] + \App\Models\Repository::pluck('name', 'id')->toArray(), isset($plan) ? $plan->repository->id : null, ['class' => 'form-control', 'required' => true]) }}
+            {{ Form::select('repository_id', ['' => ''] + \App\Models\Repository::pluck('title', 'id')->toArray(), isset($plan) ? $plan->repository->id : null, ['class' => 'form-control', 'required' => true]) }}
         </div>
         @if ($errors->first('repository_id'))
             <p class="red">{{ $errors->first('repository_id') }}</p>

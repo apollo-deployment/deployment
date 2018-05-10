@@ -1,5 +1,4 @@
 
-// -------------------- Imports --------------------
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
 
@@ -7,59 +6,67 @@
 @import "helpers";
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
-// -------------------- Global --------------------
-html {
-  position: relative;
-  min-height: 100%;
-}
-
 html, body {
-  background-color: $medium-grey;
+  background-color: $medium;
 }
 
-footer {
-  background-color: $dark-grey;
-  bottom: 0;
-  position: absolute;
-  height: 50px;
-  width: 100%;
+.sidebar {
+  background-color: $dark;
+  color: white;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  overflow-x: hidden;
+  width: 16.66666667%;
+  z-index: 1;
 
-  p {
-    margin-top: 15px;
+  .logo {
+    text-align: center;
+    margin-bottom: 1px;
+
+    img {
+      width: 100px;
+    }
+  }
+
+  .sidebar-header {
+    color: grey;
+    padding: 5px 5px 0 15px;
+  }
+
+  li {
+    width: 100%;
+
+    i {
+      margin-right: 10px;
+    }
+
+    a {
+      color: white;
+      padding-left: 30px;
+
+      &:hover, &:focus, &.active {
+        background-color: $light;
+      }
+
+      &.active {
+        border-right: 5px solid $accent;
+      }
+    }
   }
 }
 
 .navbar {
-  background-color: $dark-grey;
-
-  .logo {
-    line-height: 50px;
-
-    img {
-      width: 90px;
-    }
-  }
-
-  li {
-    a {
-      color: white;
-      height: 48px;
-      text-align: center;
-
-      &:hover, &:focus, &.active  {
-        background: none;
-        border-bottom: 3px solid $accent;
-        height: 45px;
-      }
-    }
-  }
+  background-color: $dark;
+  z-index: 0;
 
   .dropdown {
     .user {
       color: white;
       float: right;
       line-height: 50px;
-      margin: 0;
+      margin-right: 45px;
+      margin-bottom: 0;
 
       &:hover {
         cursor: pointer;
@@ -67,7 +74,7 @@ footer {
     }
 
     .dropdown-menu {
-      background-color: $light-grey;
+      background-color: $light;
       padding: 10px 10px 5px;
       margin-top: 45px;
 
@@ -93,10 +100,124 @@ footer {
   }
 }
 
+.btn {
+  background-color: $accent;
+  border-radius: 4px;
+  color: white;
+  float: right;
+  margin-left: 15px;
+  padding: 5px 12px;
+  outline: none !important;
+  width: 100px;
+
+  &:hover {
+    color: lightgrey;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
 code {
-  background-color: $light-grey;
+  background-color: $light;
   color: $red;
-  padding: 5px 8px;
+}
+
+.content {
+  margin-top: 45px;
+  padding: 25px 40px 25px 10px;
+
+  .header {
+    background-color: $light;
+    padding: 15px 15px 15px 30px;
+    margin: -19px -55px 25px -30px;
+
+    p {
+      color: white;
+      font-size: 16px;
+      margin: 0;
+    }
+
+    code {
+      background-color: $medium;
+      margin-left: 15px;
+      padding: 5px 10px;
+    }
+  }
+
+  table {
+    th {
+      border-bottom: 2px solid $light !important;
+      color: white !important;
+
+      .btn {
+        margin-right: -8px;
+      }
+    }
+
+    tbody {
+      border-top: 1px solid $light;
+
+      tr {
+        &:nth-child(even) {
+          background-color: $light;
+        }
+
+        &.empty {
+          td {
+            text-align: center;
+          }
+        }
+
+        th, td {
+          color: $secondary;
+          border-top: none;
+
+          button, i {
+            color: white;
+            background: none;
+            border: none;
+            font-size: 17px;
+            float: right;
+            margin-left: 15px;
+            padding: 0;
+
+            &:focus {
+              outline: none;
+            }
+
+            &:hover {
+              opacity: 0.7;
+            }
+          }
+
+          .fa-trash {
+            color: $red;
+          }
+        }
+
+        .repository-name {
+          border-bottom: none;
+          background-color: $medium;
+          width: 20%;
+        }
+      }
+    }
+  }
+}
+
+.modal {
+  .modal-body {
+    background-color: $medium;
+    border-radius: 4px;
+    color: white;
+    padding: 25px;
+
+    .cancel {
+      background: none;
+    }
+  }
 }
 
 form {
@@ -109,11 +230,16 @@ form {
     }
   }
 
+  select option {
+    color: white;
+    background-color: $light;
+  }
+
   .form-control {
     background: none;
     border: none;
     border-radius: 0;
-    border-bottom: 2px solid $light-grey;
+    border-bottom: 2px solid $light;
     box-shadow: none !important;
     color: white;
 
@@ -121,15 +247,6 @@ form {
       border: none;
       border-bottom: 2px solid $accent;
     }
-
-    &:focus {
-
-    }
-  }
-
-  .btn, a {
-    float: right;
-    margin-left: 10px;
   }
 
   .file {
@@ -157,163 +274,42 @@ form {
   }
 }
 
-.btn {
-  background-color: $accent;
-  border-radius: 4px;
-  color: white;
-  float: right;
-  margin-left: 15px;
-  outline: none !important;
-  width: 100px;
 
-  &:hover {
-    color: lightgrey;
+
+
+
+
+
+.login, .register {
+  margin-top: 150px;
+
+  .login-logo {
+    text-align: center;
+    margin-bottom: 50px;
+
+    img {
+      height: 200px;
+    }
   }
 
-  &:focus {
-    outline: none;
-  }
-}
-
-.header {
-  color: white;
-
-  p {
-    background-color: $light-grey;
-    border-radius: 4px;
-    font-size: 16px;
-    padding: 10px 10px 10px 20px;
-    margin-bottom: 20px;
-  }
-}
-
-.header-wrapper {
-  .header {
-    margin-right: 15px;
+  .resend {
+    color: $secondary;
+    float: none;
+    margin-left: 0;
   }
 
-  a {
-    margin-top: 3px;
-  }
-}
-
-.modal {
-  .modal-body {
-    background-color: $medium-grey;
-    border-radius: 4px;
+  h3 {
     color: white;
-    padding: 25px;
-
-    .cancel {
-      background: none;
-    }
-  }
-}
-
-// -------------------- Content --------------------
-.content {
-  margin-top: 70px;
-  margin-bottom: 90px;
-
-  .login, .register {
-    margin-top: 150px;
-
-    .login-logo {
-      text-align: center;
-      margin-bottom: 50px;
-
-      img {
-        height: 200px;
-      }
-    }
-    
-    .resend {
-      color: $secondary;
-      float: none;
-      margin-left: 0;
-    }
-
-    h3 {
-      color: white;
-      margin-top: 0;
-    }
-
-    .g-btn {
-      background-color: #e0482f;
-      width: 40px;
-    }
-
-    form {
-      margin-bottom: 25px;
-    }
+    margin-top: 0;
   }
 
-  .deployment-plans, .environments, .repositories, .profile {
-    table {
-      color: white;
-      width: 100%;
+  .g-btn {
+    background-color: #e0482f;
+    width: 40px;
+  }
 
-      thead {
-        th {
-          border-bottom: 2px solid $light-grey !important;
-          color: white !important;
-        }
-      }
-
-      tbody {
-        border-top: 1px solid $light-grey;
-      }
-
-      tr {
-        &:nth-child(even) {
-          background-color: $light-grey;
-        }
-
-        &.empty {
-          td {
-            text-align: center;
-          }
-        }
-
-        th, td {
-          color: $secondary;
-          border-top: none;
-          padding: 7px 10px;
-          text-align: left;
-
-          button, i {
-            color: white;
-            background: none;
-            border: none;
-            font-size: 17px;
-            float: right;
-            margin-left: 15px;
-            padding: 0;
-
-            &:focus {
-              outline: none;
-            }
-
-            &:hover {
-              opacity: 0.7;
-            }
-          }
-
-          .fa-trash {
-            color: $red;
-          }
-
-          code {
-            padding: 1px 5px !important;
-          }
-        }
-
-        .repository-name {
-          border-bottom: none;
-          background-color: $medium-grey;
-        }
-      }
-    }
+  form {
+    margin-bottom: 25px;
   }
 }
 
@@ -328,7 +324,7 @@ form {
   }
 
   .nav-tabs {
-    border-bottom: 2px solid $light-grey;
+    border-bottom: 2px solid $light;
 
     li {
       &.active {
@@ -389,6 +385,10 @@ form {
 
   .tab-content {
     padding: 5px;
+
+    code {
+      background: transparent;
+    }
   }
 
   .table {

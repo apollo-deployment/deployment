@@ -37,7 +37,7 @@
                         @endif
                         <div class="row">
                             <div class="col-md-6">
-                                <label class="checkbox-container">Remember Me
+                                <label class="checkbox-container secondary-text">Remember Me
                                     <input type="checkbox" name="remember_me">
                                     <span class="checkmark"></span>
                                 </label>

@@ -35,7 +35,7 @@ class OrganizationController extends Controller
     public function store(RegisterOrganizationRequest $request)
     {
         if (Organization::where('title', $request->get('title'))->first()) {
-            return redirect()->route('register.org')->withErrors("Organization with that name already exists");
+            return redirect()->route('register.org')->withErrors(['title' => "Organization with that name already exists"]);
         }
 
         $organization = Organization::create([
