@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Apollo</title>
+
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Apollo</title>
 
         {{-- Styles --}}
         <link type="text/css" href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -18,9 +18,16 @@
             <div class="container-fluid">
                 <div class="row">
                     @auth
-                        <div class="col-md-2 col-md-offset-10">
+                        <div class="col-md-2">
+                            <div class="logo">
+                                <a href="{{ route('view.index') }}">
+                                    <img src="{{ url('images/apollo.png') }}" alt="Apollo Deployment">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-md-offset-8">
                             <div class="dropdown">
-                                <p class="user" data-toggle="dropdown" >{{ Auth::user()->name }}</p>
+                                <p class="user" data-toggle="dropdown">{{ \Auth::user()->name }}</p>
                                 <div class="dropdown-menu pull-right">
                                     <a class="dropdown-item" href="{{ route('view.profile') }}">
                                         <i class="fa fa-user accent"></i> Profile
@@ -38,34 +45,31 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-2">
-                    <div class="sidebar">
-                        <div class="logo">
-                            <a href="{{ route('view.index') }}">
-                                <img src="{{ url('images/apollo.png') }}" alt="Apollo Deployment">
-                            </a>
+                @auth
+                    <div class="col-md-2">
+                        <div class="sidebar">
+                            <p class="sidebar-header">Deployment</p>
+                            <ul class="nav navbar-nav">
+                                <li>
+                                    <a href="{{ route('view.deployment-plans') }}" class="{{ Route::is('view.deployment-plans') ? 'active' : '' }}">
+                                        <i class="fa fa-wrench"></i> Build Plans
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('view.environments') }}" class="{{ Route::is('view.environments') ? 'active' : '' }}">
+                                        <i class="fa fa-server"></i> Environments
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('view.repositories') }}" class="{{ Route::is('view.repositories') ? 'active' : '' }}">
+                                        <i class="fa fa-code"></i> Repositories
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
-                        <p class="sidebar-header">Deployment</p>
-                        <ul class="nav navbar-nav">
-                            <li>
-                                <a href="{{ route('view.deployment-plans') }}" class="{{ Route::is('view.deployment-plans') ? 'active' : '' }}">
-                                    <i class="fa fa-wrench"></i> Build Plans
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('view.environments') }}" class="{{ Route::is('view.environments') ? 'active' : '' }}">
-                                    <i class="fa fa-server"></i> Environments
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('view.repositories') }}" class="{{ Route::is('view.repositories') ? 'active' : '' }}">
-                                    <i class="fa fa-code"></i> Repositories
-                                </a>
-                            </li>
-                        </ul>
                     </div>
-                </div>
-                <div class="col-md-10">
+                @endauth
+                <div class="col-md-{{ \Auth::check() ? '10' : '12' }}">
                     <div class="content">
                         @yield('content')
                     </div>

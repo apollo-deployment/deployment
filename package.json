@@ -14,5 +14,7 @@
     "lodash": "^4.16.2",
     "vue": "^2.0.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "codemirror": "^5.37.0"
+  }
 }

@@ -24,10 +24,10 @@
                         <td>{{ ucfirst($environment->authentication_type) }}</td>
                         <td>
                             <button data-toggle="modal" data-target="#delete-environment-{{ $environment->id }}">
-                                <i class="fa fa-trash"></i>
+                                <i class="fa fa-trash action"></i>
                             </button>
                             <a href="{{ route('edit.environment', compact('environment')) }}">
-                                <i class="fa fa-cog"></i>
+                                <i class="fa fa-cog action"></i>
                             </a>
                         </td>
                     </tr>

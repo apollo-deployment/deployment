@@ -32,7 +32,7 @@ class AuthController extends Controller
 
             // Check users password
             if ($user && Hash::check($request->get('password'), $user->password)) {
-                Auth::login($user, (boolean) $request->get('remember_me'));
+                Auth::login($user, (boolean)$request->get('remember_me'));
 
                 return redirect()->route('view.index');
             }
@@ -78,7 +78,7 @@ class AuthController extends Controller
      */
     public function googleCallback()
     {
-        $google_user = $this->socialite()->user();
+        $google_user = \Socialite::driver('google')->user();
 
         try {
             $user = User::where('email', $google_user->email)->firstOrFail();
@@ -123,6 +123,9 @@ class AuthController extends Controller
         }
     }
 
+    /**
+     * Resend a verification token
+     */
     public function resendVerify($token)
     {
         try {

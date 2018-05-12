@@ -11,6 +11,7 @@
                         <th>Name</th>
                         <th>Repository Name</th>
                         <th>Repository URL</th>
+                        <th>Connected Webhook</th>
                         <th>
                             <a href="{{ route('create.repository') }}" class="btn">Create</a>
                         </th>
@@ -25,11 +26,14 @@
                             <a href="{{ $repository->url }}" target="_blank" class="secondary-text">{{ $repository->url }}</a>
                         </td>
                         <td>
+                            <i class="fa fa-check green"></i> Linked
+                        </td>
+                        <td>
                             <button data-toggle="modal" data-target="#delete-repository-{{ $repository->id }}">
-                                <i class="fa fa-trash"></i>
+                                <i class="fa fa-trash action"></i>
                             </button>
                             <a href="{{ route('edit.repository', compact('repository')) }}">
-                                <i class="fa fa-cog"></i>
+                                <i class="fa fa-cog action"></i>
                             </a>
                         </td>
                     </tr>

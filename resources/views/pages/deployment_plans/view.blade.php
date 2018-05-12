@@ -11,7 +11,8 @@
                         <th>Project</th>
                         <th>Plan</th>
                         <th>Environment</th>
-                        <th>Deployed Version</th>
+                        <th>Deployed Build</th>
+                        <th>Deployed Branch</th>
                         <th>
                             <a href="{{ route('create.deployment-plan') }}" class="btn">Create</a>
                         </th>
@@ -25,12 +26,13 @@
                                 <td>{{ $plan->title }}</td>
                                 <td>{{ $plan->environment->title }}</td>
                                 <td>{{ isset($plan->deployed_version) ? $plan->deployed_version : 'Not Deployed' }}</td>
+                                <td>{{ isset($plan->deployed_version) ? $plan->repository_branch : 'Not Deployed' }}</td>
                                 <td>
                                     <button data-toggle="modal" data-target="#delete-deployment-plan-{{ $plan->id }}">
-                                        <i class="fa fa-trash"></i>
+                                        <i class="fa fa-trash action"></i>
                                     </button>
                                     <a href="{{ route('edit.deployment-plan', compact('plan')) }}">
-                                        <i class="fa fa-cog secondary-text"></i>
+                                        <i class="fa fa-cog action"></i>
                                     </a>
                                 </td>
                             </tr>

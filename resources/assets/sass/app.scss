@@ -5,6 +5,7 @@
 @import "variables";
 @import "helpers";
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "node_modules/codemirror/lib/codemirror";
 
 html, body {
   background-color: $medium;
@@ -14,20 +15,12 @@ html, body {
   background-color: $dark;
   color: white;
   height: 100%;
+  padding-top: 55px;
   position: fixed;
   left: 0;
   overflow-x: hidden;
   width: 16.66666667%;
   z-index: 1;
-
-  .logo {
-    text-align: center;
-    margin-bottom: 1px;
-
-    img {
-      width: 100px;
-    }
-  }
 
   .sidebar-header {
     color: grey;
@@ -58,7 +51,14 @@ html, body {
 
 .navbar {
   background-color: $dark;
-  z-index: 0;
+
+  .logo {
+    text-align: center;
+
+    img {
+      width: 100px;
+    }
+  }
 
   .dropdown {
     .user {
@@ -105,7 +105,7 @@ html, body {
   border-radius: 4px;
   color: white;
   float: right;
-  margin-left: 15px;
+  margin-left: 10px;
   padding: 5px 12px;
   outline: none !important;
   width: 100px;
@@ -133,6 +133,18 @@ code {
     padding: 15px 15px 15px 30px;
     margin: -19px -55px 25px -30px;
 
+    &.split {
+      background: none !important;
+      border-top: 2px solid $light;
+      margin-top: 10px;
+      margin-bottom: 0;
+    }
+
+    i {
+      color: $accent;
+      margin-right: 10px;
+    }
+
     p {
       color: white;
       font-size: 16px;
@@ -157,7 +169,7 @@ code {
     }
 
     tbody {
-      border-top: 1px solid $light;
+      border-top: 2px solid $light;
 
       tr {
         &:nth-child(even) {
@@ -174,7 +186,7 @@ code {
           color: $secondary;
           border-top: none;
 
-          button, i {
+          button, .action {
             color: white;
             background: none;
             border: none;
@@ -236,16 +248,14 @@ form {
   }
 
   .form-control {
-    background: none;
+    background-color: $light;
     border: none;
-    border-radius: 0;
-    border-bottom: 2px solid $light;
+    border-radius: 4px;
     box-shadow: none !important;
     color: white;
 
     &:focus {
-      border: none;
-      border-bottom: 2px solid $accent;
+
     }
   }
 
@@ -272,6 +282,94 @@ form {
   .file-uploaded {
     line-height: 55px;
   }
+
+  // Overwrite built-in styles
+  .CodeMirror {
+    color: white;
+
+    .CodeMirror-cursor {
+      border-left: 1px solid white;
+    }
+
+    .CodeMirror-scroll {
+      background-color: $light;
+    }
+
+    .CodeMirror-gutters {
+      background-color: $medium;
+      border-right: none;
+    }
+
+    .CodeMirror-linenumber {
+      color: $secondary;
+    }
+  }
+}
+
+.nav-tabs {
+  border-bottom: 1px solid $light;
+
+  li {
+    min-width: 85px;
+
+    &.active {
+      a {
+        border: none;
+        color: white !important;
+        border-bottom-color: transparent;
+
+        &:focus {
+          border-width: 0;
+        }
+
+        &:hover {
+          border-width: 0;
+          background: none;
+        }
+
+        &::after {
+          transform: scale(1);
+        }
+      }
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    a {
+      background: none !important;
+      border: none;
+      color: $secondary;
+      text-align: center;
+
+      &:hover {
+        border: none;
+        color: white !important;
+        cursor: pointer !important;
+      }
+
+      &::after {
+        background: $accent;
+        bottom: -1px;
+        content: "";
+        height: 2px;
+        position: absolute;
+        left: 0;
+        transition: all 250ms ease 0s;
+        transform: scale(0);
+        width: 100%;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}
+
+.tab-content {
+  padding: 15px 5px;
 }
 
 
@@ -323,65 +421,7 @@ form {
     }
   }
 
-  .nav-tabs {
-    border-bottom: 2px solid $light;
 
-    li {
-      &.active {
-        a {
-          border: none;
-          color: white !important;
-          background: transparent;
-          border-bottom-color: transparent;
-
-          &:focus {
-            border-width: 0;
-          }
-
-          &:hover {
-            border-width: 0;
-          }
-
-          &::after {
-            transform: scale(1);
-          }
-        }
-      }
-
-      &:focus {
-        outline: none;
-      }
-
-      a {
-        border: none;
-        color: $secondary;
-        text-align: center;
-        width: 80px;
-
-        &:hover {
-          border: none;
-          background: transparent;
-          color: white !important;
-        }
-
-        &::after {
-          background: $accent;
-          bottom: -1px;
-          content: "";
-          height: 2px;
-          position: absolute;
-          left: 0;
-          transition: all 250ms ease 0s;
-          transform: scale(0);
-          width: 100%;
-        }
-
-        &:focus {
-          outline: none;
-        }
-      }
-    }
-  }
 
   .tab-content {
     padding: 5px;

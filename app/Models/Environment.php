@@ -14,10 +14,10 @@ class Environment extends Model
         'title',
         'ip_address',
         'ssh_port',
-        'authentication_type', // So we know how to login to the environment
+        'authentication_type',  // So we know how to login to the environment
         'ssh_username',
         'ssh_password',
-        'public_key_path'      // Local path to public key
+        'private_key_path'      // Local path to private key
     ];
 
     public function deploymentPlans()
