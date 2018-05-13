@@ -10,11 +10,12 @@ use App\Mail\EmailVerification;
 use App\Models\User;
 use App\Models\VerifyUser;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
-class AuthController extends Controller
+class UserController extends Controller
 {
     /**
      * Attempt login with user credentials
@@ -71,6 +72,28 @@ class AuthController extends Controller
         }
 
         return redirect()->back()->withErrors(['current_password' => 'Incorrect password']);
+    }
+
+    /**
+     * AJAX : Updates users avatar image
+     */
+    public function updateAvatar(Request $request)
+    {
+        if ($request->hasFile('avatar_upload')) {
+            $file = $request->file('avatar_upload');
+            $file_name = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('/images/avatars'), $file_name);
+
+            if (Auth::user()->avatar) {
+                \File::delete(public_path('/images/avatars') . '/' . Auth::user()->avatar);
+            }
+
+            Auth::user()->update([
+               'avatar' => $file_name
+            ]);
+
+            return url('/images/avatars') . '/' . $file_name;
+        }
     }
 
     /**

@@ -2,22 +2,23 @@
 
 Route::group(['middleware' => ['web']], function () {
     Route::get('/login', 'PageController@login')->name('view.login');
-    Route::post('/login', 'Auth\AuthController@login')->name('login');
-    Route::get('/login/google', 'Auth\AuthController@redirectToGoogle')->name('login.google');
-    Route::get('/login/google/callback', 'Auth\AuthController@googleCallback');
+    Route::post('/login', 'Auth\UserController@login')->name('login');
+    Route::get('/login/google', 'Auth\UserController@redirectToGoogle')->name('login.google');
+    Route::get('/login/google/callback', 'Auth\UserController@googleCallback');
 
     Route::get('/register', 'OrganizationController@create')->name('create.org');
     Route::post('/register', 'OrganizationController@store')->name('register.org');
-    Route::get('/verify/{token}', 'Auth\AuthController@verify')->name('verify.org');
-    Route::get('/resend/{token}', 'Auth\AuthController@resendVerify')->name('verify.resend');
+    Route::get('/verify/{token}', 'Auth\UserController@verify')->name('verify.org');
+    Route::get('/resend/{token}', 'Auth\UserController@resendVerify')->name('verify.resend');
 
     // Authenticated routes
     Route::group(['middleware' => ['auth']], function () {
         Route::get('/', 'PageController@index')->name('view.index');
-        Route::get('/logout', 'Auth\AuthController@logout')->name('logout');
+        Route::get('/logout', 'Auth\UserController@logout')->name('logout');
         Route::get('/profile', 'PageController@profile')->name('view.profile');
-        Route::post('/profile/update', 'Auth\AuthController@updateProfile')->name('update.profile');
-        Route::post('/profile/update-password', 'Auth\AuthController@updatePassword')->name('update.password');
+        Route::post('/profile/update', 'Auth\UserController@updateProfile')->name('update.profile');
+        Route::post('/profile/update-password', 'Auth\UserController@updatePassword')->name('update.password');
+        Route::post('/profile/update-avatar', 'Auth\UserController@updateAvatar');
 
         // Organizations
         Route::prefix('organization')->group(function () {

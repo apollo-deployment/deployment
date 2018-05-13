@@ -8,7 +8,7 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Project</th>
+                        <th>Repository</th>
                         <th>Plan</th>
                         <th>Environment</th>
                         <th>Deployed Build</th>
@@ -25,8 +25,13 @@
                                 <td class="repository-name">{{ $loop->first ? $repository->title : '' }}</td>
                                 <td>{{ $plan->title }}</td>
                                 <td>{{ $plan->environment->title }}</td>
-                                <td>{{ isset($plan->deployed_version) ? $plan->deployed_version : 'Not Deployed' }}</td>
-                                <td>{{ isset($plan->deployed_version) ? $plan->repository_branch : 'Not Deployed' }}</td>
+                                @if (isset($plan->deployed_version))
+                                    <td>{{ $plan->deployed_version }}</td>
+                                    <td>{{ $plan->repository_branch }}</td>
+                                @else
+                                    <td class="red">Not Deployed</td>
+                                    <td class="red">Not Deployed</td>
+                                @endif
                                 <td>
                                     <button data-toggle="modal" data-target="#delete-deployment-plan-{{ $plan->id }}">
                                         <i class="fa fa-trash action"></i>

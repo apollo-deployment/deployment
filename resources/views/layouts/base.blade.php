@@ -27,8 +27,14 @@
                         </div>
                         <div class="col-md-2 col-md-offset-8">
                             <div class="dropdown">
-                                <p class="user" data-toggle="dropdown">{{ \Auth::user()->name }}</p>
-                                <div class="dropdown-menu pull-right">
+                                <p class="user" data-toggle="dropdown">{{ \Auth::user()->name }}
+                                    @if (\Auth::user()->avatar)
+                                        <img src="{{ url('/images/avatars/' . \Auth::user()->avatar) }}" class="avatar">
+                                    @else
+                                        <img src="{{ url('/images/avatars/default.png') }}" class="avatar">
+                                    @endif
+                                </p>
+                                <div class="dropdown-menu">
                                     <a class="dropdown-item" href="{{ route('view.profile') }}">
                                         <i class="fa fa-user accent"></i> Profile
                                     </a>

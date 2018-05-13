@@ -16,17 +16,18 @@
                 <form action="{{ route('update.profile') }}" method="POST">
                     {{ csrf_field() }}
                     <div class="row">
-                        <div class="col-md-4">
-                            {{-- avatar --}}
-                        </div>
                         <div class="col-md-2">
-                            @if (\Auth::user()->github_access_token)
-                                <p class="secondary-text text-right"><i class="fa fa-check green"></i> Github Linked</p>
-                            @else
-                                <a href="{{ route('github.access') }}" class="btn">Link GitHub</a>
-                            @endif
+                            <div class="avatar-container">
+                                @if (\Auth::user()->avatar)
+                                    <img src="{{ url('/images/avatars/' . \Auth::user()->avatar) }}" class="avatar profile" id="avatar">
+                                @else
+                                    <img src="{{ url('/images/avatars/default.png') }}" class="avatar profile" id="avatar">
+                                @endif
+                                <i class="fa fa-camera"></i>
+                                <input type="file" name="avatar_upload" id="avatar-upload">
+                            </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <div class="form-group">
                                 {{ Form::label('name', 'Full Name') }}
                                 {{ Form::text('name', Auth::user()->name, ['class' => 'form-control', 'required' => true]) }}
@@ -40,6 +41,13 @@
                             </div>
                             @if ($errors->first('email'))
                                 <p class="message-error">{{ $errors->first('email') }}</p>
+                            @endif
+                        </div>
+                        <div class="col-md-5">
+                            @if (\Auth::user()->github_access_token)
+                                <p class="secondary-text text-right"><i class="fa fa-check green"></i> Github Linked</p>
+                            @else
+                                <a href="{{ route('github.access') }}" class="btn">Link GitHub</a>
                             @endif
                         </div>
                     </div>
@@ -117,7 +125,6 @@
                             <a href="#users" class="nav-link" aria-controls="users" data-toggle="tab">Users</a>
                         </li>
                     </ul>
-
                     <div class="tab-content">
                         <div class="tab-pane active" role="tabpanel" id="stats">
 
@@ -163,6 +170,27 @@
     @parent
 
     <script type="text/javascript">
+        $('.avatar-container i').click(function() {
+            $('#avatar-upload').click();
+        });
+
+        $('[name="avatar_upload"]').change(function() {
+            var form_data = new FormData();
+            form_data.append('avatar_upload', $('[name="avatar_upload"]').prop('files')[0]);
+
+            $.ajax({
+                url: '/profile/update-avatar',
+                type: 'POST',
+                data: form_data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    $('.avatar').attr('src', data);
+                }
+            });
+        });
+
         function confirmPassword() {
             var $pass = $("[name='password']").val();
             var $pass_confirm = $("[name='password_confirmation']").val();
@@ -171,7 +199,7 @@
                 if ($pass !== $pass_confirm) {
                     $('#password-helper').html('Passwords do not match');
                     $('#password-btn').prop('disabled', true);
-                } else if ($pass.length !== 8) {
+                } else if ($pass.length < 8) {
                     $('#password-helper').html('New passwords must be at least 8 characters');
                     $('#password-btn').prop('disabled', true);
                 } else {

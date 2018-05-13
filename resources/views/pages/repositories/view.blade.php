@@ -10,7 +10,6 @@
                     <tr>
                         <th>Name</th>
                         <th>Repository Name</th>
-                        <th>Repository URL</th>
                         <th>Connected Webhook</th>
                         <th>
                             <a href="{{ route('create.repository') }}" class="btn">Create</a>
@@ -21,9 +20,8 @@
                 @forelse (\App\Models\Repository::all() as $repository)
                     <tr>
                         <td>{{ $repository->title }}</td>
-                        <td>{{ $repository->name }}</td>
                         <td>
-                            <a href="{{ $repository->url }}" target="_blank" class="secondary-text">{{ $repository->url }}</a>
+                            <a href="{{ $repository->url }}" target="_blank" class="secondary-text">{{ $repository->name }}</a>
                         </td>
                         <td>
                             <i class="fa fa-check green"></i> Linked

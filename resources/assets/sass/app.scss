@@ -45,6 +45,10 @@ html, body {
       &.active {
         border-right: 5px solid $accent;
       }
+
+      i {
+        color: $accent;
+      }
     }
   }
 }
@@ -86,7 +90,7 @@ html, body {
         color: white;
         display: block;
         text-decoration: none;
-        margin-bottom: 5px;
+        margin-bottom: 7px;
 
         &:hover {
           opacity: 0.7;
@@ -372,8 +376,55 @@ form {
   padding: 15px 5px;
 }
 
+.avatar {
+  border-radius: 50%;
+  height: 35px;
+  margin-left: 10px;
+  width: 35px;
 
+  &.profile {
+    margin-left: 0;
+    width: 160px;
+  }
+}
 
+.avatar-container {
+  &:hover {
+    cursor: pointer;
+
+    img {
+      transition: 0.2s;
+      opacity: 0.5;
+      z-index: 1;
+    }
+
+    i {
+      color: white;
+      display: block;
+      font-size: 45px;
+      line-height: 160px;
+      text-align: center;
+      transition: 0.2s;
+      width: 160px;
+      z-index: 1;
+    }
+  }
+
+  img {
+    height: 160px;
+    width: 160px;
+    position: absolute;
+  }
+
+  i {
+    display: none;
+    position: absolute;
+  }
+  
+  #avatar-upload {
+    display: none;
+  }
+}
 
 
 

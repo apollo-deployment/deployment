@@ -17,6 +17,7 @@ class User extends Model implements Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'avatar',
         'password',             // Nullable with OAuth
         'github_access_token',  // Password like token to get access on GitHub
         'organization_id',      // A way to separate users

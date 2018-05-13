@@ -89,7 +89,7 @@
             }
         });
 
-        $('[name="public_key"]').change(function(){
+        $('[name="public_key"]').change(function() {
             $('.file-uploaded').text($('[name="public_key"]')[0].files[0].name);
         });
     </script>
