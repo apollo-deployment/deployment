@@ -24,6 +24,8 @@ Route::group(['middleware' => ['web']], function () {
         Route::prefix('organization')->group(function () {
             Route::get('/edit/{organization}', 'OrganizationController@edit')->name('edit.org');
             Route::post('/edit/{organization}', 'OrganizationController@update')->name('update.org');
+            Route::post('/user/create', 'OrganizationController@createUser')->name('create.user');
+            Route::post('/user/delete/{user}', 'OrganizationController@deleteUser')->name('delete.user');
         });
 
         // Deployment plans

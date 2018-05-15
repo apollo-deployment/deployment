@@ -9,7 +9,7 @@
             {{ Form::label('title', 'Title', ['class' => 'required']) }}
             {{ Form::text('title', isset($environment) ? $environment->title : '', ['class' => 'form-control', 'required' => true, 'autofocus', 'placeholder' => 'Production Server']) }}
         </div>
-        @if ($errors->first('title'))
+        @if($errors->first('title'))
             <p class="red">{{ $errors->first('title') }}</p>
         @endif
     </div>
@@ -18,7 +18,7 @@
             {{ Form::label('ip_address', 'Host Address', ['class' => 'required']) }}
             {{ Form::text('ip_address', isset($environment) ? $environment->ip_address : '', ['class' => 'form-control', 'required' => true, 'placeholder' => '255.255.255.254']) }}
         </div>
-        @if ($errors->first('ip_address'))
+        @if($errors->first('ip_address'))
             <p class="red">{{ $errors->first('ip_address') }}</p>
         @endif
     </div>
@@ -27,7 +27,7 @@
             {{ Form::label('ssh_port', 'SSH Port', ['class' => 'required']) }}
             {{ Form::number('ssh_port', isset($environment) ? $environment->ssh_port : 22, ['class' => 'form-control', 'required' => true, 'min' => 1, 'max' => 65535]) }}
         </div>
-        @if ($errors->first('ssh_port'))
+        @if($errors->first('ssh_port'))
             <p class="red">{{ $errors->first('ssh_port') }}</p>
         @endif
     </div>
@@ -39,7 +39,7 @@
             {{ Form::label('authentication_type', 'Authentication Type', ['class' => 'required']) }}
             {{ Form::select('authentication_type', ['password' => 'Password', 'public_key' => 'Public Key'], isset($environment) ? $environment->authenication_type : 'password', ['class' => 'form-control', 'required' => true]) }}
         </div>
-        @if ($errors->first('authentication_type'))
+        @if($errors->first('authentication_type'))
             <p class="red">{{ $errors->first('authentication_type') }}</p>
         @endif
     </div>
@@ -48,7 +48,7 @@
             {{ Form::label('ssh_password', isset($environment) ? 'Update SSH Password' : 'SSH Password', ['class' => 'required']) }}
             {{ Form::password('ssh_password', ['class' => 'form-control', 'required' => true]) }}
         </div>
-        @if ($errors->first('ssh_password'))
+        @if($errors->first('ssh_password'))
             <p class="red">{{ $errors->first('ssh_password') }}</p>
         @endif
     </div>
@@ -60,7 +60,7 @@
             </label>
         </div>
         <p class="file-uploaded secondary-text"></p>
-        @if ($errors->first('public_key'))
+        @if($errors->first('public_key'))
             <p class="red">{{ $errors->first('public_key') }}</p>
         @endif
     </div>

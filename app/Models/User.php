@@ -10,8 +10,6 @@ class User extends Model implements Authenticatable
 {
     use AuthenticatableTrait;
 
-    public $timestamps = true;
-
     protected $table = 'users';
     protected $hidden = ['password'];
     protected $fillable = [
@@ -21,7 +19,7 @@ class User extends Model implements Authenticatable
         'password',             // Nullable with OAuth
         'github_access_token',  // Password like token to get access on GitHub
         'organization_id',      // A way to separate users
-        'is_verified',             // Whether this user is verified or not
+        'is_verified',          // Whether this user is verified or not
         'is_admin',             // If user is an admin of their organization
     ];
 

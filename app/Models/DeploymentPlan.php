@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class DeploymentPlan extends Model
 {
-    public $timestamps = true;
-
     protected $table = 'deployment_plans';
     protected $fillable = [
         'title',

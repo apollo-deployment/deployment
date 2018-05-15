@@ -17,7 +17,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                @forelse (\App\Models\Repository::all() as $repository)
+                @forelse(\App\Models\Repository::all() as $repository)
                     <tr>
                         <td>{{ $repository->title }}</td>
                         <td>

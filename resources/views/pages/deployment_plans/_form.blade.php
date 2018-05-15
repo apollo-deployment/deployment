@@ -11,7 +11,7 @@
                     {{ Form::label('title', 'Title', ['class' => 'required']) }}
                     {{ Form::text('title', isset($plan) ? $plan->title : null, ['class' => 'form-control', 'required' => true, 'autofocus', 'placeholder' => 'ACME Production']) }}
                 </div>
-                @if ($errors->first('title'))
+                @if($errors->first('title'))
                     <p class="red">{{ $errors->first('title') }}</p>
                 @endif
             </div>
@@ -19,7 +19,7 @@
                 <div class="form-group">
                     {{ Form::label('environment_id', 'Environment', ['class' => 'required']) }}
                     <select name="environment_id" class="form-control" required>
-                        @forelse (\App\Models\Environment::all() as $environment)
+                        @forelse(\App\Models\Environment::all() as $environment)
                             <option value="{{ $environment->id }}" {{ isset($plan) && $environment->id === $plan->environment->id ? 'selected' : '' }}>
                                 {{ $environment->title }} - {{ $environment->ip_address }}
                             </option>
@@ -28,7 +28,7 @@
                         @endforelse
                     </select>
                 </div>
-                @if ($errors->first('environment_id'))
+                @if($errors->first('environment_id'))
                     <p class="red">{{ $errors->first('environment_id') }}</p>
                 @endif
             </div>
@@ -37,7 +37,7 @@
                     {{ Form::label('repository_id', 'Repository', ['class' => 'required']) }}
                     {{ Form::select('repository_id', ['' => ''] + \App\Models\Repository::pluck('title', 'id')->toArray(), isset($plan) ? $plan->repository->id : null, ['class' => 'form-control', 'required' => true]) }}
                 </div>
-                @if ($errors->first('repository_id'))
+                @if($errors->first('repository_id'))
                     <p class="red">{{ $errors->first('repository_id') }}</p>
                 @endif
             </div>
@@ -50,7 +50,7 @@
                         {{ Form::label('repository_branch', 'Repository Branch', ['class' => 'required']) }}
                         {{ Form::select('repository_branch', ['' => 'Loading...'], null, ['class' => 'form-control', 'required' => true, 'data-id' => isset($plan) ? $plan->repository_id : null]) }}
                     </div>
-                    @if ($errors->first('repository_branch'))
+                    @if($errors->first('repository_branch'))
                         <p class="red">{{ $errors->first('repository_branch') }}</p>
                     @endif
                 </div>
@@ -59,7 +59,7 @@
                         {{ Form::label('remote_path', 'Remote Project Path', ['class' => 'required']) }}
                         {{ Form::text('remote_path', isset($plan) ? $plan->remote_path : null, ['class' => 'form-control', 'required' => true]) }}
                     </div>
-                    @if ($errors->first('remote_path'))
+                    @if($errors->first('remote_path'))
                         <p class="red">{{ $errors->first('remote_path') }}</p>
                     @endif
                 </div>

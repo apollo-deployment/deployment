@@ -15,7 +15,7 @@
                     <h3 class="text-center">Create an Organization</h3>
                     <p class="secondary-text text-center">Create an admin account for your new organization</p>
 
-                    @if (session()->has('message'))
+                    @if(session()->has('message'))
                         <div class="alert message-success">
                             {{ session()->get('message') }}
                             <a class="close secondary-text" data-dismiss="alert" aria-label="close" title="close">×</a>
@@ -30,7 +30,7 @@
                                     {{ Form::label('title', 'Organization Name') }}
                                     {{ Form::text('title', null, ['class' => 'form-control', 'required' => true]) }}
                                 </div>
-                                @if ($errors->first('title'))
+                                @if($errors->first('title'))
                                     <p class="red">{{ $errors->first('title') }}</p>
                                 @endif
                             </div>
@@ -41,7 +41,7 @@
                                     {{ Form::label('name', 'Full Name') }}
                                     {{ Form::text('name', null, ['class' => 'form-control', 'required' => true]) }}
                                 </div>
-                                @if ($errors->first('name'))
+                                @if($errors->first('name'))
                                     <p class="red">{{ $errors->first('name') }}</p>
                                 @endif
                             </div>
@@ -50,7 +50,7 @@
                                     {{ Form::label('email', 'Email') }}
                                     {{ Form::text('email', null, ['class' => 'form-control', 'required' => true]) }}
                                 </div>
-                                @if ($errors->first('email'))
+                                @if($errors->first('email'))
                                     <p class="red">{{ $errors->first('email') }}</p>
                                 @endif
                             </div>
@@ -68,7 +68,7 @@
                                     {{ Form::password('password_confirmation', ['class' => 'form-control', 'required' => true]) }}
                                 </div>
                             </div>
-                            @if ($errors->first('password'))
+                            @if($errors->first('password'))
                                 <div class="col-md-12">
                                     <p class="red">{{ $errors->first('password') }}</p>
                                 </div>

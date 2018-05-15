@@ -176,7 +176,7 @@ code {
       border-top: 2px solid $light;
 
       tr {
-        &:nth-child(even) {
+        &:nth-child(3) {
           background-color: $light;
         }
 
@@ -211,6 +211,14 @@ code {
           .fa-trash {
             color: $red;
           }
+        }
+
+        .hidden-row {
+          padding: 0 !important;
+        }
+
+        .collapse {
+          padding: 6px;
         }
 
         .repository-name {
@@ -257,10 +265,6 @@ form {
     border-radius: 4px;
     box-shadow: none !important;
     color: white;
-
-    &:focus {
-
-    }
   }
 
   .file {
@@ -426,9 +430,6 @@ form {
   }
 }
 
-
-
-
 .login, .register {
   margin-top: 150px;
 
@@ -472,8 +473,6 @@ form {
     }
   }
 
-
-
   .tab-content {
     padding: 5px;
 
@@ -482,7 +481,7 @@ form {
     }
   }
 
-  .table {
+  table {
     tbody {
       border-top: none !important;
     }

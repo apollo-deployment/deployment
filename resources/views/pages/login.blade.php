@@ -12,7 +12,7 @@
             </div>
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
-                    @if (session()->has('message'))
+                    @if(session()->has('message'))
                         <div class="alert message-success">
                             {{ session()->get('message') }}
                             <a class="close secondary-text" data-dismiss="alert" aria-label="close" title="close">×</a>
@@ -27,10 +27,10 @@
                         <div class="form-group">
                             {{ Form::password('password', ['class' => 'form-control', 'required' => true, 'placeholder' => 'Password']) }}
                         </div>
-                        @if ($errors->any())
+                        @if($errors->any())
                             <p class="red">
                                 {{ $errors->first() }}
-                                @if (session('token'))
+                                @if(session('token'))
                                     <a href="{{ route('verify.resend', ['token' => session('token')]) }}" class="resend secondary-text">Resend</a>
                                 @endif
                             </p>

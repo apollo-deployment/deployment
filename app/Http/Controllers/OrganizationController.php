@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\OrganizationRequest;
 use App\Http\Requests\RegisterOrganizationRequest;
 use App\Mail\EmailVerification;
 use App\Models\Organization;
 use App\Models\User;
 use App\Models\VerifyUser;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
@@ -61,12 +62,36 @@ class OrganizationController extends Controller
     }
 
     /**
-     * Update an existing organization
+     * Create a new user for an organization
      */
-    public function update(Organization $organization, OrganizationRequest $request)
+    public function createUser(Request $request)
     {
-        $organization->update([
-            // Nothing to update yet
+        $user = User::create([
+           'name' => $request->get('user-name'),
+           'email' => $request->get('user-email'),
+           'organization_id' => Auth::user()->organization_id,
+           'password' => Hash::make($request->get('temp-password')),
+           'is_admin' => (boolean)$request->get('is_admin')
         ]);
+
+        VerifyUser::create([
+            'user_id' => $user->id,
+            'token' => str_random(40)
+        ]);
+
+        Mail::to($user->email)->send(new EmailVerification($user));
+
+        return redirect()->route('view.profile')->with(['message' => "Successfully created user for this organization"]);
+    }
+
+    /**
+     * Delete a user from an organization
+     */
+    public function deleteUser(User $user)
+    {
+        $user->verifyUser()->delete();
+        $user->delete();
+
+        return redirect()->route('view.profile')->with(['message' => "Successfully deleted user from this organization"]);
     }
 }

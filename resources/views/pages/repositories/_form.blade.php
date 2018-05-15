@@ -9,7 +9,7 @@
             {{ Form::label('title', 'Name', ['class' => 'required']) }}
             {{ Form::text('title', isset($repository) ? $repository->title : null, ['class' => 'form-control', 'required' => true, 'autofocus']) }}
         </div>
-        @if ($errors->first('title'))
+        @if($errors->first('title'))
             <p class="red">{{ $errors->first('title') }}</p>
         @endif
     </div>
@@ -18,7 +18,7 @@
             {{ Form::label('url', 'Repository URL', ['class' => 'required']) }}
             {{ Form::text('url', isset($repository) ? $repository->url : null, ['class' => 'form-control', 'required' => true]) }}
         </div>
-        @if ($errors->first('url'))
+        @if($errors->first('url'))
             <p class="red">{{ $errors->first('url') }}</p>
         @endif
     </div>

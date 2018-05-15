@@ -41,6 +41,11 @@ class PageController extends Controller
      */
     public function profile()
     {
+        if (Auth::user()->is_admin) {
+            $users = Auth::user()->organization->users();
+
+            return view('pages.profile', compact('users'));
+        }
         return view('pages.profile');
     }
 }

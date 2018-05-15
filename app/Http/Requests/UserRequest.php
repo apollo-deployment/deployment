@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
-class OrganizationRequest extends FormRequest
+class UserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +13,7 @@ class OrganizationRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->is_admin;
+        return false;
     }
 
     /**
@@ -25,7 +24,10 @@ class OrganizationRequest extends FormRequest
     public function rules()
     {
         return [
-
+            'user-name' => 'required',
+            'user-email' => 'required|unique:users,email',
+            'password' => 'required',
+            'is_admin' => 'required'
         ];
     }
 }

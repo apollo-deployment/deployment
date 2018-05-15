@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Environment extends Model
 {
-    public $timestamps = true;
-
     protected $table = 'environments';
     protected $hidden = ['ssh_username', 'ssh_password', 'private_key_path'];
     protected $fillable = [

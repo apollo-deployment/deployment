@@ -18,14 +18,14 @@
                         </th>
                     </tr>
                 </thead>
-                @forelse (\App\Models\Repository::all() as $repository)
+                @forelse(\App\Models\Repository::all() as $repository)
                     <tbody>
-                        @forelse ($repository->deploymentPlans as $plan)
+                        @forelse($repository->deploymentPlans as $plan)
                             <tr>
                                 <td class="repository-name">{{ $loop->first ? $repository->title : '' }}</td>
                                 <td>{{ $plan->title }}</td>
                                 <td>{{ $plan->environment->title }}</td>
-                                @if (isset($plan->deployed_version))
+                                @if(isset($plan->deployed_version))
                                     <td>{{ $plan->deployed_version }}</td>
                                     <td>{{ $plan->repository_branch }}</td>
                                 @else

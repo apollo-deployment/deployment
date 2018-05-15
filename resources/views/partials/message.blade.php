@@ -1,5 +1,5 @@
 
-@if (session()->has('message'))
+@if(session()->has('message'))
     <div class="alert message-success">
         {{ session()->get('message') }}
         <a class="close secondary-text" data-dismiss="alert" aria-label="close" title="close">×</a>

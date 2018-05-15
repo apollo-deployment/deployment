@@ -1,12 +1,11 @@
 
-<div class="modal fade" id="delete-repository-{{ $repository->id }}" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="delete-user-{{ $user->id }}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                <h4>Delete {{ $repository->title }}?</h4>
-                <p class="secondary-text"><span class="red">Warning: </span> This will delete all running deployment plans</p>
+                <h4>Delete {{ $user->name }}?</h4>
 
-                <form action="{{ route('delete.repository', compact('repository')) }}" method="POST">
+                <form action="{{ route('delete.user', compact('user')) }}" method="POST">
                     {{ csrf_field() }}
                     <div class="row">
                         <div class="col-md-12">
