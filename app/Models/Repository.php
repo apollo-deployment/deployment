@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Repository extends Model
 {
-    public $timestamps = true;
-
     protected $table = 'repositories';
     protected $fillable = [
         'title',    // User given name

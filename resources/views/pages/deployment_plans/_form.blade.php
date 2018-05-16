@@ -4,69 +4,104 @@
 {{ csrf_field() }}
 
 <div class="row">
-    <div class="col-md-4">
-        <div class="form-group">
-            {{ Form::label('title', 'Title', ['class' => 'required']) }}
-            {{ Form::text('title', isset($plan) ? $plan->title : null, ['class' => 'form-control', 'required' => true, 'autofocus', 'placeholder' => 'ACME Production']) }}
+    <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    {{ Form::label('title', 'Title', ['class' => 'required']) }}
+                    {{ Form::text('title', isset($plan) ? $plan->title : null, ['class' => 'form-control', 'required' => true, 'autofocus', 'placeholder' => 'ACME Production']) }}
+                </div>
+                @if($errors->first('title'))
+                    <p class="red">{{ $errors->first('title') }}</p>
+                @endif
+            </div>
+            <div class="col-md-5">
+                <div class="form-group">
+                    {{ Form::label('environment_id', 'Environment', ['class' => 'required']) }}
+                    <select name="environment_id" class="form-control" required>
+                        @forelse(\App\Models\Environment::all() as $environment)
+                            <option value="{{ $environment->id }}" {{ isset($plan) && $environment->id === $plan->environment->id ? 'selected' : '' }}>
+                                {{ $environment->title }} - {{ $environment->ip_address }}
+                            </option>
+                        @empty
+                            <option value="">No environments</option>
+                        @endforelse
+                    </select>
+                </div>
+                @if($errors->first('environment_id'))
+                    <p class="red">{{ $errors->first('environment_id') }}</p>
+                @endif
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    {{ Form::label('repository_id', 'Repository', ['class' => 'required']) }}
+                    {{ Form::select('repository_id', ['' => ''] + \App\Models\Repository::pluck('title', 'id')->toArray(), isset($plan) ? $plan->repository->id : null, ['class' => 'form-control', 'required' => true]) }}
+                </div>
+                @if($errors->first('repository_id'))
+                    <p class="red">{{ $errors->first('repository_id') }}</p>
+                @endif
+            </div>
         </div>
-        @if ($errors->first('title'))
-            <p class="red">{{ $errors->first('title') }}</p>
-        @endif
-    </div>
-    <div class="col-md-5">
-        <div class="form-group">
-            {{ Form::label('environment_id', 'Environment', ['class' => 'required']) }}
-            <select name="environment_id" class="form-control" required>
-                @forelse (\App\Models\Environment::all() as $environment)
-                    <option value="{{ $environment->id }}" {{ isset($plan) && $environment->id === $plan->environment->id ? 'selected' : '' }}>
-                        {{ $environment->title }} - {{ $environment->ip_address }}
-                    </option>
-                @empty
-                    <option value="">No environments</option>
-                @endforelse
-            </select>
-        </div>
-        @if ($errors->first('environment_id'))
-            <p class="red">{{ $errors->first('environment_id') }}</p>
-        @endif
-    </div>
-    <div class="col-md-3">
-        <div class="form-group">
-            {{ Form::label('repository_id', 'Repository', ['class' => 'required']) }}
-            {{ Form::select('repository_id', ['' => ''] + \App\Models\Repository::pluck('name', 'id')->toArray(), isset($plan) ? $plan->repository->id : null, ['class' => 'form-control', 'required' => true]) }}
-        </div>
-        @if ($errors->first('repository_id'))
-            <p class="red">{{ $errors->first('repository_id') }}</p>
-        @endif
-    </div>
-</div>
 
-<div id="hide" style="display: {{ isset($plan) ? 'block' : 'none' }}">
-    <div class="row">
-        <div class="col-md-4">
-            <div class="form-group">
-                {{ Form::label('repository_branch', 'Repository Branch', ['class' => 'required']) }}
-                {{ Form::select('repository_branch', ['' => 'Loading...'], null, ['class' => 'form-control', 'required' => true, 'data-id' => isset($plan) ? $plan->repository_id : null]) }}
+        <div id="hide" style="display: {{ isset($plan) ? 'block' : 'none' }}">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        {{ Form::label('repository_branch', 'Repository Branch', ['class' => 'required']) }}
+                        {{ Form::select('repository_branch', ['' => 'Loading...'], null, ['class' => 'form-control', 'required' => true, 'data-id' => isset($plan) ? $plan->repository_id : null]) }}
+                    </div>
+                    @if($errors->first('repository_branch'))
+                        <p class="red">{{ $errors->first('repository_branch') }}</p>
+                    @endif
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        {{ Form::label('remote_path', 'Remote Project Path', ['class' => 'required']) }}
+                        {{ Form::text('remote_path', isset($plan) ? $plan->remote_path : null, ['class' => 'form-control', 'required' => true]) }}
+                    </div>
+                    @if($errors->first('remote_path'))
+                        <p class="red">{{ $errors->first('remote_path') }}</p>
+                    @endif
+                </div>
             </div>
-            @if ($errors->first('repository_branch'))
-                <p class="red">{{ $errors->first('repository_branch') }}</p>
-            @endif
         </div>
-        <div class="col-md-8">
-            <div class="form-group">
-                {{ Form::label('remote_path', 'Remote Project Path', ['class' => 'required']) }}
-                {{ Form::text('remote_path', isset($plan) ? $plan->remote_path : null, ['class' => 'form-control', 'required' => true]) }}
-            </div>
-            @if ($errors->first('remote_path'))
-                <p class="red">{{ $errors->first('remote_path') }}</p>
-            @endif
-        </div>
+    </div>
+    <div class="col-md-4">
+
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-12">
         {{ Form::submit(isset($plan) ? 'Update' : 'Create', ['class' => 'btn']) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <ul class="nav nav-tabs">
+            <li class="nav-item active">
+                <a href="#commands" class="nav-link" aria-controls="commands" data-toggle="tab">Commands</a>
+            </li>
+            <li class="nav-item">
+                <a href="#notifications" class="nav-link" aria-controls="notifications" data-toggle="tab">Notifications</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" role="tabpanel" id="commands">
+                <div class="row">
+                    <div class="col-md-4">
+
+                    </div>
+                    <div class="col-md-8">
+                        {{ Form::textarea('commands', null, ['id' => 'commands-editor']) }}
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" role="tabpanel" id="notifications">
+
+            </div>
+        </div>
     </div>
 </div>
 
@@ -79,6 +114,10 @@
             if (plan_exists) {
                 getBranches($('[name="repository_branch"]')[0].getAttribute('data-id'));
             }
+
+            CodeMirror.fromTextArea(document.getElementById('commands-editor'), {
+                lineNumbers: true
+            });
         });
 
         $('[name="repository_id"]').on('change', function() {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\EnvironmentRequest;
 use App\Models\Environment;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Storage;
 
 class EnvironmentController extends Controller
 {
@@ -37,7 +38,13 @@ class EnvironmentController extends Controller
      */
     public function store(EnvironmentRequest $request)
     {
-        // file
+        if ($request->hasFile('private_key')) {
+            $file = $request->file('private_key');
+            $file_name = time() . '.' . $file->getClientOriginalExtension();
+
+            Storage::putFileAs('ssh_keys', $file, $file_name);
+        }
+
         $environment = Environment::create([
             'title' => $request->get('title'),
             'ip_address' => $request->get('ip_address'),
@@ -45,6 +52,7 @@ class EnvironmentController extends Controller
             'authentication_type' => $request->get('authentication_type'),
             'ssh_username' =>  Crypt::encryptString($request->get('ssh_username')),
             'ssh_password' =>  Crypt::encryptString($request->get('ssh_password')),
+            'private_key_path' => isset($file_name) ? $file_name : null
         ]);
 
         return redirect()->route('view.environments')->with(['message' =>"Successfully created environment '{$environment->title}'"]);
@@ -53,8 +61,19 @@ class EnvironmentController extends Controller
     /**
      * Update existing web server
      */
-    public function update(EnvironmentRequest $request, Environment $environment)
+    public function update(Environment $environment, EnvironmentRequest $request)
     {
+        if ($request->hasFile('private_key')) {
+            $file = $request->file('private_key');
+            $file_name = time() . '.' . $file->getClientOriginalExtension();
+
+            Storage::putFileAs('ssh_keys', $file, $file_name);
+
+            if ($environment->private_key_path) {
+                Storage::delete("ssh_keys/{$environment->private_key_path}");
+            }
+        }
+
         $environment->update([
             'title' => $request->get('title'),
             'ip_address' => $request->get('ip_address'),
@@ -62,6 +81,7 @@ class EnvironmentController extends Controller
             'authentication_type' => $request->get('authentication_type'),
             'ssh_username' =>  Crypt::encryptString($request->get('ssh_username')),
             'ssh_password' =>  Crypt::encryptString($request->get('ssh_password')),
+            'private_key_path' => isset($file_name) ? $file_name : null
         ]);
 
         return redirect()->route('view.environments')->with(['message' => "Successfully updated web environment  '{$environment->title}'"]);

@@ -11,8 +11,8 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4 col-md-offset-4 panel">
-                    @if (session()->has('message'))
+                <div class="col-md-4 col-md-offset-4">
+                    @if(session()->has('message'))
                         <div class="alert message-success">
                             {{ session()->get('message') }}
                             <a class="close secondary-text" data-dismiss="alert" aria-label="close" title="close">×</a>
@@ -22,19 +22,22 @@
                     <form action="{{ route('login') }}" method="POST">
                         {{ csrf_field() }}
                         <div class="form-group">
-                            {{ Form::label('email', 'Email') }}
-                            {{ Form::text('email', null, ['class' => 'form-control', 'required' => true]) }}
+                            {{ Form::text('email', null, ['class' => 'form-control', 'required' => true, 'placeholder' => 'Email']) }}
                         </div>
                         <div class="form-group">
-                            {{ Form::label('password', 'Password') }}
-                            {{ Form::password('password', ['class' => 'form-control', 'required' => true]) }}
+                            {{ Form::password('password', ['class' => 'form-control', 'required' => true, 'placeholder' => 'Password']) }}
                         </div>
-                        @if ($errors->any())
-                            <p class="red">{{ $errors->first() }}</p>
+                        @if($errors->any())
+                            <p class="red">
+                                {{ $errors->first() }}
+                                @if(session('token'))
+                                    <a href="{{ route('verify.resend', ['token' => session('token')]) }}" class="resend secondary-text">Resend</a>
+                                @endif
+                            </p>
                         @endif
                         <div class="row">
                             <div class="col-md-6">
-                                <label class="checkbox-container">Remember Me
+                                <label class="checkbox-container secondary-text">Remember Me
                                     <input type="checkbox" name="remember_me">
                                     <span class="checkmark"></span>
                                 </label>

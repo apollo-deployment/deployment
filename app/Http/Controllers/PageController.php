@@ -7,6 +7,14 @@ use Illuminate\Support\Facades\Auth;
 class PageController extends Controller
 {
     /**
+     * Main view
+     */
+    public function index()
+    {
+        return redirect()->route('view.deployment-plans');
+    }
+
+    /**
      * View for user login
      */
     public function login()
@@ -33,6 +41,11 @@ class PageController extends Controller
      */
     public function profile()
     {
+        if (Auth::user()->is_admin) {
+            $users = Auth::user()->organization->users();
+
+            return view('pages.profile', compact('users'));
+        }
         return view('pages.profile');
     }
 }

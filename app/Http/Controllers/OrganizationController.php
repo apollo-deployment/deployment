@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\OrganizationRequest;
 use App\Http\Requests\RegisterOrganizationRequest;
+use App\Http\Requests\UserRequest;
 use App\Mail\EmailVerification;
 use App\Models\Organization;
 use App\Models\User;
@@ -36,7 +36,7 @@ class OrganizationController extends Controller
     public function store(RegisterOrganizationRequest $request)
     {
         if (Organization::where('title', $request->get('title'))->first()) {
-            return redirect()->route('register.org')->withErrors("Organization with that name already exists");
+            return redirect()->route('register.org')->withErrors(['title' => "Organization with that name already exists"]);
         }
 
         $organization = Organization::create([
@@ -61,35 +61,51 @@ class OrganizationController extends Controller
         return redirect()->route('register.org')->with(['message' => "Please check your email to verify your new account"]);
     }
 
-    public function update(Organization $organization, OrganizationRequest $request)
+    /**
+     * Create a new user for an organization
+     */
+    public function createUser(UserRequest $request)
     {
-        $organization->update([
-            // Nothing to update yet
+        $user = User::create([
+           'name' => $request->get('user-name'),
+           'email' => $request->get('user-email'),
+           'organization_id' => Auth::user()->organization_id,
+           'password' => Hash::make($request->get('temp-password')),
+           'is_admin' => (boolean)$request->get('is_admin')
         ]);
+
+        VerifyUser::create([
+            'user_id' => $user->id,
+            'token' => str_random(40)
+        ]);
+
+        Mail::to($user->email)->send(new EmailVerification($user));
+
+        return redirect()->route('view.profile')->with(['message' => "Successfully created user for this organization"]);
     }
 
     /**
-     * Verifies a new user account
+     * Updates existing user in an organization
      */
-    public function verify($token)
+    public function updateUser(User $user, UserRequest $request)
     {
-        $verify_user = VerifyUser::where('token', $token)->first();
+        $user->update([
+            'name' => $request->get('user-name'),
+            'email' => $request->get('user-email'),
+            'is_admin' => (boolean)$request->get('is_admin')
+        ]);
 
-        if (isset($verify_user)) {
-            $user = $verify_user->user;
+        return redirect()->route('view.profile')->with(['message' => "Successfully updated {$user->name}"]);
+    }
 
-            // Set user to verified
-            if (! $user->verified) {
-                $user->update([
-                    'verified' => true
-                ]);
+    /**
+     * Delete a user from an organization
+     */
+    public function deleteUser(User $user)
+    {
+        $user->verifyUser()->delete();
+        $user->delete();
 
-                return redirect()->route('view.login')->with(['message' => "Your e-mail was successfully verified"]);
-            } else {
-                return redirect()->route('view.login')->with(['message' => "Your e-mail was already verified"]);
-            }
-        } else {
-            return redirect()->route('view.login')->withErrors("Sorry, your email cannot be identified");
-        }
+        return redirect()->route('view.profile')->with(['message' => "Successfully deleted user from this organization"]);
     }
 }

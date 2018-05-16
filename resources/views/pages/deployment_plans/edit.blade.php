@@ -1,18 +1,14 @@
 @extends('layouts.base')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="header">
-                    <p>Update {{ $plan->title }}</p><code>{{ $plan->repository_branch }}</code>
-                </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="header">
+                <p><i class="fa fa-wrench"></i> Update {{ $plan->title }} <code>{{ $plan->repository_branch }}</code></p>
             </div>
         </div>
-        <div class="panel">
-            <form action="{{ route('update.deployment-plan', compact('plan')) }}" method="POST" enctype="multipart/form-data">
-                @include('pages.deployment_plans._form', compact('plan'))
-            </form>
-        </div>
     </div>
+    <form action="{{ route('update.deployment-plan', compact('plan')) }}" method="POST">
+        @include('pages.deployment_plans._form', compact('plan'))
+    </form>
 @endsection
