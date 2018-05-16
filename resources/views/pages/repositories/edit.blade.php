@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="header">
-                <p>Update {{ $repository->title }}</p>
+                <p><i class="fa fa-code"></i> Update {{ $repository->title }}</p>
             </div>
         </div>
     </div>

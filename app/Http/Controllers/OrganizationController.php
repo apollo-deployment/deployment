@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterOrganizationRequest;
+use App\Http\Requests\UserRequest;
 use App\Mail\EmailVerification;
 use App\Models\Organization;
 use App\Models\User;
 use App\Models\VerifyUser;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -64,7 +64,7 @@ class OrganizationController extends Controller
     /**
      * Create a new user for an organization
      */
-    public function createUser(Request $request)
+    public function createUser(UserRequest $request)
     {
         $user = User::create([
            'name' => $request->get('user-name'),
@@ -82,6 +82,20 @@ class OrganizationController extends Controller
         Mail::to($user->email)->send(new EmailVerification($user));
 
         return redirect()->route('view.profile')->with(['message' => "Successfully created user for this organization"]);
+    }
+
+    /**
+     * Updates existing user in an organization
+     */
+    public function updateUser(User $user, UserRequest $request)
+    {
+        $user->update([
+            'name' => $request->get('user-name'),
+            'email' => $request->get('user-email'),
+            'is_admin' => (boolean)$request->get('is_admin')
+        ]);
+
+        return redirect()->route('view.profile')->with(['message' => "Successfully updated {$user->name}"]);
     }
 
     /**

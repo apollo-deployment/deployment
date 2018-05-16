@@ -36,7 +36,7 @@
                                 </p>
                                 <div class="dropdown-menu pull-right">
                                     <a class="dropdown-item" href="{{ route('view.profile') }}">
-                                        <i class="fa fa-user accent"></i> Settings
+                                        <i class="fa fa-cog accent"></i> Settings
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}">
                                         <i class="fa fa-sign-out accent"></i> Logout
@@ -85,6 +85,7 @@
 
         {{-- Scripts --}}
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+        {{--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>--}}
 
         @yield('scripts')
     </body>

@@ -191,9 +191,10 @@ code {
           border-top: none;
 
           button, .action {
-            color: white;
             background: none;
             border: none;
+            color: white;
+            cursor: pointer;
             font-size: 17px;
             float: right;
             margin-left: 15px;

@@ -124,13 +124,13 @@
                         <li class="nav-item">
                             <a href="#users" class="nav-link" aria-controls="users" data-toggle="tab">Users</a>
                         </li>
-                        <button data-toggle="modal" data-target="#create-user-modal" class="btn" id="create-user" style="display: none">
+                        <button data-toggle="modal" data-target="#user-modal" class="btn" id="create-user" style="display: none">
                             Create
                         </button>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" role="tabpanel" id="stats">
-
+                            <canvas id="myChart" width="400" height="400"></canvas>
                         </div>
                         <div class="tab-pane" role="tabpanel" id="users">
                             <table class="table">
@@ -149,7 +149,7 @@
                                             <button data-toggle="modal" data-target="#delete-user-{{ $user->id }}">
                                                 <i class="fa fa-trash action"></i>
                                             </button>
-                                            <a data-toggle="modal" data-target="">
+                                            <a data-toggle="modal" data-target="#user-modal-{{ $user->id }}">
                                                 <i class="fa fa-cog action"></i>
                                             </a>
                                         </td>
@@ -166,11 +166,10 @@
                 </div>
             </div>
 
-            {{-- Include user modals --}}
-            @include('partials.organizations.create-user-modal')
-            @foreach($users as $user)
-                @include('partials.organizations.delete-user-modal', compact('user'))
-            @endforeach
+            {{-- Include modals --}}
+            @include('partials.organizations.user-modal')
+            @each('partials.organizations.user-modal', $users, 'org_user')
+            @each('partials.organizations.delete-user-modal', $users, 'org_user')
         @endif
     </div>
 @endsection
@@ -231,5 +230,8 @@
                 }
             }
         }
+    </script>
+    <script>
+
     </script>
 @endsection

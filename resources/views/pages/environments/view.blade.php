@@ -21,7 +21,7 @@
                     <tr>
                         <td>{{ $environment->title }}</td>
                         <td>{{ $environment->ip_address }}</td>
-                        <td>{{ ucfirst($environment->authentication_type) }}</td>
+                        <td>{{ ucwords(str_replace('_', ' ', $environment->authentication_type)) }}</td>
                         <td>
                             <button data-toggle="modal" data-target="#delete-environment-{{ $environment->id }}">
                                 <i class="fa fa-trash action"></i>

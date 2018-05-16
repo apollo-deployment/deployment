@@ -37,7 +37,7 @@
     <div class="col-md-4">
         <div class="form-group">
             {{ Form::label('authentication_type', 'Authentication Type', ['class' => 'required']) }}
-            {{ Form::select('authentication_type', ['password' => 'Password', 'public_key' => 'Public Key'], isset($environment) ? $environment->authenication_type : 'password', ['class' => 'form-control', 'required' => true]) }}
+            {{ Form::select('authentication_type', ['password' => 'Password', 'private_key' => 'Private Key'], isset($environment) ? $environment->authentication_type : 'password', ['class' => 'form-control', 'required' => true]) }}
         </div>
         @if($errors->first('authentication_type'))
             <p class="red">{{ $errors->first('authentication_type') }}</p>
@@ -52,16 +52,16 @@
             <p class="red">{{ $errors->first('ssh_password') }}</p>
         @endif
     </div>
-    <div class="col-md-8" id="public_key" style="display: {{ $errors->first('public_key') ? 'inline-block' : 'none' }}">
+    <div class="col-md-8" id="private_key" style="display: {{ $errors->first('private_key') ? 'inline-block' : 'none' }}">
         <div class="form-group">
             <label class="file btn">
                 Upload Key
-                {{ Form::file('public_key', null, ['class' => 'form-control']) }}
+                {{ Form::file('private_key') }}
             </label>
         </div>
-        <p class="file-uploaded secondary-text"></p>
-        @if($errors->first('public_key'))
-            <p class="red">{{ $errors->first('public_key') }}</p>
+        <p class="file-uploaded secondary-text">{{ isset($environment) ? 'Change Key' : '' }}</p>
+        @if($errors->first('private_key'))
+            <p class="red">{{ $errors->first('private_key') }}</p>
         @endif
     </div>
 </div>
@@ -74,23 +74,28 @@
 
 @section('scripts')
     <script type="text/javascript">
+        if (@json(isset($environment) && $environment->private_key_path)) {
+            $('#ssh_password').hide();
+            $('#private_key').show();
+        }
+
         // Hide/show section on login selection
         $('[name="authentication_type"]').on('change', function() {
             if (this.value == 'password') {
                 $('#ssh_password').show();
                 $('[name="ssh_password"]').prop('required', true);
-                $('#public_key').hide();
-                $('[name="public_key"]').prop('required', false);
+                $('#private_key').hide();
+                $('[name="private_key"]').prop('required', false);
             } else {
-                $('#public_key').show();
-                $('[name="public_key"]').prop('required', true);
+                $('#private_key').show();
+                $('[name="private_key"]').prop('required', true);
                 $('#ssh_password').hide();
                 $('[name="ssh_password"]').prop('required', false);
             }
         });
 
-        $('[name="public_key"]').change(function() {
-            $('.file-uploaded').text($('[name="public_key"]')[0].files[0].name);
+        $('[name="private_key"]').change(function() {
+            $('.file-uploaded').text($('[name="private_key"]')[0].files[0].name);
         });
     </script>
 @endsection

@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="header">
-                <p>Create Repository</p>
+                <p><i class="fa fa-code"></i> Create Repository</p>
             </div>
         </div>
     </div>
