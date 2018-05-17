@@ -23,10 +23,15 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules =  [
             'user-name' => 'required',
-            'user-email' => 'required|unique:users,email,' . $this->user->id,
-            'is_admin' => 'required'
+            'user-email' => 'required|unique:users,email'
         ];
+
+        if ($this->user) {
+            $rules['user-email'] .= ',' . $this->user->id;
+        }
+
+        return $rules;
     }
 }

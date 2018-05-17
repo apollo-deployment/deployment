@@ -32,6 +32,13 @@ class VerifyPermission
             }
         }
 
+        // Check deployment plan editing
+        if ($request->route()->parameter('plan')) {
+            if ($request->route()->parameter('plan')->organization_id !== Auth::user()->organization_id) {
+                $has_permission = false;
+            }
+        }
+
         if (! $has_permission) {
             return redirect()->route('view.deployment-plans')->withErrors("You do not have permission for that action");
         }

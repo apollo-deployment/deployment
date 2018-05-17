@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DeploymentPlanRequest;
 use App\Models\DeploymentPlan;
+use Illuminate\Support\Facades\Auth;
 
 class DeploymentPlanController extends Controller
 {
@@ -37,6 +38,7 @@ class DeploymentPlanController extends Controller
     public function store(DeploymentPlanRequest $request)
     {
         $plan = DeploymentPlan::create([
+            'organization_id' => Auth::user()->organization_id,
             'title' => $request->get('title'),
             'environment_id' => $request->get('environment_id'),
             'repository_id' => $request->get('repository_id'),

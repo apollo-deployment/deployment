@@ -8,6 +8,7 @@ class DeploymentPlan extends Model
 {
     protected $table = 'deployment_plans';
     protected $fillable = [
+        'organization_id',
         'title',
         'environment_id',
         'repository_id',

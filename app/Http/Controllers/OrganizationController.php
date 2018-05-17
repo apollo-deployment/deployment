@@ -103,6 +103,13 @@ class OrganizationController extends Controller
      */
     public function deleteUser(User $user)
     {
+        // Change ownership of all the users repositories
+        foreach ($user->repositories() as $repo) {
+            $repo->update([
+               'user_id' => Auth::id()
+            ]);
+        }
+
         $user->verifyUser()->delete();
         $user->delete();
 

@@ -130,7 +130,7 @@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" role="tabpanel" id="stats">
-                            <canvas id="myChart" width="400" height="400"></canvas>
+
                         </div>
                         <div class="tab-pane" role="tabpanel" id="users">
                             <table class="table">
@@ -230,8 +230,5 @@
                 }
             }
         }
-    </script>
-    <script>
-
     </script>
 @endsection

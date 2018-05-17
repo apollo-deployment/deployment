@@ -32,6 +32,14 @@ class User extends Model implements Authenticatable
     }
 
     /**
+     * Gets all the repositories this user owns
+     */
+    public function repositories()
+    {
+        return $this->hasMany('App\Models\Repository');
+    }
+
+    /**
      * Get whether this user is verified
      */
     public function verifyUser()
