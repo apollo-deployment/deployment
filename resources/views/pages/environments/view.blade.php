@@ -17,7 +17,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                @forelse(\App\Models\Environment::all() as $environment)
+                @forelse($environments as $environment)
                     <tr>
                         <td>{{ $environment->title }}</td>
                         <td>{{ $environment->ip_address }}</td>

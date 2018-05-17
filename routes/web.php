@@ -51,7 +51,7 @@ Route::group(['middleware' => ['web']], function () {
         });
 
         // Environments
-        Route::prefix('environments')->group(function () {
+        Route::prefix('environments')->middleware('permission')->group(function () {
             Route::get('/', 'EnvironmentController@view')->name('view.environments');
             Route::get('/create', 'EnvironmentController@create')->name('create.environment');
             Route::post('/create', 'EnvironmentController@store')->name('store.environment');
