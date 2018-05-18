@@ -29,6 +29,7 @@ class DeploymentPlanController extends Controller
      */
     public function edit(DeploymentPlan $plan)
     {
+        dd(htmlspecialchars($plan->commands));
         return view('pages.deployment_plans.edit', compact('plan'));
     }
 
@@ -45,6 +46,7 @@ class DeploymentPlanController extends Controller
             'repository_branch' => $request->get('repository_branch'),
             'is_automatic' => true, // CHANGE
             'remote_path' => $request->get('remote_path'),
+            'commands' => str_replace('\r\n','<br>',$request->get('commands'))
         ]);
 
         return redirect()->route('view.deployment-plans')->with(['message' => "Successfully created deployment plan '{$plan->title}'"]);

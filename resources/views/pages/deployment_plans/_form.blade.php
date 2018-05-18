@@ -74,7 +74,7 @@
         </div>
     </div>
     <div class="col-md-6">
-        {{ Form::textarea('commands', null, ['id' => 'commands-editor']) }}
+        {{ Form::textarea('commands', null, ['id' => 'commands-editor', 'data-commands' => isset($plan) ? json_encode($plan->commands) : ""]) }}
     </div>
 </div>
 
@@ -90,7 +90,7 @@
 
             CodeMirror.fromTextArea(document.getElementById('commands-editor'), {
                 lineNumbers: true
-            });
+            }).setValue(plan_exists ? $('[name="commands"]')[0].getAttribute('data-commands') : "");
         });
 
         $('[name="repository_id"]').on('change', function() {
