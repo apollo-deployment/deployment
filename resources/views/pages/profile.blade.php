@@ -102,7 +102,7 @@
                                     </div>
                                 </div>
                             </div>
-                            {{ Form::submit('Update', ['class' => 'btn', 'id' => 'password-btn']) }}
+                            {{ Form::submit('Change', ['class' => 'btn', 'id' => 'password-btn']) }}
                         </form>
                     </div>
                 </div>
@@ -139,7 +139,7 @@
                                     <tr>
                                         <td>
                                             {{ $user->name }}
-                                            @if(! $user->is_verified)
+                                            @if(!$user->is_verified)
                                                 <code>Not Verified</code>
                                             @endif
                                         </td>

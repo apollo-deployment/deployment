@@ -59,7 +59,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     {{ Form::label('remote_path', 'Remote Project Path', ['class' => 'required']) }}
-                    {{ Form::text('remote_path', isset($plan) ? $plan->remote_path : null, ['class' => 'form-control', 'required' => true]) }}
+                    {{ Form::text('remote_path', isset($plan) ? $plan->remote_path : null, ['class' => 'form-control', 'required' => true, 'placeholder' => '/var/www/acme']) }}
                 </div>
                 @if($errors->first('remote_path'))
                     <p class="red">{{ $errors->first('remote_path') }}</p>

@@ -39,7 +39,7 @@ class VerifyPermission
             }
         }
 
-        if (! $has_permission) {
+        if (!$has_permission) {
             return redirect()->route('view.deployment-plans')->withErrors("You do not have permission for that action");
         }
 
