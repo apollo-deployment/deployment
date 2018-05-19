@@ -176,7 +176,7 @@ code {
       border-top: 2px solid $light;
 
       tr {
-        &:nth-child(3) {
+        &:nth-child(even) {
           background-color: $light;
         }
 
