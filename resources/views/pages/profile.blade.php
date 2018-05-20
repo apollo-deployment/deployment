@@ -102,7 +102,7 @@
                                     </div>
                                 </div>
                             </div>
-                            {{ Form::submit('Update', ['class' => 'btn', 'id' => 'password-btn']) }}
+                            {{ Form::submit('Change', ['class' => 'btn', 'id' => 'password-btn']) }}
                         </form>
                     </div>
                 </div>
@@ -130,7 +130,7 @@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" role="tabpanel" id="stats">
-                            <canvas id="myChart" width="400" height="400"></canvas>
+
                         </div>
                         <div class="tab-pane" role="tabpanel" id="users">
                             <table class="table">
@@ -139,7 +139,7 @@
                                     <tr>
                                         <td>
                                             {{ $user->name }}
-                                            @if(! $user->is_verified)
+                                            @if(!$user->is_verified)
                                                 <code>Not Verified</code>
                                             @endif
                                         </td>
@@ -161,6 +161,7 @@
                                 @endforelse
                                 </tbody>
                             </table>
+                            <p class="text-center secondary-dark">Displaying {{ count($users) }} user{{ count($users) > 1 ? 's' : '' }}</p>
                         </div>
                     </div>
                 </div>
@@ -230,8 +231,5 @@
                 }
             }
         }
-    </script>
-    <script>
-
     </script>
 @endsection

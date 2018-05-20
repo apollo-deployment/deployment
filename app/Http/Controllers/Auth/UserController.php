@@ -26,7 +26,7 @@ class UserController extends Controller
             $user = User::where('email', $request->get('email'))->firstOrFail();
 
             // Check if account is verified
-            if (! $user->is_verified) {
+            if (!$user->is_verified) {
                 $token = $user->verifyUser()->first()->token;
                 return redirect()->route('view.login')->with('token', $token)->withErrors('Please verify your email before logging in.');
             }
@@ -107,7 +107,7 @@ class UserController extends Controller
             $user = User::where('email', $google_user->email)->firstOrFail();
 
             // Check if account is verified
-            if (! $user->is_verified) {
+            if (!$user->is_verified) {
                 $token = $user->verifyUser()->first()->token;
                 return redirect()->route('view.login')->with('token', $token)->withErrors('Please verify your email before logging in.');
             }
@@ -132,7 +132,7 @@ class UserController extends Controller
             $user = $verify_user->user;
 
             // Set user to verified
-            if (! $user->verified) {
+            if (!$user->verified) {
                 $user->update([
                     'is_verified' => true
                 ]);

@@ -81,7 +81,7 @@ class OrganizationController extends Controller
 
         Mail::to($user->email)->send(new EmailVerification($user));
 
-        return redirect()->route('view.profile')->with(['message' => "Successfully created user for this organization"]);
+        return redirect()->route('view.profile')->with(['message' => "Successfully added {$user->name} to your organization"]);
     }
 
     /**
@@ -103,6 +103,13 @@ class OrganizationController extends Controller
      */
     public function deleteUser(User $user)
     {
+        // Change ownership of all the users repositories
+        foreach ($user->repositories() as $repo) {
+            $repo->update([
+               'user_id' => Auth::id()
+            ]);
+        }
+
         $user->verifyUser()->delete();
         $user->delete();
 

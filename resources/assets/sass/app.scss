@@ -154,12 +154,6 @@ code {
       font-size: 16px;
       margin: 0;
     }
-
-    code {
-      background-color: $medium;
-      margin-left: 15px;
-      padding: 5px 10px;
-    }
   }
 
   table {
@@ -176,7 +170,7 @@ code {
       border-top: 2px solid $light;
 
       tr {
-        &:nth-child(3) {
+        &:nth-child(even) {
           background-color: $light;
         }
 
@@ -266,6 +260,10 @@ form {
     border-radius: 4px;
     box-shadow: none !important;
     color: white;
+
+    &:disabled {
+      background-color: $light !important;
+    }
   }
 
   .file {
@@ -295,6 +293,8 @@ form {
   // Overwrite built-in styles
   .CodeMirror {
     color: white;
+    font-size: 13px !important;
+    height: 78vh;
 
     .CodeMirror-cursor {
       border-left: 1px solid white;
@@ -317,6 +317,10 @@ form {
 
 .nav-tabs {
   border-bottom: 1px solid $light;
+
+  &.deployment-tabs {
+    margin-top: -15px;
+  }
 
   li {
     min-width: 85px;

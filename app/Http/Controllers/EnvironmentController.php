@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EnvironmentRequest;
 use App\Models\Environment;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,7 +15,9 @@ class EnvironmentController extends Controller
      */
     public function view()
     {
-        return view('pages.environments.view');
+        $environments = Environment::where('organization_id', Auth::user()->organization_id)->get();
+
+        return view('pages.environments.view', compact('environments'));
     }
 
     /**
@@ -46,6 +49,7 @@ class EnvironmentController extends Controller
         }
 
         $environment = Environment::create([
+            'organization_id' => Auth::user()->organization_id,
             'title' => $request->get('title'),
             'ip_address' => $request->get('ip_address'),
             'ssh_port' => $request->get('ssh_port'),

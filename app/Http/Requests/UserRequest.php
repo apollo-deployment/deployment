@@ -25,8 +25,7 @@ class UserRequest extends FormRequest
     {
         return [
             'user-name' => 'required',
-            'user-email' => 'required|unique:users,email,' . $this->user->id,
-            'is_admin' => 'required'
+            'user-email' => 'required'
         ];
     }
 }

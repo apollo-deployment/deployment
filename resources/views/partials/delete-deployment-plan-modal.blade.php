@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                <h4>Delete {{ $plan->title }}?</h4>
+                <h4>Delete deployment plan {{ $plan->title }}?</h4>
 
                 <form action="{{ route('delete.deployment-plan', compact('plan')) }}" method="POST">
                     {{ csrf_field() }}

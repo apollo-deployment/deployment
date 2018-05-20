@@ -13,7 +13,9 @@ class RepositoryController extends Controller
      */
     public function view()
     {
-        return view('pages.repositories.view');
+        $repositories = Auth::user()->organization->repositories();
+
+        return view('pages.repositories.view', compact('repositories'));
     }
 
     /**

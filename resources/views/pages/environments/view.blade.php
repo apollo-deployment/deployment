@@ -17,7 +17,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                @forelse(\App\Models\Environment::all() as $environment)
+                @forelse($environments as $environment)
                     <tr>
                         <td>{{ $environment->title }}</td>
                         <td>{{ $environment->ip_address }}</td>
@@ -39,6 +39,7 @@
                 @endforelse
                 </tbody>
             </table>
+            <p class="text-center secondary-dark">Displaying {{ count($environments) }} environment{{ count($environments) > 1 ? 's' : '' }}</p>
         </div>
     </div>
 @endsection
