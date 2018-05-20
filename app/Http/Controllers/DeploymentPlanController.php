@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\DeploymentPlanRequest;
 use App\Models\DeploymentPlan;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 
 class DeploymentPlanController extends Controller
 {
@@ -47,7 +48,8 @@ class DeploymentPlanController extends Controller
             'repository_id' => $request->get('repository_id'),
             'repository_branch' => $request->get('repository_branch'),
             'is_automatic' => true, // CHANGE
-            'commands' => str_replace('\r\n','<br>',$request->get('commands'))
+            'commands' => Crypt::encryptString($request->get('commands')),
+            'env' => Crypt::encryptString($request->get('env'))
         ]);
 
         return redirect()->route('view.deployment-plans')->with(['message' => "Successfully created deployment plan '{$plan->title}'"]);
@@ -64,7 +66,8 @@ class DeploymentPlanController extends Controller
             'repository_id' => $request->get('repository_id'),
             'repository_branch' => $request->get('repository_branch'),
             'is_automatic' => true, // CHANGE
-            'commands' => str_replace('\r\n','<br>',$request->get('commands'))
+            'commands' => Crypt::encryptString($request->get('commands')),
+            'env' => Crypt::encryptString($request->get('env'))
         ]);
 
         return redirect()->route('view.deployment-plans')->with(['message' => "Successfully updated deployment plan '{$plan->title}'"]);

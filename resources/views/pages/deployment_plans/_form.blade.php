@@ -62,15 +62,30 @@
         </div>
     </div>
     <div class="col-md-6">
-        <label for="commands">Deployment Commands</label>
-        {{ Form::textarea('commands', isset($plan) ? $plan->commands : null, ['id' => 'commands-editor']) }}
+        <ul class="nav nav-tabs deployment-tabs">
+            <li class="nav-item active">
+                <a href="#commands" class="nav-link" aria-controls="commands" data-toggle="tab">Commands</a>
+            </li>
+            <li class="nav-item">
+                <a href="#env" class="nav-link" aria-controls="env" data-toggle="tab">Environment File</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" role="tabpanel" id="commands">
+                {{ Form::textarea('commands', isset($plan) ? $plan->commands : null, ['id' => 'commands-editor']) }}
+            </div>
+            <div class="tab-pane" role="tabpanel" id="env">
+                {{ Form::textarea('env', isset($plan) ? $plan->env : null, ['id' => 'env-editor']) }}
+            </div>
+        </div>
     </div>
 </div>
 
 @section('scripts')
     @parent
     <script type="text/javascript">
-        var plan_exists = @json(!empty($plan));
+        var plan_exists = @json(!empty($plan)),
+            editor_created = false;
 
         $(document).ready(function() {
             // Check for new branches on load
@@ -83,13 +98,22 @@
             });
         });
 
+        // Get all repo branches on repo selection
         $('[name="repository_id"]').on('change', function() {
             getBranches(this.value);
         });
 
-        /**
-         * Gets all branches for selected repository
-         */
+        // Fix weird CodeMirror tab issue
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            if (e.target.href.includes("env") && !editor_created) {
+                CodeMirror.fromTextArea(document.getElementById('env-editor'), {
+                    lineNumbers: true
+                });
+                editor_created = true;
+            }
+        });
+
+        // Gets all branches for selected repository
         function getBranches(repository_id) {
             if (repository_id) {
                 $("#submit").prop("disabled", true);

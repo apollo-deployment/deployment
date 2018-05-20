@@ -43,7 +43,7 @@
                 @endforelse
                 </tbody>
             </table>
-            <p class="text-center secondary-dark">Displaying {{ count($repositories) }} repositorie{{ count($repositories) > 1 ? 's' : '' }}</p>
+            <p class="text-center secondary-dark">Displaying {{ count($repositories) }} repositor{{ count($repositories) > 1 ? 'ies' : 'y' }}</p>
         </div>
     </div>
 @endsection

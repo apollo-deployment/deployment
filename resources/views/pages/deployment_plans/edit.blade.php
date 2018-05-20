@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="header">
-                <p><i class="fa fa-wrench"></i> Update {{ $plan->title }} <code>{{ $plan->repository_branch }}</code></p>
+                <p><i class="fa fa-wrench"></i> Update {{ $plan->title }}</p>
             </div>
         </div>
     </div>
