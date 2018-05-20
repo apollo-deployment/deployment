@@ -299,6 +299,8 @@ form {
   // Overwrite built-in styles
   .CodeMirror {
     color: white;
+    font-size: 13px !important;
+    height: 81vh;
 
     .CodeMirror-cursor {
       border-left: 1px solid white;

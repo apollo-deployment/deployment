@@ -81,7 +81,7 @@ class OrganizationController extends Controller
 
         Mail::to($user->email)->send(new EmailVerification($user));
 
-        return redirect()->route('view.profile')->with(['message' => "Successfully created user for this organization"]);
+        return redirect()->route('view.profile')->with(['message' => "Successfully added {$user->name} to your organization"]);
     }
 
     /**

@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        @if(! isset($org_user))
+                        @if(!isset($org_user))
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="temp-password">Temporary Password</label>

@@ -13,7 +13,10 @@ class DeploymentPlanController extends Controller
      */
     public function view()
     {
-        return view('pages.deployment_plans.view');
+        $repositories = Auth::user()->organization->repositories();
+        $repositories->load('deploymentPlans');
+
+        return view('pages.deployment_plans.view', compact('repositories'));
     }
 
     /**
@@ -44,7 +47,7 @@ class DeploymentPlanController extends Controller
             'repository_id' => $request->get('repository_id'),
             'repository_branch' => $request->get('repository_branch'),
             'is_automatic' => true, // CHANGE
-            'remote_path' => $request->get('remote_path'),
+            'commands' => str_replace('\r\n','<br>',$request->get('commands'))
         ]);
 
         return redirect()->route('view.deployment-plans')->with(['message' => "Successfully created deployment plan '{$plan->title}'"]);
@@ -61,7 +64,7 @@ class DeploymentPlanController extends Controller
             'repository_id' => $request->get('repository_id'),
             'repository_branch' => $request->get('repository_branch'),
             'is_automatic' => true, // CHANGE
-            'remote_path' => $request->get('remote_path'),
+            'commands' => str_replace('\r\n','<br>',$request->get('commands'))
         ]);
 
         return redirect()->route('view.deployment-plans')->with(['message' => "Successfully updated deployment plan '{$plan->title}'"]);

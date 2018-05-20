@@ -39,6 +39,7 @@
                 @endforelse
                 </tbody>
             </table>
+            <p class="text-center secondary-dark">Displaying {{ count($environments) }} environment{{ count($environments) > 1 ? 's' : '' }}</p>
         </div>
     </div>
 @endsection

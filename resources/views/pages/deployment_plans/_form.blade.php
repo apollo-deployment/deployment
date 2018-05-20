@@ -57,28 +57,18 @@
 
         <div class="row">
             <div class="col-md-12">
-                <div class="form-group">
-                    {{ Form::label('remote_path', 'Remote Project Path', ['class' => 'required']) }}
-                    {{ Form::text('remote_path', isset($plan) ? $plan->remote_path : null, ['class' => 'form-control', 'required' => true]) }}
-                </div>
-                @if($errors->first('remote_path'))
-                    <p class="red">{{ $errors->first('remote_path') }}</p>
-                @endif
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                {{ Form::submit(isset($plan) ? 'Update' : 'Create', ['class' => 'btn']) }}
+                {{ Form::submit(isset($plan) ? 'Update' : 'Create', ['class' => 'btn', 'id' => 'submit']) }}
             </div>
         </div>
     </div>
     <div class="col-md-6">
-        {{ Form::textarea('commands', null, ['id' => 'commands-editor']) }}
+        <label for="commands">Deployment Commands</label>
+        {{ Form::textarea('commands', isset($plan) ? $plan->commands : null, ['id' => 'commands-editor']) }}
     </div>
 </div>
 
 @section('scripts')
+    @parent
     <script type="text/javascript">
         var plan_exists = @json(!empty($plan));
 
@@ -102,6 +92,7 @@
          */
         function getBranches(repository_id) {
             if (repository_id) {
+                $("#submit").prop("disabled", true);
                 $('[name="repository_branch"]').prop('disabled', false).append($('<option>', {
                     text: 'Loading...'
                 }).attr('selected', true));
@@ -111,6 +102,7 @@
                     url: '/github/branches',
                     data: {'repository_id' : repository_id},
                     success: function(branches) {
+                        $("#submit").prop("disabled", false);
                         $('[name="repository_branch"]').empty();
 
                         // Add new option for every branch

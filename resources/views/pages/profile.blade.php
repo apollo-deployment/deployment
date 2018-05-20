@@ -102,7 +102,7 @@
                                     </div>
                                 </div>
                             </div>
-                            {{ Form::submit('Update', ['class' => 'btn', 'id' => 'password-btn']) }}
+                            {{ Form::submit('Change', ['class' => 'btn', 'id' => 'password-btn']) }}
                         </form>
                     </div>
                 </div>
@@ -139,7 +139,7 @@
                                     <tr>
                                         <td>
                                             {{ $user->name }}
-                                            @if(! $user->is_verified)
+                                            @if(!$user->is_verified)
                                                 <code>Not Verified</code>
                                             @endif
                                         </td>
@@ -161,6 +161,7 @@
                                 @endforelse
                                 </tbody>
                             </table>
+                            <p class="text-center secondary-dark">Displaying {{ count($users) }} user{{ count($users) > 1 ? 's' : '' }}</p>
                         </div>
                     </div>
                 </div>

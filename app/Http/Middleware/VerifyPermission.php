@@ -27,7 +27,7 @@ class VerifyPermission
 
         // Check repository editing
         if ($request->route()->parameter('repository')) {
-            if ($request->route()->parameter('repository')->user()->organization_id !== Auth::user()->organization_id) {
+            if ($request->route()->parameter('repository')->user->organization_id !== Auth::user()->organization_id) {
                 $has_permission = false;
             }
         }
@@ -39,7 +39,7 @@ class VerifyPermission
             }
         }
 
-        if (! $has_permission) {
+        if (!$has_permission) {
             return redirect()->route('view.deployment-plans')->withErrors("You do not have permission for that action");
         }
 

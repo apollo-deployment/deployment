@@ -73,6 +73,7 @@
 </div>
 
 @section('scripts')
+    @parent
     <script type="text/javascript">
         if (@json(isset($environment) && $environment->private_key_path)) {
             $('#ssh_password').hide();

@@ -28,7 +28,6 @@ class DeploymentPlanRequest extends FormRequest
             'environment_id' => 'required|numeric',
             'repository_id' => 'required|numeric',
             'repository_branch' => 'required',
-            'remote_path' => 'required',
         ];
     }
 }

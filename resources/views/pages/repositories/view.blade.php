@@ -17,7 +17,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                @forelse(\App\Models\Repository::all() as $repository)
+                @forelse($repositories as $repository)
                     <tr>
                         <td>{{ $repository->title }}</td>
                         <td>
@@ -43,6 +43,7 @@
                 @endforelse
                 </tbody>
             </table>
+            <p class="text-center secondary-dark">Displaying {{ count($repositories) }} repositorie{{ count($repositories) > 1 ? 's' : '' }}</p>
         </div>
     </div>
 @endsection

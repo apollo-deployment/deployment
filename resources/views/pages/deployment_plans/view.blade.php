@@ -18,7 +18,7 @@
                         </th>
                     </tr>
                 </thead>
-                @forelse(\App\Models\Repository::all() as $repository)
+                @forelse($repositories as $repository)
                     <tbody>
                         @forelse($repository->deploymentPlans as $plan)
                             <tr>

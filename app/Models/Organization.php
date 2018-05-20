@@ -21,4 +21,12 @@ class Organization extends Model
                     ->where('id', '!=', Auth::id())
                     ->orderBy('is_admin', 'desc')->get();
     }
+
+    /**
+     * Gets all repositories owned by this organization
+     */
+    public function repositories()
+    {
+        return $this->hasManyThrough('App\Models\Repository', 'App\Models\User')->get();
+    }
 }

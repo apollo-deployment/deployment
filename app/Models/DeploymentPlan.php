@@ -13,9 +13,9 @@ class DeploymentPlan extends Model
         'environment_id',
         'repository_id',
         'repository_branch',
-        'deployed_version',   // Hash on which deployed version the project is on
+        'deployed_version',   // Which deployed version the project is on
         'is_automatic',       // Whether or not deployment is automatic
-        'remote_path'         // Remote path on the environment where project is stored
+        'commands'            // Commands to run during build process
     ];
 
     /**
