@@ -27,10 +27,6 @@ class GitHubController extends Controller
     public function getBranches(Request $request)
     {
         $repository = Repository::find(1);
-
-        \Log::info($request);
-        \Log::info($repository);
-
         return $this->github->getBranches($repository->owner, $repository->name);
     }
 
