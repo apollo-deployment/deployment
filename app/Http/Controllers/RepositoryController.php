@@ -56,10 +56,6 @@ class RepositoryController extends Controller
             'url' => $request->get('url')
         ]);
 
-        //this->api-post(repos/owner/reponame/hooks)
-        //on the repository controller on store and update you can create one after
-
-
         return redirect()->route('view.repositories')->with(['message' => 'Successfully created repository \'' . $repository->title . '\'']);
     }
 

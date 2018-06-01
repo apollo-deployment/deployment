@@ -45,6 +45,16 @@ class GitHub
         );
     }
 
+    public function getHooks($username, $repo_name) {
+        // GET /repos/:owner/:repo/hooks
+
+        dd($this->api->get("repos/{$username}/{$repo_name}/hooks")->getBody()->getContents());
+
+        return json_decode(
+            $this->api->get("repos/{$username}/{$repo_name}/hooks")->getBody()->getContents()
+        );
+    }
+
     /**
      * Creates a user access token
      *

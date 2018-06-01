@@ -21,13 +21,36 @@ class GitHubController extends Controller
 
     /**
      * AJAX : Gets all branches for a repository
+     * @param Request $request
+     * @return mixed
      */
-    public function getBranches()
+    public function getBranches(Request $request)
     {
-        $repository = Repository::find(request('repository_id'));
+        $repository = Repository::find($request->get('repository_id'));
 
         return $this->github->getBranches($repository->owner, $repository->name);
     }
+
+    /**
+     * AJAX : Gets all hooks for a repository
+     * @param Request $request
+     * @return mixed
+     */
+    public function getHooks(Request $request)
+    {
+        $repository = Repository::find($request->get('repository_id'));
+
+        return $this->github->getHooks($repository->owner, $repository->name);
+    }
+
+//    public function createHook()
+//    {
+//        // create
+//        // POST /repos/:owner/:repo/hooks
+//        // https://api.github.com/repos/octocat/Hello-World/hooks/1
+//        //api-post(repos/rustyhumfleet/rollaball/hooks)
+//        // end create
+//    }
 
     /**
      * Redirects to GitHub to get user access to web-hooks & public/private repositories
@@ -36,17 +59,19 @@ class GitHubController extends Controller
     {
         return Redirect::away('https://github.com/login/oauth/authorize' .
             '?client_id=' . env('GITHUB_ID') .
-            '&scope=admin:repo_hook repo' //.
-//            '&redirect_uri=' . env('APP_URL') . '/github/access/callback'
+            '&scope=admin:repo_hook repo' .
+            '&redirect_uri=' . env('APP_URL') . '/github/access/callback'
         );
     }
 
     /**
      * Callback from GitHub for getAccess()
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function getAccessCallback()
+    public function getAccessCallback(Request $request)
     {
-        $token = $this->github->getAccessToken(request('code'));
+        $token = $this->github->getAccessToken($request->get('code'));
 
         Auth::user()->update([
            'github_access_token' => Crypt::encryptString($token)
@@ -71,7 +96,11 @@ class GitHubController extends Controller
 //            'is_automatic' => true, // CHANGE
 //            'remote_path' => $request->get('remote_path'),
 //        ]);
+        //this->api-post(repos/owner/reponame/hooks)
+        //on the repository controller on store and update you can create one after
 
         return json_encode('something in it');
     }
+
+
 }
