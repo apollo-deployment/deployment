@@ -14,7 +14,8 @@ class DeploymentPlan extends Model
         'environment_id',
         'repository_id',
         'repository_branch',
-        'deployed_version',   // Which deployed version the project is on
+        'build_id',           // Which build the project is on
+        'status',
         'is_automatic',       // Whether or not deployment is automatic
         'commands',           // Commands to run during build process
         'env'                 // Environment variables
@@ -37,11 +38,27 @@ class DeploymentPlan extends Model
     }
 
     /**
+     * Gets all the builds for this deployment plan
+     */
+    public function builds()
+    {
+        return $this->hasMany('App\Models\Build');
+    }
+
+    /**
+     *
+     */
+    public function currentBuild()
+    {
+        return $this->builds()->last();
+    }
+
+    /**
      * Mutator to decrypt commands
      */
     public function getCommandsAttribute($commands)
     {
-        return Crypt::decryptString($commands);
+        return isset($commands) ? Crypt::decryptString($commands) : null;
     }
 
     /**
@@ -49,6 +66,6 @@ class DeploymentPlan extends Model
      */
     public function getEnvAttribute($env)
     {
-        return Crypt::decryptString($env);
+        return isset($env) ? Crypt::decryptString($env) : null;
     }
 }

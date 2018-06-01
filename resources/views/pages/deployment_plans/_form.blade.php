@@ -57,6 +57,15 @@
 
         <div class="row">
             <div class="col-md-12">
+                <label class="checkbox-container">Automatic Deployment
+                    <input type="checkbox" name="is_automatic">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
                 {{ Form::submit(isset($plan) ? 'Update' : 'Create', ['class' => 'btn', 'id' => 'submit']) }}
             </div>
         </div>
@@ -71,8 +80,11 @@
             </li>
         </ul>
         <div class="tab-content">
+            @php $default = "cd project/path;\n\ndeploy;" @endphp
+
+            <p class="red text-center" style="display: none;" id="command-error">Make sure to include command <code>deploy;</code> for dpeloyment</p>
             <div class="tab-pane active" role="tabpanel" id="commands">
-                {{ Form::textarea('commands', isset($plan) ? $plan->commands : null, ['id' => 'commands-editor']) }}
+                {{ Form::textarea('commands', isset($plan) ? $plan->commands : $default, ['id' => 'commands-editor']) }}
             </div>
             <div class="tab-pane" role="tabpanel" id="env">
                 {{ Form::textarea('env', isset($plan) ? $plan->env : null, ['id' => 'env-editor']) }}
@@ -95,6 +107,14 @@
 
             CodeMirror.fromTextArea(document.getElementById('commands-editor'), {
                 lineNumbers: true
+            }).on('change', function (field) {
+                if (!field.getValue().includes("deploy;")) {
+                    $("#submit").prop("disabled", true);
+                    $("#command-error").css("display", "block");
+                } else {
+                    $("#submit").prop("disabled", false);
+                    $("#command-error").css("display", "none");
+                }
             });
         });
 
@@ -126,7 +146,10 @@
                     url: '/github/branches',
                     data: {'repository_id' : repository_id},
                     success: function(branches) {
-                        $("#submit").prop("disabled", false);
+                        console.log($("#command-error").is(':visible'))
+                        if (!$("#command-error").is(':visible')) {
+                            $("#submit").prop("disabled", false);
+                        }
                         $('[name="repository_branch"]').empty();
 
                         // Add new option for every branch
