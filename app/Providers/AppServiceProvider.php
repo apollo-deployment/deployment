@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,16 +14,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Log::listen(function($level, $message, $context) {
+        //     if ($level === 'info') {
         //
-    }
-
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
+        //     }
+        // });
     }
 }

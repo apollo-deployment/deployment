@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddVerifiedUsers extends Migration
+class AddAvatarUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,7 @@ class AddVerifiedUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('is_verified')->default(false)->after('remember_token');
-            $table->boolean('is_admin')->default(false)->after('is_verified');
+            $table->string('avatar')->after('email')->nullable();
         });
     }
 
@@ -27,8 +26,7 @@ class AddVerifiedUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('verified');
-            $table->dropColumn('is_admin');
+            $table->dropColumn('avatar');
         });
     }
 }

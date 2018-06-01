@@ -1,5 +1,8 @@
 
-// -------------------- Helpers
+.m-b-10 {
+  margin-bottom: 30px;
+}
+
 .accent {
   color: $accent;
 }
@@ -9,7 +12,7 @@
 }
 
 .red {
-  color: $red;
+  color: $red !important;
 }
 
 .float-right {
@@ -29,15 +32,18 @@
 }
 
 .message-error {
-  color: #dc3c5a;
-  background-color: #522830;
+  color: #f1002d;
+  background-color: #50252d;
 }
 
 .secondary-text {
-  color: #d0d0d0 !important;
+  color: $secondary !important;
 }
 
-// -------------------- Custom checkbox
+.secondary-dark {
+  color: $secondary-dark !important;
+}
+
 .checkbox-container {
   cursor: pointer;
   display: block;
@@ -51,6 +57,12 @@
   -ms-user-select: none;
   user-select: none;
 
+  &:hover {
+    .checkmark {
+      background-color: $light !important;
+    }
+  }
+
   input {
     cursor: pointer;
     position: absolute;
@@ -58,7 +70,7 @@
   }
 
   .checkmark {
-    background-color: $medium-grey;
+    background-color: $light;
     border-radius: 3px;
     position: absolute;
     top: 0;
@@ -75,12 +87,10 @@
 }
 
 .checkbox-container:hover input ~ .checkmark {
-  background-color: $medium-grey;
+  background-color: $medium;
 }
 
 .checkbox-container input:checked ~ .checkmark {
-  background-color: $accent;
-  border-color: $accent;
 }
 
 .checkbox-container input:checked ~ .checkmark:after {
@@ -88,13 +98,14 @@
 }
 
 .checkbox-container .checkmark:after {
-  top: 2px;
-  left: 6px;
-  width: 5px;
-  height: 11px;
   border: solid white;
   border-width: 0 3px 3px 0;
+  top: 2px;
+  left: 6px;
+  height: 11px;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+  width: 5px;
 }
+

@@ -3,20 +3,21 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Crypt;
 
 class DeploymentPlan extends Model
 {
-    public $timestamps = true;
-
     protected $table = 'deployment_plans';
     protected $fillable = [
+        'organization_id',
         'title',
         'environment_id',
         'repository_id',
         'repository_branch',
-        'deployed_version',   // Hash on which deployed version the project is on
+        'deployed_version',   // Which deployed version the project is on
         'is_automatic',       // Whether or not deployment is automatic
-        'remote_path'         // Remote path on the environment where project is stored
+        'commands',           // Commands to run during build process
+        'env'                 // Environment variables
     ];
 
     /**
@@ -33,5 +34,21 @@ class DeploymentPlan extends Model
     public function environment()
     {
         return $this->belongsTo('App\Models\Environment');
+    }
+
+    /**
+     * Mutator to decrypt commands
+     */
+    public function getCommandsAttribute($commands)
+    {
+        return Crypt::decryptString($commands);
+    }
+
+    /**
+     * Mutator to decrypt environment variables
+     */
+    public function getEnvAttribute($env)
+    {
+        return Crypt::decryptString($env);
     }
 }

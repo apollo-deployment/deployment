@@ -21,7 +21,7 @@ class CreateEnvironmentsTable extends Migration
             $table->string('authentication_type');
             $table->string('ssh_username');
             $table->string('ssh_password')->nullable();
-            $table->longText('public_key_path')->nullable();
+            $table->longText('private_key_path')->nullable();
             $table->timestamps();
         });
     }

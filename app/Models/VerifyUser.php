@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class VerifyUser extends Model
 {
-    public $timestamps = true;
-
     protected $table = 'verify_users';
     protected $fillable = [
         'user_id',  // User to be verified

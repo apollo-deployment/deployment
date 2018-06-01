@@ -3,8 +3,8 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                <h4>Delete '{{ $repository->title }}'?</h4>
-                <p class="secondary-text"><span class="red">Warning: </span> This will delete all running deployment plans</p>
+                <h4>Delete repository {{ $repository->title }}?</h4>
+                <p class="red">Warning: This will delete all running deployment plans attached to this repository</p>
 
                 <form action="{{ route('delete.repository', compact('repository')) }}" method="POST">
                     {{ csrf_field() }}

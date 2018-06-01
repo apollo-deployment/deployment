@@ -34,7 +34,7 @@ class GitHubController extends Controller
     /**
      * AJAX : Gets all hooks for a repository
      * @param Request $request
-     * @return mixed
+     * @return mixed test commit123
      */
     public function getHooks(Request $request)
     {
