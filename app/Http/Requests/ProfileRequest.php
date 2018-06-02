@@ -28,4 +28,18 @@ class ProfileRequest extends FormRequest
             'email' => 'required|email'
         ];
     }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'name.required' => 'Your name is required',
+            'email.required' => 'Your email is required',
+            'email.email' => 'Invalid email',
+        ];
+    }
 }

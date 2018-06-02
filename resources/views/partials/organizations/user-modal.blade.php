@@ -11,13 +11,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="user-name">Name</label>
-                                {{ Form::text('user-name', isset($org_user) ? $org_user->name : null, ['class' => 'form-control', 'required' => true]) }}
+                                {{ Form::text('user_name', isset($org_user) ? $org_user->name : null, ['class' => 'form-control', 'required' => true]) }}
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="user-email">Email</label>
-                                {{ Form::text('user-email', isset($org_user) ? $org_user->email : null, ['class' => 'form-control', 'required' => true]) }}
+                                {{ Form::text('user_email', isset($org_user) ? $org_user->email : null, ['class' => 'form-control', 'required' => true]) }}
                             </div>
                         </div>
                     </div>

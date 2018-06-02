@@ -29,4 +29,17 @@ class LoginRequest extends FormRequest
         ];
     }
 
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'email.required' => 'Please enter your email',
+            'email.email' => 'Invalid email',
+            'password.required' => 'Please enter your password',
+        ];
+    }
 }

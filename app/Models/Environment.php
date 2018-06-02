@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Crypt;
 
 class Environment extends Model
 {
@@ -32,5 +33,13 @@ class Environment extends Model
     public function organization()
     {
         return $this->belongsTo('App\Models\Organization');
+    }
+
+    /**
+     * Mutator to decrypt SSH username
+     */
+    public function getSshUsernameAttribute($username)
+    {
+        return isset($username) ? Crypt::decryptString($username) : null;
     }
 }

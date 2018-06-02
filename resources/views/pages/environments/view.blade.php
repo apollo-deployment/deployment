@@ -39,7 +39,7 @@
                 @endforelse
                 </tbody>
             </table>
-            <p class="text-center secondary-dark">Displaying {{ count($environments) }} environment{{ count($environments) > 1 ? 's' : '' }}</p>
+            <p class="text-center secondary-dark">Displaying {{ count($environments) }} {{ count($environments) > 1 ? str_plural('environment') : 'environment' }}</p>
         </div>
     </div>
 @endsection

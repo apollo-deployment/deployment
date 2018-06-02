@@ -43,7 +43,7 @@
                 @endforelse
                 </tbody>
             </table>
-            <p class="text-center secondary-dark">Displaying {{ count($repositories) }} repositor{{ count($repositories) > 1 ? 'ies' : 'y' }}</p>
+            <p class="text-center secondary-dark">Displaying {{ count($repositories) }} {{ count($repositories) > 1 ? str_plural('repository') : 'repository' }}</p>
         </div>
     </div>
 @endsection

@@ -22,6 +22,9 @@
             <p class="red">{{ $errors->first('ip_address') }}</p>
         @endif
     </div>
+</div>
+
+<div class="row">
     <div class="col-md-4">
         <div class="form-group">
             {{ Form::label('ssh_port', 'SSH Port', ['class' => 'required']) }}
@@ -29,6 +32,15 @@
         </div>
         @if($errors->first('ssh_port'))
             <p class="red">{{ $errors->first('ssh_port') }}</p>
+        @endif
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            {{ Form::label('ssh_username', 'SSH Username', ['class' => 'required']) }}
+            {{ Form::text('ssh_username', isset($environment) ? $environment->ssh_username : '', ['class' => 'form-control', 'required' => true]) }}
+        </div>
+        @if($errors->first('ssh_username'))
+            <p class="red">{{ $errors->first('ssh_username') }}</p>
         @endif
     </div>
 </div>
@@ -67,8 +79,9 @@
 </div>
 
 <div class="row">
-    <div class="col-md-12">
-        {{ Form::submit(isset($project) ? 'Update' : 'Create', ['class' => 'btn']) }}
+    <div class="col-md-8">
+        {{ Form::submit(isset($environment) ? 'Update' : 'Create', ['class' => 'btn']) }}
+        <a href="{{ route('view.environments') }}" class="btn cancel">Cancel</a>
     </div>
 </div>
 

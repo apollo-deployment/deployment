@@ -16,6 +16,7 @@ class CreateBuildsTable extends Migration
         Schema::create('builds', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('deployment_plan_id')->unsigned();
+            $table->string('status');
             $table->timestamps();
 
             $table->foreign('deployment_plan_id')->references('id')->on('deployment_plans');

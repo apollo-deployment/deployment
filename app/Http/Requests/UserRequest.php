@@ -24,8 +24,21 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'user-name' => 'required',
-            'user-email' => 'required'
+            'user_name' => 'required',
+            'user_email' => 'required'
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'user_name.required' => 'A username is required',
+            'user_email.required' => 'A user email is required',
         ];
     }
 }

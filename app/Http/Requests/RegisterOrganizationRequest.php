@@ -30,4 +30,21 @@ class RegisterOrganizationRequest extends FormRequest
             'password' => 'required|min:8|confirmed',
         ];
     }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'title.required' => 'An organization title is required',
+            'name.required' => 'Your name is required',
+            'email.required' => 'Your email is required',
+            'email.email' => 'Invalid email',
+            'password.required' => 'A password is required',
+            'password.min' => 'Password must be at least 8 characters',
+        ];
+    }
 }

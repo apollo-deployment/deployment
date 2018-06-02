@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Builds extends Model
 {
     protected $fillable = [
-        'deployment_plan_id'
+        'deployment_plan_id',
+        'status'
     ];
 
     /**

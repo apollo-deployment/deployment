@@ -15,9 +15,6 @@ class AddStatusDeploymentPlans extends Migration
     {
         Schema::table('deployment_plans', function (Blueprint $table) {
             $table->string('status')->nullable()->after('repository_branch');
-        });
-
-        Schema::table('deployment_plans', function (Blueprint $table) {
             $table->integer('build_id')->unsigned()->nullable()->after('status');
 
             $table->foreign('build_id')->references('id')->on('builds');
@@ -33,6 +30,7 @@ class AddStatusDeploymentPlans extends Migration
     {
         Schema::table('deployment_plans', function (Blueprint $table) {
             $table->dropColumn('status');
+            $table->dropForeign('deployment_plans_build_id_foreign');
             $table->dropColumn('build_id');
         });
     }

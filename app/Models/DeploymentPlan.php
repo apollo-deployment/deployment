@@ -46,14 +46,6 @@ class DeploymentPlan extends Model
     }
 
     /**
-     *
-     */
-    public function currentBuild()
-    {
-        return $this->builds()->last();
-    }
-
-    /**
      * Mutator to decrypt commands
      */
     public function getCommandsAttribute($commands)
