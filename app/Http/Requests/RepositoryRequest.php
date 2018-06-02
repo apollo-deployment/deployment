@@ -28,4 +28,18 @@ class RepositoryRequest extends FormRequest
             'url' => 'required|url'
         ];
     }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'title.required' => 'A title is required',
+            'url.required' => 'An URL is required',
+            'url.url' => 'Invalid URL',
+        ];
+    }
 }

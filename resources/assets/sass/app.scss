@@ -119,6 +119,7 @@ html, body {
   }
 
   &:focus {
+    color: $secondary;
     outline: none;
   }
 }
@@ -232,11 +233,11 @@ code {
     border-radius: 4px;
     color: white;
     padding: 25px;
-
-    .cancel {
-      background: none;
-    }
   }
+}
+
+.cancel {
+  background: none;
 }
 
 form {
@@ -490,6 +491,12 @@ form {
     tbody {
       border-top: none !important;
     }
+  }
+}
+
+.deployment-plans {
+  .fa-cloud-upload {
+    margin-right: 11px;
   }
 }
 

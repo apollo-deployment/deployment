@@ -90,8 +90,8 @@ class OrganizationController extends Controller
     public function updateUser(User $user, UserRequest $request)
     {
         $user->update([
-            'name' => $request->get('user-name'),
-            'email' => $request->get('user-email'),
+            'name' => $request->get('user_name'),
+            'email' => $request->get('user_email'),
             'is_admin' => (boolean)$request->get('is_admin')
         ]);
 

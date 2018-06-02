@@ -28,4 +28,18 @@ class PasswordRequest extends FormRequest
             'password' => 'required|min:8|confirmed',
         ];
     }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'current_password.required' => 'Your current password is required',
+            'password.required' => 'Your new password is required',
+            'password.min' => 'Password must be at least 8 characters',
+        ];
+    }
 }

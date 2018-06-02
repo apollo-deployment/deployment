@@ -32,4 +32,23 @@ class EnvironmentRequest extends FormRequest
             'private_key' => 'required_if:authentication_type,private_key|file',
         ];
     }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'title.required' => 'A title is required',
+            'ip_address.required' => 'An IP address is required',
+            'ip_address.ip' => 'Invalid IP address',
+            'ssh_port.required' => 'A SSH port is required',
+            'ssh_port.numeric' => 'Invalid SSH port',
+            'authentication_type.required' => 'An authentication type is required',
+            'ssh_password.required' => 'An SSH password is required',
+            'private_key.required' => 'A private key file is required',
+        ];
+    }
 }

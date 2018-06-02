@@ -8,11 +8,15 @@
 }
 
 .green {
-  color: #1aa51a;
+  color: #1aa51a !important;
 }
 
 .red {
   color: $red !important;
+}
+
+.yellow {
+  color: #deb147 !important;
 }
 
 .float-right {

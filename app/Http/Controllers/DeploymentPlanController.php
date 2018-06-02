@@ -47,7 +47,7 @@ class DeploymentPlanController extends Controller
             'environment_id' => $request->get('environment_id'),
             'repository_id' => $request->get('repository_id'),
             'repository_branch' => $request->get('repository_branch'),
-            'is_automatic' => true, // CHANGE
+            'is_automatic' => (boolean)$request->get('is_automatic'),
             'commands' => Crypt::encryptString($request->get('commands')),
             'env' => Crypt::encryptString($request->get('env'))
         ]);
@@ -65,7 +65,7 @@ class DeploymentPlanController extends Controller
             'environment_id' => $request->get('environment_id'),
             'repository_id' => $request->get('repository_id'),
             'repository_branch' => $request->get('repository_branch'),
-            'is_automatic' => true, // CHANGE
+            'is_automatic' => (boolean)$request->get('is_automatic'),
             'commands' => Crypt::encryptString($request->get('commands')),
             'env' => Crypt::encryptString($request->get('env'))
         ]);
