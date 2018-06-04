@@ -158,6 +158,8 @@ code {
   }
 
   table {
+    font-size: 14px;
+
     th {
       border-bottom: 2px solid $light !important;
       color: white !important;
@@ -221,6 +223,12 @@ code {
           border-bottom: none;
           background-color: $medium;
           width: 20%;
+
+          .building {
+            display: none;
+            float: right;
+            width: 20px;
+          }
         }
       }
     }

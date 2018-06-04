@@ -5,7 +5,7 @@
         <div class="col-md-12">
             @include('partials.message')
 
-            <table class="table deployment-plans">
+            <table class="table">
                 <thead>
                     <tr>
                         <th>Repository</th>
@@ -22,7 +22,10 @@
                     <tbody>
                         @forelse($repository->deploymentPlans as $plan)
                             <tr>
-                                <td class="repository-name">{{ $loop->first ? $repository->title : '' }}</td>
+                                <td class="repository-name">
+                                    {{ $loop->first ? $repository->title : '' }}
+                                    <img src="{{ url('/images/building.gif') }}" class="building build-{{ $plan->id }}">
+                                </td>
                                 <td>{{ $plan->title }}</td>
                                 <td>{{ $plan->environment->title }}</td>
                                 @if($plan->status === 'ready')
@@ -66,3 +69,19 @@
         </div>
     </div>
 @endsection
+
+@section('scripts')
+    <script type="text/javascript">
+        // Listens on organizations build channel
+        Echo.channel(@json('deployment-channel.' . \Auth::user()->organization->id)).listen('BuildEvent', (e) => {
+            var deployment_plan = e.deployment_plan;
+
+            if (deployment_plan.status === 'in_progress') {
+                $(".build-" + deployment_plan.id).show();
+            } else {
+                $(".build-" + deployment_plan.id).hide();
+            }
+        });
+    </script>
+@endsection
+

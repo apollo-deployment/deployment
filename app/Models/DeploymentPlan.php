@@ -22,6 +22,14 @@ class DeploymentPlan extends Model
     ];
 
     /**
+     * Gets the organization this belongs to
+     */
+    public function organization()
+    {
+        return $this->belongsTo('App\Models\Organization');
+    }
+
+    /**
      * Gets this plans attached repository
      */
     public function repository()
