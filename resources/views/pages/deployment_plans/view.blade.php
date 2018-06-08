@@ -5,7 +5,7 @@
         <div class="col-md-12">
             @include('partials.message')
 
-            <table class="table deployment-plans">
+            <table class="table">
                 <thead>
                     <tr>
                         <th>Repository</th>
@@ -22,7 +22,10 @@
                     <tbody>
                         @forelse($repository->deploymentPlans as $plan)
                             <tr>
-                                <td class="repository-name">{{ $loop->first ? $repository->title : '' }}</td>
+                                <td class="repository-name">
+                                    {{ $loop->first ? $repository->title : '' }}
+                                    <img src="{{ url('/images/building.gif') }}" class="building build-{{ $plan->id }}">
+                                </td>
                                 <td>{{ $plan->title }}</td>
                                 <td>{{ $plan->environment->title }}</td>
                                 @if($plan->status === 'ready')
@@ -31,7 +34,7 @@
                                     <td>{{ $plan->deployed_version }}</td>
                                     <td>{{ $plan->repository_branch }}</td>
                                 @else
-                                    <td class="yellow" colspan="2">Not Deployed</td>
+                                    <td class="secondary-dark" colspan="2">Not Deployed</td>
                                 @endif
                                 <td>
                                     <button data-toggle="modal" data-target="#delete-deployment-plan-{{ $plan->id }}">
@@ -49,8 +52,8 @@
                             </tr>
                             @include('partials.delete-deployment-plan-modal', compact('plan'))
                         @empty
-                            <tr>
-                                <td class="environment-name">{{ $repository->title }}</td>
+                            <tr class="empty plan">
+                                <td class="repository-name">{{ $repository->title }}</td>
                                 <td colspan="100">No deployment plans found</td>
                             </tr>
                         @endforelse

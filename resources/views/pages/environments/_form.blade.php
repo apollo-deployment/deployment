@@ -85,8 +85,7 @@
     </div>
 </div>
 
-@section('scripts')
-    @parent
+@push('scripts')
     <script type="text/javascript">
         if (@json(isset($environment) && $environment->private_key_path)) {
             $('#ssh_password').hide();
@@ -112,4 +111,4 @@
             $('.file-uploaded').text($('[name="private_key"]')[0].files[0].name);
         });
     </script>
-@endsection
+@endpush

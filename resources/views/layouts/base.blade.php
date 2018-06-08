@@ -8,9 +8,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         {{-- Styles --}}
+        <link type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
         <link type="text/css" href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-        @yield('styles')
+        @stack('styles')
     </head>
 
     <body>
@@ -85,7 +86,45 @@
 
         {{-- Scripts --}}
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+        <script type="text/javascript">
+            // Toast notifications config
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-bottom-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "5000",
+                "hideDuration": "5000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
 
-        @yield('scripts')
+            // Listens on organizations build channel
+            Echo.channel(@json('deployment-channel.' . \Auth::user()->organization->id)).listen('BuildEvent', (e) => {
+                var deployment_plan = e.deployment_plan;
+
+                if (deployment_plan.status === 'in_progress') {
+                    if ($(".build-" + deployment_plan.id).length !== 0) {
+                        $(".build-" + deployment_plan.id).show();
+                    }
+                } else if (deployment_plan.status === 'ready') {
+                    toastr.success(deployment_plan.title + " is ready to deploy");
+                } else {
+                    if ($(".build-" + deployment_plan.id).length !== 0) {
+                        $(".build-" + deployment_plan.id).hide();
+                    }
+                }
+            });
+        </script>
+
+        @stack('scripts')
     </body>
 </html>

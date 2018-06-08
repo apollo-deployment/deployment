@@ -96,8 +96,7 @@
     </div>
 </div>
 
-@section('scripts')
-    @parent
+@push('scripts')
     <script type="text/javascript">
         var plan_exists = @json(!empty($plan)),
             editor_created = false;
@@ -174,4 +173,4 @@
             }
         }
     </script>
-@endsection
+@endpush
