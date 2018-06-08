@@ -15,7 +15,7 @@ html, body {
   background-color: $dark;
   color: white;
   height: 100%;
-  padding-top: 55px;
+  padding-top: 65px;
   position: fixed;
   left: 0;
   overflow-x: hidden;
@@ -55,6 +55,7 @@ html, body {
 
 .navbar {
   background-color: $dark;
+  border-bottom: 1px solid $light;
 
   .logo {
     text-align: center;
@@ -162,7 +163,9 @@ code {
 
     th {
       border-bottom: 2px solid $light !important;
-      color: white !important;
+      color: #8e8e8e;
+      font-size: 12px;
+      font-weight: normal;
 
       .btn {
         margin-right: -8px;
@@ -179,12 +182,19 @@ code {
 
         &.empty {
           td {
+            color: $secondary-dark;
             text-align: center;
+          }
+
+          &.plan {
+            td {
+              text-align: left !important;
+            }
           }
         }
 
         th, td {
-          color: $secondary;
+          color: white;
           border-top: none;
 
           button, .action {
@@ -194,8 +204,9 @@ code {
             cursor: pointer;
             font-size: 17px;
             float: right;
-            margin-left: 15px;
+            margin-left: 20px;
             padding: 0;
+            width: 21px;
 
             &:focus {
               outline: none;
@@ -222,6 +233,7 @@ code {
         .repository-name {
           border-bottom: none;
           background-color: $medium;
+          color: white !important;
           width: 20%;
 
           .building {
@@ -505,6 +517,18 @@ form {
 .deployment-plans {
   .fa-cloud-upload {
     margin-right: 11px;
+  }
+}
+
+.toast {
+  background-size: 16px !important;
+  border-radius: 4px !important;
+  padding: 10px 10px 10px 46px !important;
+  opacity: .8 !important;
+  -webkit-box-shadow: none !important;
+
+  &.toast-success {
+    background-color: #1aa51a !important;
   }
 }
 

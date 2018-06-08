@@ -175,9 +175,7 @@
     </div>
 @endsection
 
-@section('scripts')
-    @parent
-
+@push('scripts')
     <script type="text/javascript">
         // Show create user btn if on correct tab
         $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
@@ -232,4 +230,4 @@
             }
         }
     </script>
-@endsection
+@endpush

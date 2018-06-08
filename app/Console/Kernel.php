@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\Test;
 use App\Console\Commands\VerificationExpire;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -12,7 +13,8 @@ class Kernel extends ConsoleKernel
      * The Artisan commands provided by your application.
      */
     protected $commands = [
-        VerificationExpire::class
+        VerificationExpire::class,
+        Test::class
     ];
 
     /**

@@ -34,7 +34,7 @@
                                     <td>{{ $plan->deployed_version }}</td>
                                     <td>{{ $plan->repository_branch }}</td>
                                 @else
-                                    <td class="yellow" colspan="2">Not Deployed</td>
+                                    <td class="secondary-dark" colspan="2">Not Deployed</td>
                                 @endif
                                 <td>
                                     <button data-toggle="modal" data-target="#delete-deployment-plan-{{ $plan->id }}">
@@ -52,8 +52,8 @@
                             </tr>
                             @include('partials.delete-deployment-plan-modal', compact('plan'))
                         @empty
-                            <tr>
-                                <td class="environment-name">{{ $repository->title }}</td>
+                            <tr class="empty plan">
+                                <td class="repository-name">{{ $repository->title }}</td>
                                 <td colspan="100">No deployment plans found</td>
                             </tr>
                         @endforelse
@@ -69,19 +69,3 @@
         </div>
     </div>
 @endsection
-
-@section('scripts')
-    <script type="text/javascript">
-        // Listens on organizations build channel
-        Echo.channel(@json('deployment-channel.' . \Auth::user()->organization->id)).listen('BuildEvent', (e) => {
-            var deployment_plan = e.deployment_plan;
-
-            if (deployment_plan.status === 'in_progress') {
-                $(".build-" + deployment_plan.id).show();
-            } else {
-                $(".build-" + deployment_plan.id).hide();
-            }
-        });
-    </script>
-@endsection
-
