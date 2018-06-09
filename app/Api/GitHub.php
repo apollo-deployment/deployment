@@ -12,7 +12,7 @@ class GitHub
     private $api;
 
     /**
-     * GitHub has different routes for oauth
+     * GitHub OAuth API
      */
     private $oauth;
 
@@ -35,7 +35,6 @@ class GitHub
 
     /**
      * Returns array with all repo's branches
-     *
      * https://developer.github.com/v3/repos/branches/#list-branches
      */
     public function getBranches($username, $repo_name)
@@ -47,7 +46,6 @@ class GitHub
 
     /**
      * Creates a user access token
-     *
      * https://developer.github.com/apps/building-oauth-apps/authorization-options-for-oauth-apps/
      */
     public function getAccessToken($code)

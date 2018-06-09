@@ -8,10 +8,10 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>IP Address</th>
-                        <th>Authentication Type</th>
-                        <th>
+                        <th class="min-txt">Name</th>
+                        <th class="min-txt">IP Address</th>
+                        <th class="min-txt">Authentication Type</th>
+                        <th class="min-txt">
                             <a href="{{ route('create.environment') }}" class="btn">Create</a>
                         </th>
                     </tr>
@@ -39,7 +39,9 @@
                 @endforelse
                 </tbody>
             </table>
-            <p class="text-center secondary-dark">Displaying {{ count($environments) }} {{ count($environments) > 1 ? str_plural('environment') : 'environment' }}</p>
+            @if(count($environments) > 0)
+                <p class="text-center secondary-dark min-txt">Displaying {{ count($environments) }} {{ count($environments) > 1 ? str_plural('environment') : 'environment' }}</p>
+            @endif
         </div>
     </div>
 @endsection

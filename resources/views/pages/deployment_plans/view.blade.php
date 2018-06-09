@@ -8,11 +8,11 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Repository</th>
-                        <th>Plan</th>
-                        <th>Environment</th>
-                        <th>Deployed Build</th>
-                        <th>Deployed Branch</th>
+                        <th class="min-txt">Repository</th>
+                        <th class="min-txt">Plan</th>
+                        <th class="min-txt">Environment</th>
+                        <th class="min-txt">Deployed Build</th>
+                        <th class="min-txt">Deployed Branch</th>
                         <th>
                             <a href="{{ route('create.deployment-plan') }}" class="btn">Create</a>
                         </th>
@@ -45,7 +45,7 @@
                                     </a>
                                     @if($plan->status === 'ready')
                                         <a href="">
-                                            <i class="fa fa-cloud-upload action"></i>
+                                            <i class="fa fa-arrow-up action"></i>
                                         </a>
                                     @endif
                                 </td>

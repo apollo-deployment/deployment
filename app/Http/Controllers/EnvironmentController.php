@@ -69,7 +69,7 @@ class EnvironmentController extends Controller
     {
         if ($request->hasFile('private_key')) {
             $file = $request->file('private_key');
-            $file_name = time() . '.' . $file->getClientOriginalExtension();
+            $file_name = str_random(10) . '.' . $file->getClientOriginalExtension();
 
             Storage::putFileAs('ssh_keys', $file, $file_name);
 

@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Api\GitHub;
 use App\Jobs\Build;
 use App\Models\DeploymentPlan;
 use Illuminate\Console\Command;

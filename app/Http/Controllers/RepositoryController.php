@@ -49,7 +49,7 @@ class RepositoryController extends Controller
             'url' => $request->get('url')
         ]);
 
-        return redirect()->route('view.repositories')->with(['message' => "Successfully created repository {$repository->title}"]);
+        return redirect()->route('view.repositories')->with(['message' => "Successfully added {$repository->title}"]);
     }
 
     /**
@@ -66,7 +66,7 @@ class RepositoryController extends Controller
             'url' => $request->get('url'),
         ]);
 
-        return redirect()->route('view.repositories')->with(['message' => "Successfully updated repository {$repository->title}"]);
+        return redirect()->route('view.repositories')->with(['message' => "Successfully updated {}"]);
     }
 
     /**
@@ -74,9 +74,11 @@ class RepositoryController extends Controller
      */
     public function delete(Repository $repository)
     {
+        $title = $repository->title;
+
         $repository->deploymentPlans()->delete();
         $repository->delete();
 
-        return redirect()->route('view.repositories')->with(['message' => 'Successfully deleted repository']);
+        return redirect()->route('view.repositories')->with(['message' => "Successfully removed {$title}"]);
     }
 }

@@ -134,12 +134,7 @@ return [
     | this array to grant expanded functionality to your applications.
     |
     */
-
     'providers' => [
-
-        /*
-         * Laravel Framework Service Providers...
-         */
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
@@ -169,6 +164,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Collective\Remote\RemoteServiceProvider::class,
 
         \Eduardokum\LaravelMailAutoEmbed\ServiceProvider::class,
     ],
@@ -183,7 +179,6 @@ return [
     | the aliases are "lazy" loaded so they don't hinder performance.
     |
     */
-
     'aliases' => [
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
@@ -220,6 +215,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'SSH' => Collective\Remote\RemoteFacade::class,
     ],
-
 ];
