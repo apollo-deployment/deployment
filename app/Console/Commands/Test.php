@@ -40,6 +40,10 @@ class Test extends Command
      */
     public function handle()
     {
-        Build::dispatch(DeploymentPlan::first());
+        //Build::dispatch(DeploymentPlan::first());
+
+        $api = new GitHub;
+
+        $api->test();
     }
 }
