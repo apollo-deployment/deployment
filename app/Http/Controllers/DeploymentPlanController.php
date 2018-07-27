@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DeploymentPlanRequest;
 use App\Models\DeploymentPlan;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facad4es\Auth;
 use Illuminate\Support\Facades\Crypt;
 
 class DeploymentPlanController extends Controller

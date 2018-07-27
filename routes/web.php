@@ -66,7 +66,9 @@ Route::group(['middleware' => ['web']], function () {
     // GitHub API Routes
     Route::prefix('github')->group(function () {
         Route::get('/branches', 'Api\GitHubController@getBranches');
+        Route::get('/createHooks', 'Api\GitHubController@createHooks');
         Route::get('/hooks', 'Api\GitHubController@getHooks');
+
         Route::get('/access', 'Api\GitHubController@getAccess')->name('github.access');
         Route::get('/access/callback', 'Api\GitHubController@getAccessCallback');
         Route::post('/getPayload', 'Api\GitHubController@getPayload');
