@@ -112,13 +112,13 @@
                 Echo.channel(@json('deployment-channel.' . \Auth::user()->organization->id)).listen('BuildEvent', (e) => {
                     var deployment_plan = e.deployment_plan;
                     console.log(deployment_plan)
+
                     if (deployment_plan.status === 'in_progress') {
                         if ($(".build-" + deployment_plan.id).length !== 0) {
                             $(".build-" + deployment_plan.id).show();
                         }
                     } else if (deployment_plan.status === 'ready') {
                         toastr.success(deployment_plan.title + " is ready to deploy");
-
                     } else {
                         if ($(".build-" + deployment_plan.id).length !== 0) {
                             $(".build-" + deployment_plan.id).hide();
