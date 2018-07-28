@@ -8,10 +8,10 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Repository Name</th>
-                        <th>Connected Webhook</th>
-                        <th>
+                        <th class="min-txt">Name</th>
+                        <th class="min-txt">Repository Name</th>
+                        <th class="min-txt">Connected Webhook</th>
+                        <th class="min-txt">
                             <a href="{{ route('create.repository') }}" class="btn">Create</a>
                         </th>
                     </tr>
@@ -43,7 +43,9 @@
                 @endforelse
                 </tbody>
             </table>
-            <p class="text-center secondary-dark">Displaying {{ count($repositories) }} {{ count($repositories) > 1 ? str_plural('repository') : 'repository' }}</p>
+            @if(count($repositories) > 0)
+                <p class="text-center secondary-dark min-txt">Displaying {{ count($repositories) }} {{ count($repositories) > 1 ? str_plural('repository') : 'repository' }}</p>
+            @endif
         </div>
     </div>
 @endsection

@@ -12,6 +12,7 @@
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "~5.0",
+        "laravelcollective/remote": "5.5.*",
         "pusher/pusher-php-server": "^3.0"
     },
     "require-dev": {

@@ -4,9 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Builds extends Model
+class Build extends Model
 {
     protected $fillable = [
+        'build_number',
         'deployment_plan_id',
         'status'
     ];
@@ -16,6 +17,6 @@ class Builds extends Model
      */
     public function deploymentPlan()
     {
-        return $this->belongsTo('App\Models\DeploymentPlan');
+        return $this->belongsTo(DeploymentPlan::class);
     }
 }

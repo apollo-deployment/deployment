@@ -2,8 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Api\GitHub;
-use App\Jobs\Build;
+use App\Jobs\BuildProcess;
 use App\Models\DeploymentPlan;
 use Illuminate\Console\Command;
 
@@ -40,10 +39,6 @@ class Test extends Command
      */
     public function handle()
     {
-        //Build::dispatch(DeploymentPlan::first());
-
-        $api = new GitHub;
-
-        $api->test();
+        BuildProcess::dispatch(DeploymentPlan::first(), false);
     }
 }

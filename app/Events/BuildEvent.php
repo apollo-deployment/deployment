@@ -19,7 +19,7 @@ class BuildEvent implements ShouldBroadcast
      */
     public function __construct(DeploymentPlan $_deployment_plan)
     {
-        $this->deployment_plan = $_deployment_plan;
+        $this->deployment_plan = $_deployment_plan->with('repository');
     }
 
     /**

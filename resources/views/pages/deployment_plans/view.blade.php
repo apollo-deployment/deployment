@@ -8,19 +8,20 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Repository</th>
-                        <th>Plan</th>
-                        <th>Environment</th>
-                        <th>Deployed Build</th>
-                        <th>Deployed Branch</th>
+                        <th class="min-txt">Repository</th>
+                        <th class="min-txt">Plan</th>
+                        <th class="min-txt">Environment</th>
+                        <th class="min-txt">Status</th>
+                        <th class="min-txt">Deployed Build</th>
+                        <th class="min-txt">Deployed Branch</th>
                         <th>
                             <a href="{{ route('create.deployment-plan') }}" class="btn">Create</a>
                         </th>
                     </tr>
                 </thead>
-                @forelse($repositories as $repository)
+                @forelse ($repositories as $repository)
                     <tbody>
-                        @forelse($repository->deploymentPlans as $plan)
+                        @forelse ($repository->deploymentPlans as $plan)
                             <tr>
                                 <td class="repository-name">
                                     {{ $loop->first ? $repository->title : '' }}
@@ -28,13 +29,16 @@
                                 </td>
                                 <td>{{ $plan->title }}</td>
                                 <td>{{ $plan->environment->title }}</td>
-                                @if($plan->status === 'ready')
-                                    <td class="green" colspan="2">Ready</td>
-                                @elseif(isset($plan->deployed_version))
-                                    <td>{{ $plan->deployed_version }}</td>
+                                @if ($plan->status)
+                                    @if ($plan->status === 'ready')
+                                        <td class="green">Ready</td>
+                                    @elseif ($plan->status === 'in_progress')
+                                        <td class="green">In Progress</td>
+                                    @endif
+                                    <td>{{ $plan->currentBuild()->build_number }}</td>
                                     <td>{{ $plan->repository_branch }}</td>
                                 @else
-                                    <td class="secondary-dark" colspan="2">Not Deployed</td>
+                                    <td class="secondary-dark" colspan="3">Never Deployed</td>
                                 @endif
                                 <td>
                                     <button data-toggle="modal" data-target="#delete-deployment-plan-{{ $plan->id }}">
@@ -43,9 +47,9 @@
                                     <a href="{{ route('edit.deployment-plan', compact('plan')) }}">
                                         <i class="fa fa-cog action"></i>
                                     </a>
-                                    @if($plan->status === 'ready')
+                                    @if ($plan->status === 'ready')
                                         <a href="">
-                                            <i class="fa fa-cloud-upload action"></i>
+                                            <i class="fa fa-arrow-up action"></i>
                                         </a>
                                     @endif
                                 </td>

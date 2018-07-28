@@ -15,7 +15,7 @@ class DeploymentPlan extends Model
         'repository_id',
         'repository_branch',
         'build_id',           // Which build the project is on
-        'status',
+        'status',             // ready, in_progress, complete
         'is_automatic',       // Whether or not deployment is automatic
         'commands',           // Commands to run during build process
         'env'                 // Environment variables
@@ -26,7 +26,7 @@ class DeploymentPlan extends Model
      */
     public function organization()
     {
-        return $this->belongsTo('App\Models\Organization');
+        return $this->belongsTo(Organization::class);
     }
 
     /**
@@ -34,7 +34,7 @@ class DeploymentPlan extends Model
      */
     public function repository()
     {
-        return $this->belongsTo('App\Models\Repository');
+        return $this->belongsTo(Repository::class);
     }
 
     /**
@@ -42,7 +42,7 @@ class DeploymentPlan extends Model
      */
     public function environment()
     {
-        return $this->belongsTo('App\Models\Environment');
+        return $this->belongsTo(Environment::class);
     }
 
     /**
@@ -50,7 +50,15 @@ class DeploymentPlan extends Model
      */
     public function builds()
     {
-        return $this->hasMany('App\Models\Build');
+        return $this->hasMany(Build::class);
+    }
+
+    /**
+     * Gets the latest successful build
+     */
+    public function currentBuild()
+    {
+        return $this->builds()->where('status', 'complete')->orderBy('created_at', 'desc')->first();
     }
 
     /**

@@ -29,7 +29,7 @@
                         <div class="col-md-2 col-md-offset-8">
                             <div class="dropdown">
                                 <p class="user" data-toggle="dropdown">{{ \Auth::user()->name }}
-                                    @if(\Auth::user()->avatar)
+                                    @if (\Auth::user()->avatar)
                                         <img src="{{ url('/images/avatars/' . \Auth::user()->avatar) }}" class="avatar">
                                     @else
                                         <img src="{{ url('/images/avatars/default.png') }}" class="avatar">
@@ -87,43 +87,47 @@
         {{-- Scripts --}}
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
         <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-        <script type="text/javascript">
-            // Toast notifications config
-            toastr.options = {
-                "closeButton": false,
-                "debug": false,
-                "newestOnTop": false,
-                "progressBar": false,
-                "positionClass": "toast-bottom-right",
-                "preventDuplicates": false,
-                "onclick": null,
-                "showDuration": "5000",
-                "hideDuration": "5000",
-                "timeOut": "5000",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
-            };
+        @auth
+            <script type="text/javascript">
+                // Toast notifications config
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-bottom-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "5000",
+                    "hideDuration": "5000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                };
 
-            // Listens on organizations build channel
-            Echo.channel(@json('deployment-channel.' . \Auth::user()->organization->id)).listen('BuildEvent', (e) => {
-                var deployment_plan = e.deployment_plan;
+                // Listens on organizations build channel
+                Echo.channel(@json('deployment-channel.' . \Auth::user()->organization->id)).listen('BuildEvent', (e) => {
+                    var deployment_plan = e.deployment_plan;
+                    console.log(deployment_plan)
+                    if (deployment_plan.status === 'in_progress') {
+                        if ($(".build-" + deployment_plan.id).length !== 0) {
+                            $(".build-" + deployment_plan.id).show();
+                        }
+                    } else if (deployment_plan.status === 'ready') {
+                        toastr.success(deployment_plan.title + " is ready to deploy");
 
-                if (deployment_plan.status === 'in_progress') {
-                    if ($(".build-" + deployment_plan.id).length !== 0) {
-                        $(".build-" + deployment_plan.id).show();
+                    } else {
+                        if ($(".build-" + deployment_plan.id).length !== 0) {
+                            $(".build-" + deployment_plan.id).hide();
+                        }
+                        toastr.success(deployment_plan.title + " successfully deployed");
                     }
-                } else if (deployment_plan.status === 'ready') {
-                    toastr.success(deployment_plan.title + " is ready to deploy");
-                } else {
-                    if ($(".build-" + deployment_plan.id).length !== 0) {
-                        $(".build-" + deployment_plan.id).hide();
-                    }
-                }
-            });
-        </script>
+                });
+            </script>
+        @endauth
 
         @stack('scripts')
     </body>

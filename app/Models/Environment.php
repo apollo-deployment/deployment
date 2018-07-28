@@ -42,4 +42,12 @@ class Environment extends Model
     {
         return isset($username) ? Crypt::decryptString($username) : null;
     }
+
+    /**
+     * Mutator to decrypt SSH password
+     */
+    public function getSshPasswordAttribute($password)
+    {
+        return isset($password) ? Crypt::decryptString($password) : null;
+    }
 }

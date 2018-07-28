@@ -164,7 +164,6 @@ code {
     th {
       border-bottom: 2px solid $light !important;
       color: #8e8e8e;
-      font-size: 12px;
       font-weight: normal;
 
       .btn {
@@ -457,7 +456,7 @@ form {
 }
 
 .login, .register {
-  margin-top: 150px;
+  margin-top: 50px;
 
   .login-logo {
     text-align: center;
@@ -524,11 +523,12 @@ form {
   background-size: 16px !important;
   border-radius: 4px !important;
   padding: 10px 10px 10px 46px !important;
-  opacity: .8 !important;
+  opacity: 1 !important;
   -webkit-box-shadow: none !important;
 
   &.toast-success {
-    background-color: #1aa51a !important;
+    color: #00be8c !important;
+    background-color: #1e4a3d !important;
   }
 }
 

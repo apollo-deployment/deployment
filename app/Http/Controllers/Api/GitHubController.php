@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Redirect;
 
 class GitHubController extends Controller
 {
+    /**
+     * Github API instance
+     */
     private $github;
 
     public function __construct()
@@ -19,7 +22,7 @@ class GitHubController extends Controller
     }
 
     /**
-     * AJAX : Gets all branches for a repository
+     * Gets all branches for a repository
      */
     public function getBranches()
     {
@@ -35,6 +38,7 @@ class GitHubController extends Controller
     {
         return Redirect::away('https://github.com/login/oauth/authorize' .
             '?client_id=' . env('GITHUB_ID') .
+            '&redirect_uri=' . env('APP_URL') . '/github/access/callback' .
             '&scope=admin:repo_hook admin:org_hook repo'
         );
     }

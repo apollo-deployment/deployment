@@ -15,6 +15,7 @@ class CreateBuildsTable extends Migration
     {
         Schema::create('builds', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('build_number')->unsigned();
             $table->integer('deployment_plan_id')->unsigned();
             $table->string('status');
             $table->timestamps();

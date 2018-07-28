@@ -19,8 +19,8 @@
   color: #deb147 !important;
 }
 
-.float-right {
-  float: right;
+.min-txt {
+  font-size: 12px !important;
 }
 
 .alert {
@@ -92,9 +92,6 @@
 
 .checkbox-container:hover input ~ .checkmark {
   background-color: $medium;
-}
-
-.checkbox-container input:checked ~ .checkmark {
 }
 
 .checkbox-container input:checked ~ .checkmark:after {
